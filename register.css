@@ -38,7 +38,21 @@ body{
 .form-enter{
     margin-left: 5%;
     text-align: left;
+    color: lightslategray;
+    font-size: 22px;
 }
+
+.pic-container{
+    display: flex;
+    padding-left: 0%;
+    padding-right: 0%;
+}
+
+.prof-pic{
+    width: 25%;
+}
+
+.prof-pic > img{width:50; height: 72.5%; border-radius: 100%; border: 1px solid black}
 
 td{ color: lightslategray; font-size: 22px;}
 td > input {width: 98%; }
@@ -68,11 +82,10 @@ form > table, #form-submit{ margin: 0% 10%; width: 80%; }
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-    margin-top: 61%;
+    margin-top: 23%;
 }
 .sign-link a{
     background-color: #fff;
     color: lightslategray;
     font-size: 15px;
-
 }
