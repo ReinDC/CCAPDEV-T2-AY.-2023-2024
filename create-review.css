@@ -5,8 +5,9 @@ body{
 .body{
     display: flex;
     justify-content: center;
-    margin-top: 5%;
+
     flex-direction: row;
+    align-items: center;
 }
 
 .review-container{
@@ -30,7 +31,6 @@ body{
 
 .button-post-container{
     width: 25%;
-    
     text-align: center;
     color: #fff;
     font-size: 15px;
@@ -43,4 +43,32 @@ body{
 }
 textarea{
     resize: none;
+}
+
+.resto-image{
+   
+    margin-bottom: 50px;
+    margin-top: 0%;
+    margin-right: 0%;
+
+}
+
+.resto-header{
+    display: flex;
+    background-color: #18020C;
+    flex-direction: row;
+    padding: 50px;;
+    margin-bottom: 50px;
+    align-items: center;
+}
+
+.resto-header > h1 {
+    margin: 0%;
+    margin-right: 25px;
+    color: ghostwhite;
+}
+.resto-header > .text{
+    margin-left: 25px;
+    font-family: sans-serif;
+    color: ghostwhite;
 }
