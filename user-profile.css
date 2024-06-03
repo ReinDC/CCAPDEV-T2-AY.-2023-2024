@@ -22,6 +22,24 @@ body{
     color: ghostwhite;
 }
 
+a:link{
+    color:ghostwhite;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+a:visited{
+    color:ghostwhite;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+a:hover{
+    color:#CE6A85;
+    background-color: transparent;
+    text-decoration: dotted;
+}
+
 .profile-body, .comments-reviews{
     background-color: #18020C;
     width: 60%;
