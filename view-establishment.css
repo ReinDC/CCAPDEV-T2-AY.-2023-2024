@@ -1,0 +1,115 @@
+body{
+    background-color: lightslategray;
+}
+
+.body{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.resto-header{
+
+    display: flex;
+    background-color: #18020C;
+    flex-direction: row;
+    padding: 50px;;
+    margin-bottom: 50px;
+    align-items: center;
+}
+
+.resto-header > h1 {
+    margin: 0%;
+    margin-right: 25px;
+    color: ghostwhite;
+}
+.resto-header > .text{
+    margin-left: 25px;
+    font-family: sans-serif;
+    color: ghostwhite;
+}
+
+.establishment-list {
+    display: flex;
+    flex-direction: column;
+}
+.establishment {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+
+.establishment-container{
+
+    display: flex;
+    width: 1200px;
+    height: 500px;
+    background: ghostwhite;
+    justify-self: auto;
+    align-self: flex-start;
+    flex-direction: row;
+
+
+}
+.text-container > .name-font{
+
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 50px;
+    font-weight: bold;
+    margin-left: 20px;
+    text-align: justify;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.text-container > .details-font{
+
+    font-family: 'Courier New', Courier, monospace;
+    font-size: large;
+    margin-bottom: 20px;
+    margin-left: 20px;;
+}
+.resto-image{
+    align-self: flex-start;
+    display: flex;
+    justify-self: flex-start;
+}
+.resto-image > img{
+    height: 500px;
+    width: 500px;
+    object-fit: fill;
+}
+.text-container{
+    display: flex;
+    flex-direction: column;
+}
+.button-container{
+    background-color: #CE6A85;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    width: 700px;
+}
+
+a:link{
+    color:ghostwhite;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+a:visited{
+    color:ghostwhite;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+a:hover{
+    color:#CE6A85;
+    background-color: transparent;
+    text-decoration: dotted;
+}
