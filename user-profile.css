@@ -1,0 +1,108 @@
+body{
+    background-color: lightslategray;
+    margin: 0;
+}
+.resto-header{
+    display: flex;
+    background-color: #18020C;
+    flex-direction: row;
+    padding: 50px;;
+    margin-bottom: 50px;
+    align-items: center;
+}
+
+.resto-header > h1 {
+    margin: 0%;
+    margin-right: 25px;
+    color: ghostwhite;
+}
+.resto-header > .text{
+    margin-left: 25px;
+    font-family: sans-serif;
+    color: ghostwhite;
+}
+
+a:link{
+    color:ghostwhite;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+a:visited{
+    color:ghostwhite;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+a:hover{
+    color:#CE6A85;
+    background-color: transparent;
+    text-decoration: dotted;
+}
+
+.profile-body, .comments-reviews{
+    background-color: #18020C;
+    width: 60%;
+    margin: auto;
+    color: white;
+    display: flex;
+    margin: auto;
+    height: 250px;
+    margin-top: 10px;
+}
+
+.profile-pic{
+    border-left: 2px solid white;
+    width: 40%;
+    height: 100%;
+}
+.profile-pic{
+    border-left: 2px solid white;
+    width: 40%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+.profile-pic > img {
+    width: 150px;
+    border-radius: 100%;
+    height: 150px;
+}
+
+.profile-info{
+    width: 60%;
+    text-align: center;
+    margin: auto;
+}
+
+.profile-info > h2{
+    margin: 0%;
+}
+
+.profile-description{
+    resize: none;
+    width: 70%;
+    height: 70%;
+}
+
+.comments-reviews{ 
+    display: flex;
+    flex-direction: column; 
+}
+
+.comment{
+    background-color: aliceblue;
+    width: 70%;
+    height: 90px;
+    margin: auto;
+    color: black;
+    border: 2px solid black;
+    border-radius: 5%;
+    padding: 3px;
+}
+
+.comment-footer{
+    color: rgba(0, 0, 0, 0.5)
+}
