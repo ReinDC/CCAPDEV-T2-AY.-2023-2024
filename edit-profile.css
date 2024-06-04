@@ -39,3 +39,79 @@ a:hover{
     background-color: transparent;
     text-decoration: dotted;
 }
+
+.profile-body{
+    background-color: #18020C;
+    width: 60%;
+    margin: auto;
+    color: white;
+    display: flex;
+    margin: auto;
+    height: 250px;
+    margin-top: 10px;
+}
+
+.profile-pic{
+    border-left: 2px solid white;
+    width: 40%;
+    height: 100%;
+}
+.profile-pic{
+    border-left: 2px solid white;
+    width: 40%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    flex-direction: column;
+}
+
+.profile-pic > img {
+    width: 35%;
+    border-radius: 100%;
+    height: 40%;
+}
+
+.profile-pic > button {
+    margin-top: 20%;
+    border: 1px solid #CE6A85;
+    background-color: #18020C;
+    box-shadow: 1px 1px 10px ;
+    color: white;
+}
+
+.profile-pic > button:hover {
+    color:#CE6A85;
+    text-decoration: dotted;
+}
+
+.profile-info{
+    width: 60%;
+    text-align: center;
+    margin: auto;
+}
+
+.profile-info > h2{
+    margin: 0%;
+}
+
+.profile-description{
+    resize: none;
+    width: 70%;
+    height: 70%;
+}
+
+.confirm-button{
+    background-color: #18020C;
+    width: 60%;
+    margin: auto;
+    margin-top: 5px;
+    text-align: center;
+    border: 1px solid #CE6A85;
+    box-shadow: 5px 5px 10px;
+}
+
+.confirm-button:hover{
+    color:#CE6A85;
+    text-decoration: dotted;
+}
