@@ -1,0 +1,96 @@
+<html>
+<head>
+    <title>View establishment reviews</title>
+    <link rel="stylesheet" href="view-establishment-reviews.css">
+</head>
+<body>
+    <!--
+    <a href="create-review.html">Create review page</a> <br>
+    <a href="edit-review.html">Edit review page</a> <br>
+    <a href="edit-profile.html">Edit profile page</a> <br>
+    <a href="login.html">Login page</a> <br>
+    <a href="logout.html">Logout page</a> <br>
+    <a href="register.html">Register page</a> <br>
+    <a href="user-profile.html">User profile page</a> <br>
+    <a href="search-establishments.html">Search establishment page</a> <br>
+    <a href="establishment-owner-response.html">Establishment owner response page</a> <br>
+    <a href="view-establishment-reviews.html">View establishment reviews page</a> <br>
+    <a href="view-establishment.html">View establishment page</a> <br>
+  --> 
+
+  <div class = "resto-header">
+    <h1>Yapper Elite</h1>
+      <div class ="text">
+        <a href="view-establishment.html">View establishments</a> <br>
+      </div>
+      <div class ="text">
+        <a href="search-establishments.html">Search establishments</a> <br>
+      </div>
+      <div class ="text">
+        <a href="user-profile.html">Profile </a> <br>
+      </div>
+  </div>
+
+<div class = "body"> <!--body container -->
+ <div class = "establishment-list">
+            <div class = "establishment"> <!-- view establishments container (make sure it is flex: column)-->
+                <div class = "establishment-container"> <!-- certain establishment container 1-->
+                <div class="resto-image">
+                    <img src = "https://i.pinimg.com/564x/ae/36/ea/ae36ea626d3e3599145c0c73c902c53c.jpg" />
+                </div>
+                <div class = "text-container">
+                    <div class = "name-font">
+                        City Works
+                    </div>
+                    <div class = "details-font">
+                        31 Spooner Street, Quahog
+                        <br><br>
+                        Open now (9AM - 10PM)
+                        <br><br>
+                        Best sellers
+                            <ul>
+                                <li>Carbonara</li>
+                                <li>Spanish Latte</li>
+                                <li>Pumpkin Spice</li>
+                            </ul>
+                    </div>
+                </div>    
+                </div>
+            </div>
+  </div>
+
+  <div class = "estab-reviews-container"> <!--Start of establishment reviews-->
+    <div class = "review-profile">
+      <div class = "img-box">
+      <img src = "https://upload.wikimedia.org/wikipedia/en/f/fd/Tommy_Shelby.jpg" />
+      </div>
+        <div class = "title-and-name-box">
+          <div class = "title-text">
+          Worst food, less than a pub
+          </div>
+          <div class = "name-text">
+            By: Tommy Shelby
+          </div>    
+        </div>
+        <div class = "not-reco"> <!-- recommended or not-->
+          <div class = "reco-text">
+          Recommended
+        </div>
+        </div>
+    </div>
+    <div class = "text-container">
+      <textarea readonly name ="review" rows = "10" cols = "10">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Scelerisque eu ultrices vitae auctor. Duis ultricies lacus sed turpis. Nulla facilisi etiam dignissim diam quis enim lobortis scelerisque fermentum. Nibh sed pulvinar proin gravida hendrerit lectus a.</textarea>
+    </div>
+
+    <div class = "button-container"> <!-- buttons for helpful or not helpful-->
+        <button type = "button"> Helpful </button>
+        <button type = "button"> Not Helpful </button>
+    </div>
+
+  </div>
+  
+  
+
+</div>
+</body>
+</html>

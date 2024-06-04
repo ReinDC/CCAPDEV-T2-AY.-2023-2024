@@ -1,0 +1,96 @@
+<html>
+<head>
+    <title>View establishment reviews</title>
+    <link rel="stylesheet" href="view-establishment-reviews.css">
+</head>
+<body>
+    <!--
+    <a href="create-review.html">Create review page</a> <br>
+    <a href="edit-review.html">Edit review page</a> <br>
+    <a href="edit-profile.html">Edit profile page</a> <br>
+    <a href="login.html">Login page</a> <br>
+    <a href="logout.html">Logout page</a> <br>
+    <a href="register.html">Register page</a> <br>
+    <a href="user-profile.html">User profile page</a> <br>
+    <a href="search-establishments.html">Search establishment page</a> <br>
+    <a href="establishment-owner-response.html">Establishment owner response page</a> <br>
+    <a href="view-establishment-reviews.html">View establishment reviews page</a> <br>
+    <a href="view-establishment.html">View establishment page</a> <br>
+  --> 
+
+  <div class = "resto-header">
+    <h1>Yapper Elite</h1>
+      <div class ="text">
+        <a href="view-establishment.html">View establishments</a> <br>
+      </div>
+      <div class ="text">
+        <a href="search-establishments.html">Search establishments</a> <br>
+      </div>
+      <div class ="text">
+        <a href="user-profile.html">Profile </a> <br>
+      </div>
+  </div>
+
+<div class = "body"> <!--body container -->
+ <div class = "establishment-list">
+            <div class = "establishment"> <!-- view establishments container (make sure it is flex: column)-->
+                <div class = "establishment-container"> <!-- certain establishment container 1-->
+                <div class="resto-image">
+                    <img src = "https://i.pinimg.com/564x/04/9a/f0/049af061507e0a2defa9b42970a9ab86.jpg" />
+                </div>
+                <div class = "text-container">
+                    <div class = "name-font">
+                        Maayos na Restaurant
+                    </div>
+                    <div class = "details-font">
+                        221B Baker Street
+                        <br><br>
+                        Open now (9AM - 10PM)
+                        <br><br>
+                        Best sellers
+                            <ul>
+                                <li>Lechon Kawali</li>
+                                <li>Adobong Pusit</li>
+                                <li>Pumpkin Spice</li>
+                            </ul>
+                    </div>
+                </div>    
+                </div>
+            </div>
+  </div>
+
+  <div class = "estab-reviews-container"> <!--Start of establishment reviews-->
+    <div class = "review-profile">
+      <div class = "img-box">
+      <img src = "https://pbs.twimg.com/profile_images/1531212570614714368/Ne2YxJMv_400x400.jpg" />
+      </div>
+        <div class = "title-and-name-box">
+          <div class = "title-text">
+            Ngapakaarap
+          </div>
+          <div class = "name-text">
+            By: Manny "Pacman" Pacquaio
+          </div>    
+        </div>
+        <div class = "reco"> <!-- recommended or not-->
+            <div class = "reco-text">
+                Recommended
+              </div>
+        </div>
+    </div>
+    <div class = "text-container">
+      <textarea readonly name ="review" rows = "10" cols = "10">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Scelerisque eu ultrices vitae auctor. Duis ultricies lacus sed turpis. Nulla facilisi etiam dignissim diam quis enim lobortis scelerisque fermentum. Nibh sed pulvinar proin gravida hendrerit lectus a.</textarea>
+    </div>
+
+    <div class = "button-container"> <!-- buttons for helpful or not helpful-->
+        <button type = "button"> Helpful </button>
+        <button type = "button"> Not Helpful </button>
+    </div>
+
+  </div>
+  
+  
+
+</div>
+</body>
+</html>
