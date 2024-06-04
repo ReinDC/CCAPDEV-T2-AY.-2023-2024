@@ -139,10 +139,11 @@ a:hover{
     margin-bottom: 40px;
 }
 .img-box > img{
-    width:30%;
+    width:100px;
     height:auto;
     border: 1px solid black;
     border-radius: 200px;
+    height: 100px;
 
 }
 .review-profile > .title-and-name-box{
@@ -166,17 +167,38 @@ a:hover{
   
 }
 .review-profile > .reco{
+    
+
+    display: block;
+    margin:auto;
+    position:sticky;
     background-color: #96A677;
+    padding: 1rem;
+    border: 1px solid #96A677;
+   
+    
+}
+
+.review-profile > .not-reco{
+    display: block;
+    margin:auto;
+    position:sticky;
+    background-color: #96A677;
+    padding: 1rem;
+    border: 1px solid #96A677;
+    border-radius: 10px;
+}
+
+.reco > .reco-text{
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     color: ghostwhite;
     letter-spacing: 3px;
-    margin:auto;
-    padding-top: 2%;
-    padding-bottom: 2%;
-    padding-left: 2%;
-    padding-right: 2%;
-    border: 10px solid #96A677;
-    border-radius: 10%;
+    text-shadow: 2px 2px 0px #000000;
+}
+.not-reco > .reco-text{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: ghostwhite;
+    letter-spacing: 3px;
     text-shadow: 2px 2px 0px #000000;
 }
 textarea{
@@ -198,7 +220,7 @@ textarea{
     font-weight: bold;
     display: flex;
     flex-direction: row;
-  
+    
  
 }
 .button-container > button{
