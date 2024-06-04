@@ -1,5 +1,6 @@
 body{
     background-color: lightslategray;
+    margin:0;
 }
 
 .body{
@@ -54,7 +55,6 @@ textarea{
 .resto-image{
         align-self: flex-start;
         display: flex;
-  
         justify-self: flex-start;
 }
 .resto-image > img{
@@ -80,4 +80,22 @@ textarea{
     margin-left: 25px;
     font-family: sans-serif;
     color: ghostwhite;
+}
+
+a:link{
+    color:ghostwhite;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+a:visited{
+    color:ghostwhite;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+a:hover{
+    color:#CE6A85;
+    background-color: transparent;
+    text-decoration: dotted;
 }
