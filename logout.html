@@ -1,18 +1,36 @@
 <html>
 <head>
     <title>Logout</title>
+    <link rel="stylesheet" href="logout.css">
 </head>
-<body>
-    <a href="create-review.html">Create review page</a> <br>
-    <a href="edit-review.html">Edit review page</a> <br>
-    <a href="edit-profile.html">Edit profile page</a> <br>
-    <a href="login.html">Login page</a> <br>
-    <a href="logout.html">Logout page</a> <br>
-    <a href="register.html">Register page</a> <br>
-    <a href="user-profile.html">User profile page</a> <br>
-    <a href="search-establishments.html">Search establishment page</a> <br>
-    <a href="establishment-owner-response.html">Establishment owner response page</a> <br>
-    <a href="view-establishment-reviews.html">View establishment reviews page</a> <br>
-    <a href="view-establishment.html">View establishment page</a> <br>
-</body>
+    <body>
+        <div class="resto-header">
+            <h1>Yapper Elite</h1>
+        </div>
+
+        <div class="body-container">
+            <img src="http://images.paramount.tech/path/mgid:file:gsp:entertainment-assets:/sps/shared/characters/alter-egos/dawg-the-hall-monitor.png?height=165">
+        
+            <h2>Are you sure you want to leave?</h2>
+            <div class="button-container">
+                <div class="buttons">
+                    <div class="on-click">
+                        <a href="#" onclick="goBack()">Go Back</a>
+                    </div>
+                </div>
+
+                <div class="buttons">
+                    <div class="on-click">
+                        <a href="login.html">Logout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <script>
+            function goBack() {
+                window.history.back();
+            }
+        </script>
+    </body>
 </html>

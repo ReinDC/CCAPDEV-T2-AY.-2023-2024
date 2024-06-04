@@ -1,5 +1,6 @@
 body{
     background-color: lightslategray;
+    margin: 0;
 }
 
 .body{
@@ -52,7 +53,7 @@ body{
     width: 25%;
 }
 
-.prof-pic > img{width:50; height: 72.5%; border-radius: 100%; border: 1px solid black}
+.prof-pic > img{width:50; height: 55%; border-radius: 100%; border: 1px solid black}
 
 td{ color: lightslategray; font-size: 22px;}
 td > input {width: 98%; }
