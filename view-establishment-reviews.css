@@ -189,3 +189,23 @@ textarea{
     margin-bottom: 20px;
     font-size: 20px;
 }
+
+.button-container{
+    width: 25%;
+    text-align: center;
+    background-color: ghostwhite;
+    font-size: 15px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+  
+ 
+}
+.button-container > button{
+    width:100%;
+    background-color: #CE6A85;
+    margin-right: 20px;;
+    padding:1%;
+    color: ghostwhite;
+    align-items: flex-start;
+}
