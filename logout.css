@@ -46,23 +46,27 @@ body{
 }
 
 .buttons {
+    padding-top: 7.5%;
     height: 100%;
     width: 25%;
-    background-color: lightslategray;
-    margin: 20px 30px 20px;
-    border-radius: 10px;
-    text-align: center;
 }
 
-.on-click {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
-    margin-top: 15%;
+button {
+    height: 100%;
+    width: 100%;
+    background-color: lightslategray;
+    font-size: 15px;
+    border-radius: 15px;
+    border: 2px lightgray;
 }
 
 a{
+    color:ghostwhite;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+a:visited{
     color:ghostwhite;
     background-color: transparent;
     text-decoration: none;

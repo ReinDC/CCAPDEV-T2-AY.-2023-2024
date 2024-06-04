@@ -10,68 +10,99 @@ body{
 
 .content-container{
     width: 50%;
-    max-width: fit-content;
     background: #fff;
     display: flex;
-    flex: row;
     border-radius: 10px;
 }
 
 .image-box{
     width: 50%;
 }
-.image-box > img{width: 100%; border-bottom-left-radius: 10px; border-top-left-radius: 10px;}
+.image-box > img{width: 100%; height: 100%; border-bottom-left-radius: 10px; border-top-left-radius: 10px;}
 
 .form-box{
     width: 50%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: start;
 }
 
 .form-head{
-    justify-content: center;
-    text-align: center;
+    height: 10%;
+    justify-content: flex-start;
+    align-self: center;
     color: lightslategray;
+
 }
 
-.form-head > h1{margin-bottom: 50px;}
 .form-enter{
-    margin-left: 5%;
-    text-align: left;
+    height: 70%;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    color: lightslategray;
+    font-size: 25px;
+    margin-top: 50px;
 }
 
-td{ color: lightslategray; font-size: 22px;}
-td > input {width: 98%; }
-form > table, #form-submit{ margin: 0% 10%; width: 80%; }
+form{
+    margin-left:40px;
+    margin-right:40px;
+}
+
+input{
+    width: 100%;
+    height: 15%;
+    border: 2px solid lightslategray;
+    border-radius: 10px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
 
 .button-container{
     width: 25%;
-    background-color: lightslategray;
-    text-align: center;
-    margin: 10% 0% 10% 35%;
-    padding: 10px;
-    border-radius: 20px;
-    color: #fff;
-    font-size: 15px;
-    font-weight: bold;
+    height: 20%;
+    display: flex;
+    justify-content: flex-start;
+    align-self: center;
+    margin-bottom: 25%;
 }
 
-.button-container button, a{
+button{
+    height: 50%;
+    width: 100%;
     background-color: lightslategray;
-    color: #fff;
-    border: 0;
+    font-size: 15px;
+    border-radius: 15px;
+    border: 2px solid lightgray;
+}
+
+a {
     text-decoration: none;
 }
 
+a:visited{
+    color:ghostwhite;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+a:hover{
+    color:#CE6A85;
+    background-color: transparent;
+    text-decoration: dotted;
+}
+
 .sign-link{
+    height: 10%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-    margin-top: 61%;
 }
 .sign-link a{
-    background-color: #fff;
     color: lightslategray;
     font-size: 15px;
 }
