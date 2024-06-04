@@ -1,5 +1,6 @@
 body{
     background-color: lightslategray;
+    margin:0;
 }
 
 .body{
@@ -54,7 +55,6 @@ textarea{
 .resto-image{
         align-self: flex-start;
         display: flex;
-  
         justify-self: flex-start;
 }
 .resto-image > img{
