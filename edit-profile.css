@@ -111,6 +111,11 @@ a:hover{
     box-shadow: 5px 5px 10px;
 }
 
+.confirm-button > button{
+    background-color: #18020C;
+    width: 100%;
+}
+
 .confirm-button:hover{
     color:#CE6A85;
     text-decoration: dotted;
