@@ -77,6 +77,24 @@ body{
 
 }
 
+.edit-button {
+    border: none;
+    border-radius: 20px;
+    background-color: #a5a5a5;
+    position: absolute;
+    padding: 20px;
+    margin-left: 580px;
+    margin-top: 20px;
+}
+
+.edit-button > a {
+    font-weight: 500;
+    font-size: 18px;
+    text-decoration: none;
+    color: white;
+    font-family: 'DM Sans';
+}
+
 .details-address{
     margin-top: -20px;
     color: #707070;
