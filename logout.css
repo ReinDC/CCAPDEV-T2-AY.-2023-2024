@@ -1,13 +1,15 @@
 body{
-    background-color: lightslategray;
-    margin: 0;
+    background-color: #f0f0f0;
+    margin:0;
+    font-family: 'DM Sans';
 }
 
 .resto-header{
     display: flex;
-    background-color: #18020C;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     justify-content: center;
-    padding: 50px;;
+    padding: 30px;
     margin-bottom: 50px;
     align-items: center;
 }
@@ -15,27 +17,29 @@ body{
 .resto-header > h1 {
     margin: 0%;
     margin-right: 25px;
-    color: ghostwhite;
+    color: #17191f;
 }
 
 .body-container{
-    background-color: #18020C;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: white;
     width: 25%;
     margin: auto;
-    color: ghostwhite;
+    color: #17191f;
     text-align: center;
     display: flex;
     flex-direction: column;
     height: 60%;
     margin-top: 5%;
-    border-radius: 10px;
+    border-radius: 20px;
 }
 
 .body-container > img {
     width: 300px;
     height: 250px;
     padding: 30px;
-    margin-left: 7.5%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .button-container {
@@ -48,20 +52,22 @@ body{
 .buttons {
     padding-top: 7.5%;
     height: 100%;
-    width: 25%;
+    width: 35%;
 }
 
 button {
+    background-color: #a5a5a5;
+    border: none;
     height: 100%;
     width: 100%;
-    background-color: lightslategray;
     font-size: 15px;
     border-radius: 15px;
-    border: 2px lightgray;
 }
 
 a{
-    color:ghostwhite;
+    color: white;
+    font-size: 18px;
+    font-family: 'DM Sans';
     background-color: transparent;
     text-decoration: none;
 }
@@ -73,7 +79,7 @@ a:visited{
 }
 
 a:hover{
-    color:#CE6A85;
+    color: gray;
     background-color: transparent;
     text-decoration: dotted;
 }
