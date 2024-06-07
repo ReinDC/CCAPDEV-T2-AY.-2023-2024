@@ -16,6 +16,7 @@ body{
     flex-direction: row;
     padding: 30px;;
     margin-bottom: 50px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     align-items: center;
 }
 
@@ -42,6 +43,7 @@ body{
 }
 
 .establishment-container{
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     border-radius: 20px;
     display: flex;
     width: 1200px;
@@ -56,20 +58,20 @@ body{
 .text-container > .name-font{
 
     font-family:'DM Sans', sans-serif;
-    font-size: 45px;
+    font-size: 40px;
     font-weight: bold;
-    margin-left: 40px;
+    margin-left: 50px;
     text-align: justify;
     align-items: center;
     margin-bottom: 20px;
-    margin-top: 20px;
+    margin-top: 30px;
 }
 
 .text-container > .details-font{
 
     font-family: 'DM Sans', monospace;
     font-size: large;
-    margin-left: 40px;;
+    margin-left: 50px;;
 }
 
 .details-address{
@@ -111,6 +113,11 @@ body{
     margin-top: -30px;
     display: flex;
     flex-direction: column;
+}
+
+.text-container-review textarea{
+    background-color: whitesmoke;
+    border-radius: 10px;
 }
 .button-container{
     background-color: #CE6A85;
@@ -157,6 +164,7 @@ body{
     display: flex;
     flex-direction: column;
     margin-bottom: 40px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .review-profile{
@@ -182,13 +190,14 @@ body{
 
 }
 .review-profile > .title-and-name-box{
+    width: 490px;
     display: flex;
    flex-direction: column;
 }
 .title-and-name-box > .title-text{
     font-weight: 700;
     font-family:'DM Sans', sans-serif;
-    font-size: 32px;
+    font-size: 30px;
     margin-left: -110px;
     text-align: justify;
     margin-top: 20px;
@@ -198,7 +207,7 @@ body{
     font-weight: 500;
     font-family:'DM Sans', sans-serif;
     font-size: 18px;
-    margin-left: -105px;
+    margin-left: -110px;
     color: #707070;
     text-align: justify;
     margin-bottom: 20px;
@@ -208,7 +217,7 @@ body{
     
     border-radius: 10px;
     display: block;
-    margin-left: 85px;
+    margin-left: 40px;
     position:sticky;
     background-color: #96A677;
     padding: 1rem;
@@ -219,10 +228,9 @@ body{
 
 .review-profile > .not-reco{
     border-radius: 10px;
-    margin-left: 85px;
+    margin-left: 0px;
     display: block;
-    margin:auto;
-    position:sticky;
+    position:relative;
     background-color: #CE6A85;;
     padding: 1rem;
     border: 1px solid #CE6A85;;
