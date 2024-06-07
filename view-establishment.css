@@ -1,20 +1,23 @@
 body{
-    background-color: lightslategray;
+    background-color: #f0f0f0;
     margin:0;
+    font-family: 'DM Sans';
 }
 
 .body{
+    
     display: flex;
     align-items: center;
     flex-direction: column;
 }
 
 .resto-header{
-
+    color: #17191f;
     display: flex;
-    background-color: #18020C;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     flex-direction: row;
-    padding: 50px;;
+    padding: 30px;
     margin-bottom: 50px;
     align-items: center;
 }
@@ -22,12 +25,13 @@ body{
 .resto-header > h1 {
     margin: 0%;
     margin-right: 25px;
-    color: ghostwhite;
+    color: #17191f;
 }
 .resto-header > .text{
+    font-weight: bold;
+    font-size: 18px;
     margin-left: 25px;
-    font-family: sans-serif;
-    color: ghostwhite;
+    color: #17191f;
 }
 
 .establishment-list {
@@ -35,17 +39,19 @@ body{
     flex-direction: column;
 }
 .establishment {
+
     display: flex;
     flex-direction: row;
     margin-bottom: 20px;
 }
 
 .establishment-container{
-
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
     display: flex;
     width: 1200px;
     height: 500px;
-    background: ghostwhite;
+    background: white;
     justify-self: auto;
     align-self: flex-start;
     flex-direction: row;
@@ -54,8 +60,8 @@ body{
 }
 .text-container > .name-font{
 
-    font-family:Arial, Helvetica, sans-serif;
-    font-size: 50px;
+    font-family:'DM Sans', sans-serif;
+    font-size: 38px;
     font-weight: bold;
     margin-left: 20px;
     text-align: justify;
@@ -65,17 +71,41 @@ body{
 
 .text-container > .details-font{
 
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'DM Sans', monospace;
     font-size: large;
-    margin-bottom: 20px;
-    margin-left: 20px;;
+    margin-left: 20px;
+
 }
+
+.details-address{
+    margin-top: -20px;
+    color: #707070;
+    font-size: large;
+}
+
+.details-time {
+
+    margin-left: 10px;
+    font-size: 20px;
+}
+
+.details-bestseller{
+    padding: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    margin-bottom: 20px;
+
+}
+
 .resto-image{
     align-self: flex-start;
     display: flex;
     justify-self: flex-start;
 }
 .resto-image > img{
+    border-bottom-left-radius: 20px; border-top-left-radius: 20px;
     height: 500px;
     width: 500px;
     object-fit: fill;
@@ -85,7 +115,10 @@ body{
     flex-direction: column;
 }
 .button-container{
-    background-color: #CE6A85;
+
+     font-family:'DM Sans', sans-serif;
+    border-radius: 10px;
+    background-color: #a5a5a5;
     border: none;
     color: white;
     padding: 15px 32px;
@@ -94,23 +127,36 @@ body{
     font-size: 16px;
     margin-bottom: 10px;
     cursor: pointer;
-    width: 700px;
+    margin-left: 50px;
+    width: 600px;
 }
 
-a:link{
-    color:ghostwhite;
+
+.a-header {
+    color: #17191f;
+    text-decoration: none;
+}
+
+.a-header :link{
+    color: #17191f;
     background-color: transparent;
     text-decoration: none;
 }
 
-a:visited{
-    color:ghostwhite;
+.a-header :visited{
+    color: #17191f;
     background-color: transparent;
     text-decoration: none;
 }
 
-a:hover{
+.a-header:hover{
     color: lightslategrey;
     background-color: transparent;
     text-decoration: dotted;
+}
+
+.a-btn {
+    color: white;
+    background-color: transparent;
+    text-decoration: none;
 }
