@@ -2,6 +2,7 @@
 <head>
     <title>View establishment reviews</title>
     <link rel="stylesheet" href="view-establishment-reviews.css">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!--
@@ -21,23 +22,23 @@
   <div class = "resto-header">
     <h1>Yapper Elite</h1>
       <div class ="text">
-        <a href="search-establishments.html">Search establishments</a>
+        <a class="a-header" href="search-establishments.html">Search establishments</a>
       </div>
 
       <div class="text">
-        <a href="view-establishment.html">View establishments</a>
+        <a class="a-header" href="view-establishment.html">View establishments</a>
       </div>
 
       <div class ="text">
-        <a href="user-profile.html">Profile </a>
+        <a class="a-header" href="user-profile.html">Profile </a>
       </div>
 
       <div class="text">
-        <a href="edit-profile.html">Edit profile</a>
+        <a class="a-header" href="edit-profile.html">Edit profile</a>
       </div>
 
       <div class ="text">
-        About Us
+        <a class="a-header" href="about-us-page.html">About Us</a>
       </div>
 </div>
 
@@ -53,16 +54,14 @@
                         commonwealth
                     </div>
                     <div class = "details-font">
-                        805 St Cloud Road, Bel Air, Los Angeles, CA.
-                        <br><br>
-                        Open now (9AM - 10PM)
-                        <br><br>
-                        Best sellers
+                        <p class="details-address">805 St Cloud Road, Bel Air, Los Angeles, CA.</p>
+                        <p class="details-time"><b>🟢 Open now (9AM - 10PM)</b></p>
+                        <div class="details-bestseller">Best sellers
                             <ul>
                                 <li>Carbonara</li>
                                 <li>Spanish Latte</li>
                                 <li>Pumpkin Spice</li>
-                            </ul>
+                            </ul></div>
                     </div>
                 </div>    
                 </div>
@@ -84,18 +83,18 @@
         </div>
         <div class = "reco"> <!-- recommended or not-->
             <div class = "reco-text">
-                Recommended
+                ⭐ Recommended
               </div>
         </div>
     </div>
-    <div class = "text-container">
+    <div class = "text-container-review">
       <textarea readonly name ="review" rows = "10" cols = "10">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Scelerisque eu ultrices vitae auctor. Duis ultricies lacus sed turpis. Nulla facilisi etiam dignissim diam quis enim lobortis scelerisque fermentum. Nibh sed pulvinar proin gravida hendrerit lectus a.</textarea>
     </div>
 
     <div class = "button-container"> <!-- buttons for helpful or not helpful-->
-        <button> Helpful </button>
-        <button> Not Helpful </button>
-        <button><a href="edit-review.html">Edit review</a></button>
+        <button class="button-btn"> Helpful </button>
+        <button class="button-btn"> Not Helpful </button>
+        <button class="button-btn"><a class="a-edit" href="edit-review.html">Edit review</a></button>
     </div>
 
   </div>
