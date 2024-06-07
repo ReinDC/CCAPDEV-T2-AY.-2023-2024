@@ -2,6 +2,8 @@
 <head>
     <title>Edit review</title>
     <link rel="stylesheet" href="edit-review.css">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
 
 </head>
 <body>
@@ -20,27 +22,27 @@
     -->    
 
     <div class = "resto-header">
-      <h1>Yapper Elite</h1>
-        <div class ="text">
-          <a href="search-establishments.html">Search establishments</a>
-        </div>
+        <h1>Yapper Elite</h1>
+          <div class ="text">
+            <a class="a-header" href="search-establishments.html">Search establishments</a>
+          </div>
 
-        <div class="text">
-          <a href="view-establishment.html">View establishments</a>
-        </div>
+          <div class="text">
+            <a class="a-header" href="view-establishment.html">View establishments</a>
+          </div>
 
-        <div class ="text">
-          <a href="user-profile.html">Profile </a>
-        </div>
+          <div class ="text">
+            <a class="a-header" href="user-profile.html">Profile </a>
+          </div>
 
-        <div class="text">
-          <a href="logout.html">Logout</a>
-        </div>
+          <div class="text">
+            <a class="a-header" href="logout.html">Logout</a>
+          </div>
 
-        <div class ="text">
-          About Us
-        </div>
-  </div>
+          <div class ="text">
+            <a class="a-header" href="about-us-page.html">About Us</a>
+          </div>
+    </div>
 
     <div class = "estab-reviews-container"> <!--Start of establishment reviews-->
       <div class = "review-profile">
@@ -50,7 +52,7 @@
           <div class = "title-and-name-box">
             <div class = "title-text">
             <label for="review-title">Title:</label>
-            <textarea name="review-title">This has the best food I have tasted</textarea>
+            <textarea class="title-textarea" name="review-title">This has the best food I have tasted</textarea>
             </div>
             <div class = "name-text">
               By: User
@@ -58,17 +60,17 @@
           </div>
           <div class = "reco"> <!-- recommended or not-->
             <div class = "reco-text">
-            Recommended
+            ⭐ Recommended
           </div>
           </div>
       </div>
       <div class = "text-container">
-        <textarea name ="review" rows = "10" cols = "10">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Scelerisque eu ultrices vitae auctor. Duis ultricies lacus sed turpis. Nulla facilisi etiam dignissim diam quis enim lobortis scelerisque fermentum. Nibh sed pulvinar proin gravida hendrerit lectus a.</textarea>
+        <textarea class="review-textarea" name ="review" rows = "10" cols = "10">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Scelerisque eu ultrices vitae auctor. Duis ultricies lacus sed turpis. Nulla facilisi etiam dignissim diam quis enim lobortis scelerisque fermentum. Nibh sed pulvinar proin gravida hendrerit lectus a.</textarea>
       </div>
       
       <div class="button-container">
-        <button><a href="view-establishment-reviews.html">Delete Review</a></button>
-        <button><a href="view-establishment-reviews.html">Confirm changes</a></button>
+        <button class="button-delete"><a href="view-establishment-reviews.html">Delete Review</a></button>
+        <button class="button-confirm"><a href="view-establishment-reviews.html">Confirm changes</a></button>
     </div>
   
     </div>
