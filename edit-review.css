@@ -1,48 +1,67 @@
 body{
-    background-color: lightslategray;
-    margin: 0;
+    background-color: #f0f0f0;
+    margin:0;
+    font-family: 'DM Sans';
 }
+
 .resto-header{
+    color: #17191f;
     display: flex;
-    background-color: #18020C;
+    background-color: white;
     flex-direction: row;
-    padding: 50px;;
+    padding: 30px;
     margin-bottom: 50px;
     align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .resto-header > h1 {
     margin: 0%;
     margin-right: 25px;
-    color: ghostwhite;
+    color: #17191f;
 }
 .resto-header > .text{
+    font-weight: bold;
+    font-size: 18px;
     margin-left: 25px;
-    font-family: sans-serif;
-    color: ghostwhite;
+    color: #17191f;
 }
 
-a:link{
-    color:ghostwhite;
+
+
+.a-header {
+    color: #17191f;
+    text-decoration: none;
+}
+
+.a-header :link{
+    color: #17191f;
     background-color: transparent;
     text-decoration: none;
 }
 
-a:visited{
-    color:ghostwhite;
+.a-header :visited{
+    color: #17191f;
     background-color: transparent;
     text-decoration: none;
 }
 
-a:hover{
-    color:#CE6A85;
+.a-header:hover{
+    color: lightslategrey;
     background-color: transparent;
     text-decoration: dotted;
 }
 
-.estab-reviews-container{
-    background-color: ghostwhite;
-    width:80%;
+.a-btn {
+    color: white;
+    background-color: transparent;
+    text-decoration: none;
+
+}.estab-reviews-container{
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    background-color: white;
+    width:55%;
     display: flex;
     flex-direction: column;
     padding: 10px;
@@ -60,16 +79,15 @@ a:hover{
 .img-box{
     width:20%;
     height: 20%;
-    margin-left: 40px;
-    margin-top: 40px;
-    margin-bottom: 40px;
+    margin-left: 70px;
+    margin-top: 20px;
 }
 .img-box > img{
-    width:100px;
+    width:140px;
     height:auto;
     border: 1px solid black;
     border-radius: 200px;
-    height: 100px;
+    height: 140px;
 
 }
 .review-profile > .title-and-name-box{
@@ -77,26 +95,30 @@ a:hover{
    flex-direction: column;
 }
 .title-and-name-box > .title-text{
-    font-family:Arial, Helvetica, sans-serif;
-    font-size: 50px;
+    font-family:'DM Sans', sans-serif;
+    font-size: 38px;
     font-weight: bold;
-    margin-left: -100px;
+    margin-left: -40px;
     text-align: justify;
-    margin-top: 20px;
+    margin-top: 40px;
 }
 .title-and-name-box > .name-text{
-    font-family:Arial, Helvetica, sans-serif;
-    font-size: 30px;
-    margin-left: -95px;
+    margin-top: -10px;
+    color: #707070;
+    font-weight: 500;
+    font-family:'DM Sans', sans-serif;
+    font-size: 18px;
+    margin-left: -40px;
     text-align: justify;
     margin-bottom: 20px;
   
 }
 .review-profile > .reco{
     
-
+    margin-top: -40px;
+    border-radius: 10px;
     display: block;
-    margin:auto;
+    margin-left: 260px;
     position:sticky;
     background-color: #96A677;
     padding: 1rem;
@@ -116,10 +138,10 @@ a:hover{
 }
 
 .reco > .reco-text{
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: 700;
+    font-family: 'DM Sans', sans-serif;
     color: ghostwhite;
-    letter-spacing: 3px;
-    text-shadow: 2px 2px 0px #000000;
+    letter-spacing: 1px;
 }
 .not-reco > .reco-text{
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
@@ -128,14 +150,29 @@ a:hover{
     text-shadow: 2px 2px 0px #000000;
 }
 textarea{
+    border-radius: 10px;
+    font-family: 'DM Sans';
+    padding: 10px;
+    background-color: whitesmoke;
     resize: none;
-    width: 80%;
     margin-top: 10px;
     justify-self: center;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 20px;
-    font-size: 20px;
+    font-size: 18px;
+}
+
+.title-textarea {
+    height: 45px;
+}
+
+.review-textarea {
+    height: 250px;
+    margin: auto;
+    width: 88%;
+    margin-left: 65px;
+    margin-bottom: 30px;
 }
 
 .button-container{
@@ -145,12 +182,31 @@ textarea{
 }
 
 .button-container > button{
+    height: 50px;
+    border: none;
+    border-radius: 10px;
     width: 100%;
-    background-color: #CE6A85;
+    background-color: #a5a5a5;
     padding: 1%;
-    color: ghostwhite;
-    margin: 5px;
-    margin-top: 5px;
+    margin-bottom: 20px;
+    color: white;}
+
+.button-delete{
+    margin-left: 60px;
+    margin-right: 5px;
+}
+
+.button-container a {
+    font-weight: 700;
+    font-size: 18px;
+    font-family: 'DM Sans';
+    color: white;
+    text-decoration: none;
+}
+
+.button-confirm{
+    margin-right: 60px; 
+    margin-left: 5px;
 }
 
 .button-container > button:hover {
@@ -158,8 +214,14 @@ textarea{
     text-decoration: dotted;
 }
 
+.text-container{
+    margin: auto;
+    width: 100%;
+    margin-top: 20px;
+}
 
 .title-text > textarea{
     overflow: hidden;
     width: 150%;
 }
+
