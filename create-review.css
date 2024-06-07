@@ -63,6 +63,8 @@ body{
 }
 
 textarea{
+    padding: 10px;
+    background-color: whitesmoke;
     margin-top: 10px;
     border-radius: 10px;
     width: 650px;
