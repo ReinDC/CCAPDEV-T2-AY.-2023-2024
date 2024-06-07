@@ -1,6 +1,7 @@
 body{
-    background-color: lightslategray;
+    background-color: #f0f0f0;
     margin:0;
+    font-family: 'DM Sans';
 }
 
 .body{
@@ -8,13 +9,12 @@ body{
     align-items: center;
     flex-direction: column;
 }
-
 .resto-header{
-
+    color: #17191f;
     display: flex;
-    background-color: #18020C;
+    background-color: white;
     flex-direction: row;
-    padding: 50px;;
+    padding: 30px;;
     margin-bottom: 50px;
     align-items: center;
 }
@@ -22,12 +22,13 @@ body{
 .resto-header > h1 {
     margin: 0%;
     margin-right: 25px;
-    color: ghostwhite;
+    color: #17191f;
 }
 .resto-header > .text{
+    font-weight: bold;
+    font-size: 18px;
     margin-left: 25px;
-    font-family: sans-serif;
-    color: ghostwhite;
+    color: #17191f;
 }
 
 .establishment-list {
@@ -41,11 +42,11 @@ body{
 }
 
 .establishment-container{
-
+    border-radius: 20px;
     display: flex;
     width: 1200px;
-    height: 500px;
-    background: ghostwhite;
+    height: 450px;
+    background: white;
     justify-self: auto;
     align-self: flex-start;
     flex-direction: row;
@@ -54,10 +55,10 @@ body{
 }
 .text-container > .name-font{
 
-    font-family:Arial, Helvetica, sans-serif;
-    font-size: 50px;
+    font-family:'DM Sans', sans-serif;
+    font-size: 45px;
     font-weight: bold;
-    margin-left: 20px;
+    margin-left: 40px;
     text-align: justify;
     align-items: center;
     margin-bottom: 20px;
@@ -66,22 +67,48 @@ body{
 
 .text-container > .details-font{
 
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'DM Sans', monospace;
     font-size: large;
-    margin-bottom: 20px;
-    margin-left: 20px;;
+    margin-left: 40px;;
 }
+
+.details-address{
+    margin-top: -20px;
+    color: #707070;
+    font-size: large;
+}
+
+.details-time {
+    margin-top: 40px;
+    margin-left: 10px;
+    font-size: 20px;
+}
+
+.details-bestseller{
+    width: 550px;
+    padding: 10px;
+    margin-left: 40px;
+    margin-top: 40px;
+    margin-right: 20px;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    margin-bottom: 20px;
+
+}
+
 .resto-image{
     align-self: flex-start;
     display: flex;
     justify-self: flex-start;
 }
 .resto-image > img{
-    height: 500px;
-    width: 500px;
+    border-bottom-left-radius: 20px; border-top-left-radius: 20px;
+    height: 450px;
+    width: 450px;
     object-fit: fill;
 }
-.text-container{
+.text-container-review{
+    margin-top: -30px;
     display: flex;
     flex-direction: column;
 }
@@ -94,31 +121,38 @@ body{
     text-decoration: none;
     font-size: 16px;
     margin-bottom: 10px;
-    cursor: pointer;
+    
     width: 700px;
 }
 
-a:link{
-    color:ghostwhite;
+.a-header {
+    color: #17191f;
+    text-decoration: none;
+}
+
+.a-header :link{
+    color: #17191f;
     background-color: transparent;
     text-decoration: none;
 }
 
-a:visited{
-    color:ghostwhite;
+.a-header :visited{
+    color: #17191f;
     background-color: transparent;
     text-decoration: none;
 }
 
-a:hover{
-    color:#CE6A85;
+.a-header:hover{
+    color: lightslategrey;
     background-color: transparent;
     text-decoration: dotted;
 }
 
 .estab-reviews-container{
-    background-color: ghostwhite;
-    width:80%;
+    margin-top: 20px;
+    border-radius: 20px;
+    background-color: white;
+    width:1200px;
     height:100%;
     display: flex;
     flex-direction: column;
@@ -135,7 +169,7 @@ a:hover{
 .img-box{
     width:20%;
     height: 20%;
-    margin-left: 40px;
+    margin-left: 10%;
     margin-top: 40px;
     margin-bottom: 40px;
 }
@@ -152,26 +186,29 @@ a:hover{
    flex-direction: column;
 }
 .title-and-name-box > .title-text{
-    font-family:Arial, Helvetica, sans-serif;
-    font-size: 50px;
-    font-weight: bold;
-    margin-left: -100px;
+    font-weight: 700;
+    font-family:'DM Sans', sans-serif;
+    font-size: 32px;
+    margin-left: -110px;
     text-align: justify;
     margin-top: 20px;
 }
 .title-and-name-box > .name-text{
-    font-family:Arial, Helvetica, sans-serif;
-    font-size: 30px;
-    margin-left: -95px;
+    margin-top: -5px;
+    font-weight: 500;
+    font-family:'DM Sans', sans-serif;
+    font-size: 18px;
+    margin-left: -105px;
+    color: #707070;
     text-align: justify;
     margin-bottom: 20px;
   
 }
 .review-profile > .reco{
     
-
+    border-radius: 10px;
     display: block;
-    margin:auto;
+    margin-left: 85px;
     position:sticky;
     background-color: #96A677;
     padding: 1rem;
@@ -181,6 +218,8 @@ a:hover{
 }
 
 .review-profile > .not-reco{
+    border-radius: 10px;
+    margin-left: 85px;
     display: block;
     margin:auto;
     position:sticky;
@@ -191,18 +230,21 @@ a:hover{
 }
 
 .reco > .reco-text{
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+
+    font-weight: 700;
+    font-family: 'DM Sans', sans-serif;
     color: ghostwhite;
-    letter-spacing: 3px;
-    text-shadow: 2px 2px 0px #000000;
+    letter-spacing: 1px;
 }
 .not-reco > .reco-text{
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: 700;
+    font-family: 'DM Sans', sans-serif;
     color: ghostwhite;
-    letter-spacing: 3px;
-    text-shadow: 2px 2px 0px #000000;
+    letter-spacing: 1px;
 }
 textarea{
+    padding: 10px;
+    font-family: 'DM Sans', sans-serif;
     resize: none;
     width: 80%;
     margin-top: 10px;
@@ -210,13 +252,14 @@ textarea{
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 20px;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .button-container{
-    width: 25%;
+    margin-left: 8%;
+    width: 30%;
     text-align: center;
-    background-color: ghostwhite;
+    background-color: white;
     font-size: 15px;
     font-weight: bold;
     display: flex;
@@ -224,11 +267,30 @@ textarea{
     
  
 }
-.button-container > button{
+/*.button-container > button{
     width:100%;
     background-color: #CE6A85;
     margin-right: 20px;;
     padding:1%;
     color: ghostwhite;
     align-items: flex-start;
+}*/
+
+.button-btn{
+    color: white;
+    border-radius: 10px;
+    font-weight: 700;
+    font-family: 'DM Sans';
+    height: 40px;
+    width: 200px;
+    margin-right: 20px;
+    border: none;
+    background-color: #a5a5a5;
+    cursor: pointer;
+}
+
+
+.button-btn a{
+    color: white;
+    text-decoration: none;
 }
