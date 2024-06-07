@@ -2,6 +2,7 @@
 <head>
     <title>View establishment reviews</title>
     <link rel="stylesheet" href="view-establishment-reviews.css">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!--
@@ -21,23 +22,23 @@
   <div class = "resto-header">
     <h1>Yapper Elite</h1>
       <div class ="text">
-        <a href="search-establishments.html">Search establishments</a>
+        <a class="a-header" href="search-establishments.html">Search establishments</a>
       </div>
 
       <div class="text">
-        <a href="view-establishment.html">View establishments</a>
+        <a class="a-header" href="view-establishment.html">View establishments</a>
       </div>
 
       <div class ="text">
-        <a href="user-profile.html">Profile </a>
+        <a class="a-header" href="user-profile.html">Profile </a>
       </div>
 
       <div class="text">
-        <a href="logout.html">Logout</a>
+        <a class="a-header" href="logout.html">Logout</a>
       </div>
 
       <div class ="text">
-        About Us
+        <a class="a-header" href="about-us-page.html">About Us</a>
       </div>
 </div>
 
@@ -46,23 +47,22 @@
             <div class = "establishment"> <!-- view establishments container (make sure it is flex: column)-->
                 <div class = "establishment-container"> <!-- certain establishment container 1-->
                 <div class="resto-image">
-                    <img src = "https://i.pinimg.com/564x/04/9a/f0/049af061507e0a2defa9b42970a9ab86.jpg" />
+                    <img src = "https://i.pinimg.com/564x/1d/2e/43/1d2e4347ab35a6140df18be51875e54f.jpg" />
                 </div>
                 <div class = "text-container">
                     <div class = "name-font">
-                        Maayos na Restaurant
+                        CHROMA
                     </div>
                     <div class = "details-font">
-                      308 Negra Arroyo Lane, Albuquerque, New Mexico 87104
-                        <br><br>
-                        Open now (9AM - 10PM)
-                        <br><br>
-                        Best sellers
+                        <p class="details-address">124 Conch St., Bikini Bottom, Pacific Ocean</p>
+                        <p class="details-time"><b>🟢 Open now (9AM - 10PM)</b></p>
+                        <div class="details-bestseller">Best sellers
                             <ul>
-                              <li>Lechon Kawali</li>
-                              <li>Adobong Pusit</li>
-                              <li>Pumpkin Spice</li>
+                                <li>Carbonara</li>
+                                <li>Spanish Latte</li>
+                                <li>Pumpkin Spice</li>
                             </ul>
+                        </div>
                     </div>
                 </div>    
                 </div>
@@ -72,31 +72,31 @@
   <div class = "estab-reviews-container"> <!--Start of establishment reviews-->
     <div class = "review-profile">
       <div class = "img-box">
-      <img src = "https://pbs.twimg.com/profile_images/1531212570614714368/Ne2YxJMv_400x400.jpg" />
+      <img src = "https://miro.medium.com/v2/resize:fit:600/1*bI5zoBs3h9pwP39BMdb22g.jpeg" />
       </div>
         <div class = "title-and-name-box">
           <div class = "title-text">
-            Ngapakaarap
+            RAWWW!!
           </div>
           <div class = "name-text">
-            By: Manny "Pacman" Pacquaio
+            By: Gordon Ramsay
           </div>    
         </div>
-        <div class = "reco"> <!-- recommended or not-->
+        <div class = "not-reco"> <!-- recommended or not-->
             <div class = "reco-text">
-                Recommended
+                👎 Not Recommended
               </div>
         </div>
     </div>
-    <div class = "text-container">
+    <div class = "text-container-review">
       <textarea readonly name ="review" rows = "10" cols = "10">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Scelerisque eu ultrices vitae auctor. Duis ultricies lacus sed turpis. Nulla facilisi etiam dignissim diam quis enim lobortis scelerisque fermentum. Nibh sed pulvinar proin gravida hendrerit lectus a.</textarea>
     </div>
 
     <div class = "button-container"> <!-- buttons for helpful or not helpful-->
-        <button> Helpful </button>
-        <button> Not Helpful </button>
-        <button><a href="edit-review.html">Edit review</a></button>
-    </div>
+        <button class="button-btn" > Helpful </button>
+        <button class="button-btn" > Not Helpful </button>
+        <button class="button-btn"><a class="a-edit" href="edit-review.html">Edit review</a></button>
+      </div>
 
   </div>
   
