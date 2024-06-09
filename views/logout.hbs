@@ -1,0 +1,33 @@
+<link rel="stylesheet" href="/css/logout.css">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+<body>
+    <div class="resto-header">
+        <h1>Yapper Elite</h1>
+    </div>
+
+    <div class="body-container">
+        <img src="http://images.paramount.tech/path/mgid:file:gsp:entertainment-assets:/sps/shared/characters/alter-egos/dawg-the-hall-monitor.png?height=165">
+    
+        <h2>Are you sure you want to leave?</h2>
+        <div class="button-container">
+            <div class="buttons">
+                <button type="button">
+                    <strong><a href="#" onclick="goBack()">Go Back</a></strong>
+                </button>
+            </div>
+
+            <div class="buttons">
+                <button type="button"> 
+                    <strong><a href="/login">Logout</a></strong>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
