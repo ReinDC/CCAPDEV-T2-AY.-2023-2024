@@ -31,8 +31,6 @@ var port = process.env.PORT || 3000
 async function startServer() {
     try {
         await connectToMongo();
-        console.log('Database: MongoDB connection successful');
-
         await populateDatabase();
 
         server.listen(port, function() {
