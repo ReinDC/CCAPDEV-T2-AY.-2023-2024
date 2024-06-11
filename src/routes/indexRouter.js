@@ -1,4 +1,8 @@
 const Router = require('express');
+const User = require('../models/users');
+const Resturant = require('../models/resturants');
+const Review = require('../models/reviews');
+
 const router = Router();
 
 router.get("/", (req, res) => {
@@ -25,10 +29,16 @@ router.get("/logout", (req, res) => {
     });
 });
 
-router.get("/view-establishment", (req, res) => {
-    res.render("view-establishment",{
-        title: "View establishments",
-    });
+router.get("/view-establishment", async (req, res) => {
+    try {
+        const resturants = await Resturant.find().lean();
+        res.render('view-establishment', 
+            { 
+                resturants: resturants 
+            });
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
 });
 
 router.get("/user-profile", (req, res) => {
@@ -54,6 +64,17 @@ router.get("/search-establishments", (req, res) => {
         title: "Search establishments",
     });
 });
+
+
+//* How to get all the data from a collection
+// router.get('/users', async (req, res) => {
+//     try {
+//         const users = await User.find().select('-_id'); // .select('-_id') excludes the "_id" field
+//         res.json(users);
+//     } catch (err) {
+//         res.status(500).json({ message: err.message });
+//     }
+// });
 
 
 module.exports = router;
