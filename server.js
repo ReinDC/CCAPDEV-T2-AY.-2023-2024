@@ -4,6 +4,8 @@ const server = express();
 const bodyParser = require('body-parser')
 const handlebars = require('express-handlebars');
 const path = require('path');
+const connectToMongo = require('./src/scripts/conn.js');
+const populateDatabase = require('./src/scripts/populateDatabase.js');
 //* ===========================
 
 
@@ -21,6 +23,22 @@ server.engine('hbs', handlebars.engine({
 server.use(router);
 
 var port = process.env.PORT || 3000
-server.listen(port, function(){
-    console.log('Listening at port '+ port);
-});
+
+// server.listen(port, function(){
+//     console.log('Listening at port '+ port);
+// });
+
+async function startServer() {
+    try {
+        await connectToMongo();
+        await populateDatabase();
+
+        server.listen(port, function() {
+            console.log('Server: Listening at port ' + port);
+        });
+    } catch (error) {
+        console.error('Server: Failed to start server', error);
+    }
+}
+
+startServer();
