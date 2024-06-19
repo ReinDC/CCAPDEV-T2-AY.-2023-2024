@@ -48,7 +48,7 @@ async function startServer() {
         await populateDatabase();
 
         server.listen(port, function() {
-            console.log('Server: Listening at port ' + port);
+            console.log(`Server: Running on http://localhost:${port}`);
         });
     } catch (error) {
         console.error('Server: Failed to start server', error);
