@@ -37,7 +37,7 @@ router.get("/view-establishment", async (req, res) => {
         const resturants = await Resturant.find().lean();
         res.render('view-establishment', 
             { 
-                resturants: resturants // Format: (Name inside the each): Name of the array in this function/file 
+                resturants: resturants // Format: (Name inside the {{#each}}): Name of the array in this function/file 
             });
     } catch (err) {
         res.status(500).json({ message: err.message });
@@ -68,21 +68,58 @@ router.get("/search-establishments", (req, res) => {
     });
 });
 
-router.get("/view-establishment-reviews", (req, res) => {
-    const message = req.query.message ? decodeURIComponent(req.query.message) : 'No message';
-    res.render("view-establishment-reviews",{
-        title: "View establishment reviews",
-        message: message
-    });
+router.get("/view-establishment-reviews", async (req, res) => {
+    // res.render("view-establishment-reviews",{
+    //     title: "View establishment reviews",
+    //     message: message
+    // });
+
+    try {
+        const message = req.query.message ? decodeURIComponent(req.query.message) : 'No message';   
+        const resturantName = message;
+        const resturant = await Resturant.findOne({ resturantName: resturantName });
+        const reviews = await Review.find({ resturantID: resturant.resturantID });
+
+        const reviewerIDs = reviews.map(review => review.reviewerID);
+        const users = await User.find({ userID:{ $in: reviewerIDs } });
+
+
+        // const test = reviews.map(review => review.reviewContent);
+        // console.log(test);
+
+        res.render('view-establishment-reviews', 
+            { 
+                title: "View establishment reviews",
+                reviews: reviews, // Format: (Name inside the {{#each}}): Name of the array in this function/file
+                message: message, // For the name of the resturant
+                users: users
+            });
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
 });
 
 router.post("/get-image", async (req, res) =>{
+    try{
+        const resturantName = req.body.resturant;
+        const resturant = await Resturant.findOne({ resturantName: resturantName });
 
-    const resturantName = req.body.resturant;
-    const user = await Resturant.findOne({ resturantName: resturantName });
+
+        if (resturant) {
+            res.status(200) // .json({ imgLink: resturant.resturantIMG });
+            res.send({ imgLink: resturant.resturantIMG})
+        } 
+        else {
+            res.status(404)
+            console.log("\nNot Found");
+            console.log(resturantName);
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'An error occurred', error: error.message });
+    }
 
 })
-
 
 //* How to get all the data from a collection
 // router.get('/users', async (req, res) => {
@@ -97,8 +134,7 @@ router.post("/get-image", async (req, res) =>{
 
 // Route to handle form submission
 router.post('/submit-form-login', async (req, res) => {
-    try {
-
+    try{
         const username = req.body.username;
         const password = req.body.password;
 
@@ -116,6 +152,5 @@ router.post('/submit-form-login', async (req, res) => {
         res.status(500).json({ message: 'An error occurred', error: error.message });
     }
 });
-
 
 module.exports = router;

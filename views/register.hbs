@@ -14,29 +14,20 @@
                 </div>
 
                 <div class="form-enter">
-                    <form>
-                        <label for="prof-pic">Upload Profile:</label>
-                        <button type="button" class="button-upload">
-                            <strong><a href="/register">Upload</a></strong> 
-                        </button>
-                        <br>
+                    <form method="post" id="registerform" name="registerform">
+                        <label for="prof-pic">Upload Profile (Link):</label>
+                        <input type="text" name="prof-pic" id="profile">
                         <label for="username">Username:</label>
-                        <br>
-                        <input type="text" name="user-name">
-                        <br>
+                        <input type="text" name="user-name" id="username">
                         <label for="password">Password:</label>
-                        <br>
-                        <input type="password" name="user-pass">
-                        <br>
+                        <input type="password" name="user-pass" id="password">
                         <label for="password-re">Re-enter Password:</label>
-                        <br>
-                        <input type="password" name="user-passre">
-                        <br>
+                        <input type="password" name="user-passre" id="password-re">
                         <label for="description">Short Description:</label>
-                        <input type="text" name="user-desc">
+                        <input type="text" name="user-desc" id="desc">
 
-                         <div class="button-container">
-                            <button type ="submit"><b>SIGN UP</b></button>
+                        <div class="button-container">
+                            <input type="submit" value="Submit">
                         </div>
                     </form>
                 </div>
@@ -49,4 +40,5 @@
             </div>
         </div>
     </div>
+    <script src="/js/register.js"></script>
 </body>

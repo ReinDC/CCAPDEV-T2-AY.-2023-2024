@@ -18,7 +18,21 @@ server.use(express.static(path.join(__dirname, 'public')));
 server.set('view engine', 'hbs');
 server.use(bodyParser.urlencoded({ extended: true }));
 server.engine('hbs', handlebars.engine({
-    extname: 'hbs'
+    extname: 'hbs',
+    runtimeOptions: {
+        allowProtoPropertiesByDefault: true,
+        allowProtoMethodsByDefault: true
+    },
+    helpers: {
+        getUserUserame: function(userID, users) {
+            const user = users.find(user => user.userID === userID);
+            return user ? user.username : 'Unknown';
+        },
+        getUserProfilePic: function(userID, users) {
+            const user = users.find(user => user.userID === userID);
+            return user ? user.profpic : 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png';
+        }
+    },
 }));
 server.use(router);
 

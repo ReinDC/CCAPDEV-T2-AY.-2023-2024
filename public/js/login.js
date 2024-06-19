@@ -31,7 +31,8 @@ form.addEventListener('submit', async(e) => {
             }
 
             else if(response.status === 404){
-                alert("Not found")
+                // alert("Account not found, please check username and password or sign up")
+                showCustomAlert("Account not found, please check username and password or sign up");
             }
 
             else{
@@ -55,4 +56,13 @@ function checkForm() {
     else{
         return true;
     }
+}
+
+function showCustomAlert(message) {
+    document.getElementById('alertMessage').textContent = message;
+    document.getElementById('customAlert').style.display = 'block';
+}
+
+function closeCustomAlert() {
+    document.getElementById('customAlert').style.display = 'none';
 }

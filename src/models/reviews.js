@@ -14,11 +14,25 @@ const reviewsSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    rating: { // 0.00 
-        type: Number,
+    reviewContent: { // Review Content
+        type: String,
         required: true,
-        min: 0.0,
-        max: 5.0
+    },
+    reviewTitle: { // Review Title
+        type: String,
+        required: true,
+    },
+    isRecommended: {  // true for Reccomended | false for not reccomended
+        type: Boolean,
+        required: true
+    },
+    helpfulCount: {  // Count for helpful
+        type: Number,
+        required: true
+    },
+    notHelpfulCount: {  // Count for not helpful
+        type: Number,
+        required: true
     }
 });
 

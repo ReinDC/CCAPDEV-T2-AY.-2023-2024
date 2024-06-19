@@ -1,30 +1,37 @@
-function sendData(resturantName) {
-    const message = resturantName;
-    const encodedMessage = encodeURIComponent(message);
-    window.location.href = 'view-establishment-reviews?message=' + encodedMessage;
-}
+document.addEventListener('DOMContentLoaded', function() {
+    const messageDiv = document.getElementById('name');
+    getIMG(messageDiv.textContent.trim());
+});
 
-async function getIMG(resturantName){
-    try {
-        const myObj = { 
-            resturant: resturantName
-        };
+function getIMG(resturantName){
+    const myObj = { 
+        resturant: resturantName
+    };
 
-        const jString = JSON.stringify(myObj);
-        
-        const response = await fetch("/get-image", {
-            method: 'POST',
-            body: jString,
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-
-        if(response.status === 200){
-            window.location.href = "/view-establishment";
+    const jString = JSON.stringify(myObj);
+    
+    fetch("/get-image", {
+        method: 'POST',
+        body: jString,
+        headers: {
+            'Content-Type': 'application/json'
         }
-
-    } catch (error) {
-        console.error(err);
-    }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json(); // Parse JSON from response
+    })
+    .then(data => {
+        if (data.imgLink) {
+            const imgElement = document.getElementById('restoMage');
+            imgElement.src = data.imgLink;
+        } else {
+            console.error('Image link not found in the response');
+        }
+    })
+    .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+    });
 }

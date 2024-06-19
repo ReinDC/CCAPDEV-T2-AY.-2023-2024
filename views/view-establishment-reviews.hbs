@@ -1,3 +1,5 @@
+{{> navbar}}
+
 <link rel="stylesheet" href="/css/view-establishment-reviews.css">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 
@@ -6,17 +8,13 @@
             <div class = "establishment"> <!-- view establishments container (make sure it is flex: column)-->
                 <div class = "establishment-container"> <!-- certain establishment container 1-->
                 <div class="resto-image">
-                    <img src = "https://i.pinimg.com/564x/18/83/e4/1883e497a4b6acb0ab1c077e1927a39b.jpg" />
+                    <img src = "https://i.pinimg.com/564x/18/83/e4/1883e497a4b6acb0ab1c077e1927a39b.jpg" id="restoMage"/>
                 </div>
                 <div class = "text-container">
-                    <div class = "name-font">
-                        {{message}}
-                    </div>
+                    <div class = "name-font" id="name">{{message}}</div>
                     <div class = "details-font">
                         <p class="details-address">221B Baker Street</p>
-                        
-                        <p class="details-time"><b>🟢 Open now (9AM - 10PM)</b></p>
-                        
+                                                
                         <div class="details-bestseller">Best sellers
                             <ul>
                                 <li>Carbonara</li>
@@ -30,10 +28,60 @@
             </div>
   </div>
 
+
+{{#each reviews}}
   <div class = "estab-reviews-container"> <!--Start of establishment reviews-->
     <div class = "review-profile">
       <div class = "img-box">
-      <img src = "https://static.wikia.nocookie.net/southpark/images/a/a8/Kyle-nohat.transparent.png/revision/latest?cb=20230422075123" />
+      <img src = "{{getUserProfilePic reviewerID ../users}}" alt="Profile pic"/>
+      </div>
+        <div class = "title-and-name-box">
+          <div class = "title-text">
+          {{reviewTitle}}
+          </div>
+          <div class = "name-text">
+
+            By: {{getUserUserame reviewerID ../users}}
+          </div>    
+        </div>
+
+
+        {{#if isRecommended}}
+            <div class = "reco"> <!-- recommended or not-->
+              <div class = "reco-text">
+                ⭐ Recommended
+              </div>
+            </div>
+        {{else}}
+            <div class = "not-reco"> <!-- recommended or not-->
+              <div class = "reco-text">
+                👎 Not recommended
+              </div>
+            </div>
+        {{/if}}
+
+        
+    </div>
+    <div class = "text-container-review">
+      <textarea readonly name ="review" rows = "10" cols = "10">{{reviewContent}}</textarea>
+    </div>
+
+    <div class = "button-container"> <!-- buttons for helpful or not helpful-->
+        <button class="button-btn"> Helpful </button>
+        <button class="button-btn"> Not Helpful </button>
+        <button class="button-btn"><a class="a-edit" href="edit-review.html">Edit review</a></button>
+    </div>
+  </div> 
+
+
+{{/each}}
+
+
+{{!--       TEMPLATE FOR REVIEWS
+  <div class = "estab-reviews-container"> <!--Start of establishment reviews-->
+    <div class = "review-profile">
+      <div class = "img-box">
+      <img src = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fvignette.wikia.nocookie.net%2Fsouthpark%2Fimages%2Fa%2Fa8%2FKyle-nohat.transparent.png%2Frevision%2Flatest%3Fcb%3D20171107042649&f=1&nofb=1&ipt=694f6ae76bea983bb8cc779f16bef1ad70be9ad9e58730651f98dec9ed996950&ipo=images" />
       </div>
         <div class = "title-and-name-box">
           <div class = "title-text">
@@ -59,6 +107,7 @@
         <button class="button-btn"><a class="a-edit" href="edit-review.html">Edit review</a></button>
     </div>
   </div>
+   --}}
 </div>
 
 
