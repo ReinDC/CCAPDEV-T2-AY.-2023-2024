@@ -50,7 +50,6 @@ function checkForm() {
     const formData = new FormData(form);
 
     if (formData.get("username").trim() === "" || formData.get("password").trim() === ""){
-        alert("Please fill in all fields.");
         return false;
     }
     else{
