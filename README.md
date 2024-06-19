@@ -7,7 +7,7 @@ Welcome to Yappers Elite, your premier destination for discovering and sharing t
 ## How to run
 1. Type "npm i" in the terminal to install the libraries needed.
 2. Type "npm run start" in the terminal to start the express server.
-3. Go to your browser and type "http://localhost:3000/" in the address bar.
+3. Go to your browser and type `http://localhost:3000/` or change `3000` to the chosen port in the address bar.
 
 ### Prerequisites
 
