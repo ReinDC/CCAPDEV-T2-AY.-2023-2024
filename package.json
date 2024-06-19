@@ -13,11 +13,8 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.20.2",
-<<<<<<< HEAD
     "experss": "^0.0.1-security",
-=======
     "dotenv": "^16.4.5",
->>>>>>> 89752067f7c83e650b05f2a6d40c4b3df90d9ad3
     "express": "^4.19.2",
     "express-handlebars": "^7.1.2",
     "hbs": "^4.2.0",
