@@ -68,6 +68,44 @@ router.get("/search-establishments", (req, res) => {
     });
 });
 
+router.get("/edit-review", (req, res) => {
+    res.render("edit-review",{
+        title: "Edit Review",
+    });
+});
+
+router.get("/edit-details", async (req, res) => {
+    
+
+    try {
+        const message = req.query.message ? decodeURIComponent(req.query.message) : 'No message';
+        const resturantName = message;
+        const resturant = await Resturant.findOne({ resturantName: resturantName });   
+        res.render("edit-details",{
+            title: "Edit details",
+            message: message,
+            chosenResturant: resturant
+        });
+    } catch (error) {
+        
+    }
+});
+
+router.get("/create-review", async (req, res) => {
+    try {
+        const message = req.query.message ? decodeURIComponent(req.query.message) : 'No message';
+        const resturantName = message;
+        const resturant = await Resturant.findOne({ resturantName: resturantName });   
+        res.render("create-review",{
+            title: "Create-review",
+            message: message,
+            chosenResturant: resturant
+        });
+    } catch (error) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
 router.get("/view-establishment-reviews", async (req, res) => {
     // res.render("view-establishment-reviews",{
     //     title: "View establishment reviews",
@@ -82,6 +120,7 @@ router.get("/view-establishment-reviews", async (req, res) => {
 
         const reviewerIDs = reviews.map(review => review.reviewerID);
         const users = await User.find({ userID:{ $in: reviewerIDs } });
+        const chosenResturant = resturant;
 
 
         // const test = reviews.map(review => review.reviewContent);
@@ -92,7 +131,8 @@ router.get("/view-establishment-reviews", async (req, res) => {
                 title: "View establishment reviews",
                 reviews: reviews, // Format: (Name inside the {{#each}}): Name of the array in this function/file
                 message: message, // For the name of the resturant
-                users: users
+                users: users,
+                chosenResturant: chosenResturant
             });
     } catch (err) {
         res.status(500).json({ message: err.message });

@@ -1,0 +1,36 @@
+{{> navbar}}
+
+<link rel="stylesheet" href="/css/edit-details.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=DM Sans">
+
+
+<div class="body"> <!--body container-->
+        <div class="establishment-list">
+            <div class="establishment"> <!-- estab1-->
+                <div class="establishment-container"> <!-- certain establishment container 1-->
+                    <div class="resto-image">
+                        <img src="{{chosenResturant.resturantIMG}}" />
+                    </div>
+                    <div class="text-container">
+                        <div class="name-font">{{chosenResturant.resturantName}}</div>
+                        <div class="details-font" id="details-container">
+                            <p id="details-address" class="details-address">{{chosenResturant.address}}</p>
+                            <div id="details-bestseller" class="details-bestseller">
+                                Best sellers
+                                <ul>
+                                    {{#each chosenResturant.bestSellers}}
+                                        <li>{{this}}</li>
+                                    {{/each}}
+                                </ul>
+                            </div>
+                        </div>
+                        <button class="button-container" onclick="editDetails()">Edit Details</button>
+                        <button class="button-container" onclick="goBack()">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/edit-details.js"></script>
+    

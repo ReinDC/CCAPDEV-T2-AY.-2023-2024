@@ -1,0 +1,32 @@
+{{> navbar}}
+
+<link rel="stylesheet" href="/css/create-review.css">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+<div class = "body"><!-- body container-->
+    
+    <div class = "review-container"> <!--create review container-->  
+        <div class = "resto-image">
+          <img src = "{{chosenResturant.resturantIMG}}" />
+        </div>
+        <div  class="details-class">
+          <div class = "establishmentname-font"><!--Restaurant name-->
+            {{chosenResturant.resturantName}}
+          </div>
+          <p class="details-address"><p class="details-address">{{chosenResturant.address}}</p>
+          <div class = ""><!--Recommend / Dont't Recommend-->
+            <!-- will add at a later date, will continue to do others then improve afterwards-->
+          </div>
+          <div class = ""> <!--text area + submit-->
+                <form method = "post">
+                    <textarea name  ="review" rows = "10" cols = "79"></textarea>
+                </form> 
+                <div class = "button-post-container"> <!--submit button-->
+                    <button class="button-post" id="postBtn" onclick="goBack()">Post review</button>
+                </div>  
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/create-review.js"></script>

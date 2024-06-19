@@ -20,7 +20,7 @@ const resturantSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    rating: { // 0.00 
+    ratingsCount: { // Count of how many ratings the resturant has 
         type: Number,
         required: true
     },

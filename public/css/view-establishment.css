@@ -85,14 +85,17 @@ body{
     padding: 20px;
     margin-left: 580px;
     margin-top: 20px;
-}
-
-.edit-button > a {
-    font-weight: 500;
-    font-size: 18px;
-    text-decoration: none;
     color: white;
     font-family: 'DM Sans';
+    font-size: 18px;
+    text-decoration: none;
+
+}
+
+.edit-button:hover{
+    background-color: #565353;
+    color: black;
+
 }
 
 .details-address{

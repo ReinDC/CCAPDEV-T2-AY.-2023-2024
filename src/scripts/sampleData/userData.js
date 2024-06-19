@@ -20,7 +20,7 @@ const sampleUsers = [
         username: 'alice_wonder',
         type: 'Reviewer',
         password: 'hashedpassword789',
-        profpic: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png',
+        profpic: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3lP2tEHPTzfypa5ZhIydhNXvmvdbR12TsRA&s',
         description: 'Food critic and travel blogger.'
     },
     {
@@ -35,7 +35,7 @@ const sampleUsers = [
         username: 'charlie_brown',
         type: 'Reviewer',
         password: 'hashedpassword654',
-        profpic: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png',
+        profpic: 'https://upload.wikimedia.org/wikipedia/en/2/22/Charlie_Brown.png',
         description: 'Tech enthusiast and gadget reviewer.'
     },
     {
@@ -43,7 +43,7 @@ const sampleUsers = [
         username: 'daisy_duck',
         type: 'Reviewer',
         password: 'hashedpassword123',
-        profpic: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png',
+        profpic: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJe0FIBpnbLeiJRAetj7i5MbyG4NBKA8_RTw&s',
         description: 'Travel blogger and food critic.'
     },
     {
@@ -59,7 +59,7 @@ const sampleUsers = [
         username: 'frank_underwood',
         type: 'Reviewer',
         password: 'hashedpassword345',
-        profpic: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png',
+        profpic: 'https://upload.wikimedia.org/wikipedia/en/a/a9/Frank_Underwood_-_House_of_Cards.jpg',
         description: 'Political commentator and author.'
     },
     {
@@ -67,7 +67,7 @@ const sampleUsers = [
         username: 'george_orwell',
         type: 'Reviewer',
         password: 'hashedpassword456',
-        profpic: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png',
+        profpic: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/George_Orwell%2C_c._1940_%2841928180381%29.jpg/1200px-George_Orwell%2C_c._1940_%2841928180381%29.jpg',
         description: 'Literary critic and novelist.'
     },
     {
@@ -83,7 +83,7 @@ const sampleUsers = [
         username: 'ian_fleming',
         type: 'Reviewer',
         password: 'hashedpassword678',
-        profpic: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png',
+        profpic: 'https://upload.wikimedia.org/wikipedia/en/d/d2/Ian_Fleming.jpg',
         description: 'Spy novelist and adventure critic.'
     },
     {
@@ -91,7 +91,7 @@ const sampleUsers = [
         username: 'jack_sparrow',
         type: 'Owner',
         password: 'hashedpassword789',
-        profpic: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png',
+        profpic: 'https://vignette.wikia.nocookie.net/disney/images/9/90/Pirates4JackSparrowPosterCropped.jpg/revision/latest?cb=20151120172626',
         description: 'Owner of a pirate-themed restaurant.'
     },
     {
@@ -99,7 +99,7 @@ const sampleUsers = [
         username: 'karen_page',
         type: 'Reviewer',
         password: 'hashedpassword890',
-        profpic: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png',
+        profpic: 'https://upload.wikimedia.org/wikipedia/en/2/24/Karen_Page_%28comics%29.png',
         description: 'Journalist and food critic.'
     },
     {
@@ -107,7 +107,7 @@ const sampleUsers = [
         username: 'lisa_simpson',
         type: 'Reviewer',
         password: 'hashedpassword901',
-        profpic: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png',
+        profpic: 'https://upload.wikimedia.org/wikipedia/en/e/ec/Lisa_Simpson.png',
         description: 'Music enthusiast and critic.'
     },
     {
@@ -123,7 +123,7 @@ const sampleUsers = [
         username: 'nancy_drew',
         type: 'Reviewer',
         password: 'hashedpassword1234',
-        profpic: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png',
+        profpic: 'https://variety.com/wp-content/uploads/2019/10/nancy-drew.jpg',
         description: 'Mystery novel critic.'
     },
     {
@@ -131,7 +131,7 @@ const sampleUsers = [
         username: 'oscar_wilde',
         type: 'Reviewer',
         password: 'hashedpassword2345',
-        profpic: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png',
+        profpic: 'https://poemanalysis.com/wp-content/uploads/2021/01/Oscar-Wilde-Portrait.jpg',
         description: 'Poet and playwright.'
     },
     {
@@ -139,7 +139,7 @@ const sampleUsers = [
         username: 'peter_parker',
         type: 'Reviewer',
         password: 'hashedpassword3456',
-        profpic: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png',
+        profpic: 'https://images.squarespace-cdn.com/content/v1/624a1c23d68c8a3f214fbe39/ac1c6488-f37a-432f-97a1-5cd45569e70b/isaac-olander-peter-parker-tobey-maguire-below-isaac-olander.jpg',
         description: 'Photographer and tech reviewer.'
     },
     {
@@ -147,7 +147,7 @@ const sampleUsers = [
         username: 'quentin_tarantino',
         type: 'Reviewer',
         password: 'hashedpassword4567',
-        profpic: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png',
+        profpic: 'https://variety.com/wp-content/uploads/2020/12/Quentin_Tarantino.png',
         description: 'Film critic and director.'
     },
     {
@@ -155,7 +155,7 @@ const sampleUsers = [
         username: 'rocky_balboa',
         type: 'Reviewer',
         password: 'hashedpassword5678',
-        profpic: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png',
+        profpic: 'https://upload.wikimedia.org/wikipedia/en/thumb/5/53/Rocky_balboa.jpeg/200px-Rocky_balboa.jpeg',
         description: 'Sports critic and boxing enthusiast.'
     }
 ];

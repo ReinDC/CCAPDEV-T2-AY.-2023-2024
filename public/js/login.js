@@ -31,7 +31,7 @@ form.addEventListener('submit', async(e) => {
             }
 
             else if(response.status === 404){
-                // alert("Account not found, please check username and password or sign up")
+                alert("Account not found, please check username and password or sign up")
                 showCustomAlert("Account not found, please check username and password or sign up");
             }
 
