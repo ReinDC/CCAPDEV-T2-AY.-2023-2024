@@ -1,196 +1,267 @@
+// Import required modules
 const Router = require('express');
 const bodyParser = require('body-parser');
 const express = require('express');
-const User = require('../models/users');
-const Resturant = require('../models/resturants');
-const Review = require('../models/reviews');
+const validator = require('validator');
+const User = require('../models/users'); // User model
+const Resturant = require('../models/resturants'); // Restaurant model
+const Review = require('../models/reviews'); // Review model
 
 const router = Router();
 router.use(express.json());
 
+function isValidURL(url) {
+    return validator.isURL(url);
+}
+
+// Route for rendering the login page
 router.get("/", (req, res) => {
-    res.render("login",{
+    res.render("login", {
         title: "Login",
     });
 });
 
+// Route for rendering the login page (same as above, but with explicit /login path)
 router.get("/login", (req, res) => {
-    res.render("login",{
+    res.render("login", {
         title: "Login",
     });
 });
 
+// Route for rendering the registration page
 router.get("/register", (req, res) => {
-    res.render("register",{
+    res.render("register", {
         title: "Register",
     });
 });
 
+// Route for rendering the logout page
 router.get("/logout", (req, res) => {
-    res.render("logout",{
+    res.render("logout", {
         title: "Logout",
     });
 });
 
+// Route for viewing all establishments
 router.get("/view-establishment", async (req, res) => {
     try {
-        const resturants = await Resturant.find().lean();
-        res.render('view-establishment', 
-            { 
-                resturants: resturants // Format: (Name inside the {{#each}}): Name of the array in this function/file 
-            });
+        const resturants = await Resturant.find().lean(); // Fetch all restaurants
+        res.render('view-establishment', {
+            resturants: resturants // Pass restaurants to the view
+        });
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
 });
 
+// Route for rendering the user profile page
 router.get("/user-profile", (req, res) => {
-    res.render("user-profile",{
+    res.render("user-profile", {
         title: "User profile",
     });
 });
 
+// Route for rendering the edit profile page
 router.get("/edit-profile", (req, res) => {
-    res.render("edit-profile",{
+    res.render("edit-profile", {
         title: "Edit profile",
     });
 });
 
+// Route for rendering the about us page
 router.get("/about-us-page", (req, res) => {
-    res.render("about-us-page",{
+    res.render("about-us-page", {
         title: "About Us",
     });
 });
 
+// Route for rendering the search establishments page
 router.get("/search-establishments", (req, res) => {
-    res.render("search-establishment",{
+    res.render("search-establishment", {
         title: "Search establishments",
     });
 });
 
+// Route for rendering the edit review page
 router.get("/edit-review", (req, res) => {
-    res.render("edit-review",{
+    res.render("edit-review", {
         title: "Edit Review",
     });
 });
 
+// Route for editing details of a specific restaurant
 router.get("/edit-details", async (req, res) => {
-    
-
     try {
         const message = req.query.message ? decodeURIComponent(req.query.message) : 'No message';
         const resturantName = message;
         const resturant = await Resturant.findOne({ resturantName: resturantName });   
-        res.render("edit-details",{
+        res.render("edit-details", {
             title: "Edit details",
             message: message,
             chosenResturant: resturant
         });
     } catch (error) {
-        
+        res.status(500).json({ message: error.message });
     }
 });
 
+// Route for creating a review for a specific restaurant
 router.get("/create-review", async (req, res) => {
     try {
+        // Get the 'message' query parameter from the request and decode it. 
+        // If 'message' is not provided, default to 'No message'.
         const message = req.query.message ? decodeURIComponent(req.query.message) : 'No message';
+
+        // Use the 'message' as the restaurant name to search for the restaurant in the database.
         const resturantName = message;
-        const resturant = await Resturant.findOne({ resturantName: resturantName });   
-        res.render("create-review",{
+        const resturant = await Resturant.findOne({ resturantName: resturantName }); 
+
+        // Render the 'create-review' page and pass the following data:
+        // - title: The title of the page.
+        // - message: The decoded message which contains the restaurant name.
+        // - chosenResturant: The restaurant object found in the database.
+        res.render("create-review", {
             title: "Create-review",
             message: message,
             chosenResturant: resturant
         });
     } catch (error) {
-        res.status(500).json({ message: err.message });
+        // If an error occurs, respond with a 500 status code and the error message.
+        res.status(500).json({ message: error.message });
     }
 });
 
-router.get("/view-establishment-reviews", async (req, res) => {
-    // res.render("view-establishment-reviews",{
-    //     title: "View establishment reviews",
-    //     message: message
-    // });
 
+// Route for viewing reviews of a specific establishment
+router.get("/view-establishment-reviews", async (req, res) => {
     try {
+        // Get the 'message' query parameter from the request and decode it.
+        // If 'message' is not provided, default to 'No message'.
         const message = req.query.message ? decodeURIComponent(req.query.message) : 'No message';   
+        
+        // Use the 'message' as the restaurant name to search for the restaurant in the database.
         const resturantName = message;
         const resturant = await Resturant.findOne({ resturantName: resturantName });
+        
+        // Find all reviews for the found restaurant using its ID.
         const reviews = await Review.find({ resturantID: resturant.resturantID });
 
+        // Extract reviewer IDs from the reviews.
         const reviewerIDs = reviews.map(review => review.reviewerID);
-        const users = await User.find({ userID:{ $in: reviewerIDs } });
+        
+        // Find users who have written reviews using their IDs.
+        const users = await User.find({ userID: { $in: reviewerIDs } });
+        
+        // Assign the found restaurant to a variable for clarity.
         const chosenResturant = resturant;
 
-
-        // const test = reviews.map(review => review.reviewContent);
-        // console.log(test);
-
-        res.render('view-establishment-reviews', 
-            { 
-                title: "View establishment reviews",
-                reviews: reviews, // Format: (Name inside the {{#each}}): Name of the array in this function/file
-                message: message, // For the name of the resturant
-                users: users,
-                chosenResturant: chosenResturant
-            });
+        // Render the 'view-establishment-reviews' page and pass the following data:
+        // - title: The title of the page.
+        // - reviews: The list of reviews for the restaurant.
+        // - message: The decoded message which contains the restaurant name.
+        // - users: The list of users who wrote the reviews.
+        // - chosenResturant: The restaurant object found in the database.
+        res.render('view-establishment-reviews', {
+            title: "View establishment reviews",
+            reviews: reviews, // Pass reviews to the view
+            message: message, // Pass restaurant name to the view
+            users: users, // Pass users who reviewed to the view
+            chosenResturant: chosenResturant // Pass chosen restaurant to the view
+        });
     } catch (err) {
+        // If an error occurs, respond with a 500 status code and the error message.
         res.status(500).json({ message: err.message });
     }
 });
 
-router.post("/get-image", async (req, res) =>{
-    try{
+
+// Route to get the image of a specific restaurant
+router.post("/get-image", async (req, res) => {
+    try {
+        // Extract the restaurant name from the request body.
         const resturantName = req.body.resturant;
+        
+        // Find the restaurant in the database using the provided restaurant name.
         const resturant = await Resturant.findOne({ resturantName: resturantName });
 
-
+        // If the restaurant is found, respond with a status 200 and send the image link.
         if (resturant) {
-            res.status(200) // .json({ imgLink: resturant.resturantIMG });
-            res.send({ imgLink: resturant.resturantIMG})
-        } 
-        else {
-            res.status(404)
+            res.status(200).send({ imgLink: resturant.resturantIMG });
+        } else {
+            // If the restaurant is not found, respond with a status 404.
+            res.status(404);
             console.log("\nNot Found");
-            console.log(resturantName);
         }
     } catch (error) {
+        // If an error occurs, log the error and respond with a status 500 and the error message.
         console.error(error);
         res.status(500).json({ message: 'An error occurred', error: error.message });
     }
-
-})
-
-//* How to get all the data from a collection
-// router.get('/users', async (req, res) => {
-//     try {
-//         const users = await User.find().select('-_id'); // .select('-_id') excludes the "_id" field
-//         res.json(users);
-//     } catch (err) {
-//         res.status(500).json({ message: err.message });
-//     }
-// });
+});
 
 
-// Route to handle form submission
+// Route to handle form submission for login
 router.post('/submit-form-login', async (req, res) => {
-    try{
+    try {
+        // Extract username and password from the request body
         const username = req.body.username;
         const password = req.body.password;
 
+        // Find a user in the database with the provided username and password
         const user = await User.findOne({ username: username, password: password });
 
-
+        // If a user is found, respond with a status 200 and a success message
         if (user) {
             res.status(200).json({ message: 'Login successful' });
         } else {
+            // If no user is found, respond with a status 404 and a 'User not found' message
             res.status(404).json({ message: 'User not found' });
-            
         }
+    } catch (error) {
+        // If an error occurs, log the error and respond with a status 500 and the error message
+        console.error(error);
+        res.status(500).json({ message: 'An error occurred', error: error.message });
+    }
+});
+
+// Route to handle form submission for register
+router.post('/submit-form-register', async (req, res) => {
+    try {
+        const { username, password, desc, profilePic, type } = req.body;
+
+        // Count documents in the User collection to generate a new userID
+        const userID = await User.countDocuments() + 1;
+
+        // console.log("Username: " + username + " Password: " + password + " Desc: " + desc + " PFP: " + profilePic + " Type: " + type)
+        // Create user object
+        const userObj = {
+            userID: userID,
+            username: username,
+            password: password,
+            type: type
+        };
+
+        // Add optional fields if they are provided and valid
+        if (desc) {
+            userObj.description = desc;
+        }
+
+        if (profilePic && isValidURL(profilePic) && profilePic != "") {
+            userObj.profpic = profilePic;
+        }
+
+        // Create a new user instance with the constructed user object
+        const newUser = await User.create(userObj);
+
+        // Respond with a success message and status code
+        res.status(201).json({ message: 'User registered successfully' });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'An error occurred', error: error.message });
     }
 });
 
-module.exports = router;
+
+
+
+module.exports = router; // Export the router to be used in other parts of the application

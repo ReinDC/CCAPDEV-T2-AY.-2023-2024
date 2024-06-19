@@ -15,16 +15,28 @@
 
                 <div class="form-enter">
                     <form method="post" id="registerform" name="registerform">
+
                         <label for="profile">Upload Profile (Link):</label>
                         <input type="text" name="profile" id="profile"> {{!-- Profile Pic --}}
+
                         <label for="username">Username:</label>
-                        <input type="text" name="uusername" id="username" required autocomplete="off"> {{!-- Username --}}
+                        <input type="text" name="username" id="username" required autocomplete="off"> {{!-- Username --}}
+
                         <label for="password">Password:</label>
                         <input type="password" name="password" id="password" required autocomplete="off"> {{!-- Password --}}
+
                         <label for="password-re">Re-enter Password:</label>
                         <input type="password" name="password-re" id="password-re" required autocomplete="off"> {{!-- Password --}}
+
                         <label for="desc">Short Description:</label>
                         <input type="text" name="desc" id="desc"> {{!-- Description --}}
+
+                        <label for="type">Type:</label> <!-- Type Field (Reviewer or Owner) -->
+                        <select id="type" name="type" required>
+                            <option value="Reviewer" selected>Reviewer</option>
+                            <option value="Owner">Owner</option>
+                        </select>
+
                         <div class="button-container">
                             <input type="submit" value="Submit">
                         </div>
@@ -44,7 +56,7 @@
         <div class="custom-alert-content">
             <span class="close-btn" onclick="closeCustomAlert()">&times;</span>
             <p id="alertMessage"></p>
-            <button onclick="closeCustomAlert()">OK</button>
+            <button onclick="closeCustomAlert()">Ok</button>
         </div>
     </div>
 
