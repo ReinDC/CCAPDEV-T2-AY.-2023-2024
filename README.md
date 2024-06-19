@@ -16,7 +16,7 @@ Welcome to Yappers Elite, your premier destination for discovering and sharing t
 - **MongoDB**: [Download and install MongoDB](https://www.mongodb.com/try/download/community)
 
 ### Notes:
-- Make sure you have installed [Node.js](https://nodejs.org/), npm and MongoDB Compass on your machine.
+- Make sure you have installed [Node.js](https://nodejs.org/), npm and MongoDB on your machine.
 - No other express server is running on the chosen port or the default port (3000).
 
 ## HOW TO RUN (DEVELOPER)
