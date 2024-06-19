@@ -1,15 +1,52 @@
-body{
+/* Element Designs */
+body {
     background-color: #e5e9ec;
 }
 
-.body{
+a {
+    text-decoration: none;
+}
+
+a:visited {
+    color: ghostwhite;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #6f6f6f;
+    background-color: transparent;
+    text-decoration: dotted;
+}
+
+input {
+    width: 100%;
+    height: 15%;
+    border: 2px solid #d6d6d6;
+    border-radius: 10px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
+button,
+input[type="submit"] {
+    border: none;
+    height: 60%;
+    width: 100%;
+    background-color: #a5a5a5;
+    font-size: 15px;
+    border-radius: 15px;
+}
+
+/* Class-specific Designs */
+.body {
     font-family: 'DM Sans';
     display: flex;
     justify-content: center;
     margin-top: 5%;
 }
 
-.content-container{
+.content-container {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     width: 50%;
     background: #fff;
@@ -17,12 +54,18 @@ body{
     border-radius: 10px;
 }
 
-.image-box{
+.image-box {
     width: 50%;
 }
-.image-box > img{width: 100%; height: 100%; border-bottom-left-radius: 10px; border-top-left-radius: 10px;}
 
-.form-box{
+.image-box > img {
+    width: 100%;
+    height: 100%;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.form-box {
     width: 50%;
     display: flex;
     flex-direction: column;
@@ -31,16 +74,15 @@ body{
     padding: 20px;
 }
 
-.form-head{
+.form-head {
     margin-top: 5%;
     color: #17191f;
     height: 10%;
     justify-content: flex-start;
     align-self: center;
-
 }
 
-.form-enter{
+.form-enter {
     height: 70%;
     width: 100%;
     justify-content: flex-start;
@@ -50,56 +92,20 @@ body{
     margin-top: 50px;
 }
 
-form{
-    margin-left:40px;
-    margin-right:40px;
+form {
+    margin-left: 40px;
+    margin-right: 40px;
 }
 
-input{
+.button-container {
     width: 100%;
-    height: 15%;
-    border: 2px solid #d6d6d6;
-    border-radius: 10px;
-    margin-top: 5px;
-    margin-bottom: 20px;
-}
-
-
-
-.button-container{
-    width: 80%;
     height: 20%;
     display: flex;
     justify-content: flex-start;
     align-self: center;
 }
 
-button{
-    border: none;
-    height: 60%;
-    width: 100%;
-    background-color: #a5a5a5;
-    font-size: 15px;
-    border-radius: 15px;
-}
-
-a {
-    text-decoration: none;
-}
-
-a:visited{
-    color:ghostwhite;
-    background-color: transparent;
-    text-decoration: none;
-}
-
-a:hover{
-    color:#6f6f6f;
-    background-color: transparent;
-    text-decoration: dotted;
-}
-
-.sign-link{
+.sign-link {
     height: 10%;
     width: 100%;
     display: flex;
@@ -108,7 +114,8 @@ a:hover{
     align-items: center;
     margin-bottom: 100px;
 }
-.sign-link a{
+
+.sign-link a {
     color: #17191f;
     font-size: 15px;
 }

@@ -1,9 +1,12 @@
 const Router = require('express');
+const bodyParser = require('body-parser');
+const express = require('express');
 const User = require('../models/users');
 const Resturant = require('../models/resturants');
 const Review = require('../models/reviews');
 
 const router = Router();
+router.use(express.json());
 
 router.get("/", (req, res) => {
     res.render("login",{
@@ -34,7 +37,7 @@ router.get("/view-establishment", async (req, res) => {
         const resturants = await Resturant.find().lean();
         res.render('view-establishment', 
             { 
-                resturants: resturants 
+                resturants: resturants // Format: (Name inside the each): Name of the array in this function/file 
             });
     } catch (err) {
         res.status(500).json({ message: err.message });
@@ -65,6 +68,21 @@ router.get("/search-establishments", (req, res) => {
     });
 });
 
+router.get("/view-establishment-reviews", (req, res) => {
+    const message = req.query.message ? decodeURIComponent(req.query.message) : 'No message';
+    res.render("view-establishment-reviews",{
+        title: "View establishment reviews",
+        message: message
+    });
+});
+
+router.post("/get-image", async (req, res) =>{
+
+    const resturantName = req.body.resturant;
+    const user = await Resturant.findOne({ resturantName: resturantName });
+
+})
+
 
 //* How to get all the data from a collection
 // router.get('/users', async (req, res) => {
@@ -75,6 +93,29 @@ router.get("/search-establishments", (req, res) => {
 //         res.status(500).json({ message: err.message });
 //     }
 // });
+
+
+// Route to handle form submission
+router.post('/submit-form-login', async (req, res) => {
+    try {
+
+        const username = req.body.username;
+        const password = req.body.password;
+
+        const user = await User.findOne({ username: username, password: password });
+
+
+        if (user) {
+            res.status(200).json({ message: 'Login successful' });
+        } else {
+            res.status(404).json({ message: 'User not found' });
+            
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'An error occurred', error: error.message });
+    }
+});
 
 
 module.exports = router;

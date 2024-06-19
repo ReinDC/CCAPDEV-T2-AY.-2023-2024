@@ -13,20 +13,19 @@
                     <h1>Yapper Elite</h1>
                 </div>
 
-                <div class="form-enter">
-                    <form>
+                <div class="form-enter" >
+                    <form method="post" id="loginform" name="loginform">
                         <label for="username">Username:</label>
                         <br>
-                        <input type="text" id="username">
+                        <input type="text" id="username" name="username" autocomplete="off" required>
                         <br>
                         <label for="password">Password:</label>
                         <br>
-                        <input type="password" name="user-pass">
+                        <input type="password" id="password" name="password" autocomplete="off" required>
 
                         <div class="button-container">
-                            <button type="submit"></a><b>LOG IN</b></button>
+                            <input type="submit" value="Submit">
                         </div>
-                        <input type="password" id="password">
                     </form>
                 </div>
 
@@ -37,5 +36,6 @@
             </div>
         </div>
     </div>
+    <script src="/js/login.js"></script>
 </body>
 

@@ -1,0 +1,65 @@
+<link rel="stylesheet" href="/css/view-establishment-reviews.css">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+<div class = "body"> <!--body container -->
+ <div class = "establishment-list">
+            <div class = "establishment"> <!-- view establishments container (make sure it is flex: column)-->
+                <div class = "establishment-container"> <!-- certain establishment container 1-->
+                <div class="resto-image">
+                    <img src = "https://i.pinimg.com/564x/18/83/e4/1883e497a4b6acb0ab1c077e1927a39b.jpg" />
+                </div>
+                <div class = "text-container">
+                    <div class = "name-font">
+                        {{message}}
+                    </div>
+                    <div class = "details-font">
+                        <p class="details-address">221B Baker Street</p>
+                        
+                        <p class="details-time"><b>🟢 Open now (9AM - 10PM)</b></p>
+                        
+                        <div class="details-bestseller">Best sellers
+                            <ul>
+                                <li>Carbonara</li>
+                                <li>Spanish Latte</li>
+                                <li>Pumpkin Spice</li>
+                            </ul>
+                          </div>
+                    </div>
+                </div>    
+                </div>
+            </div>
+  </div>
+
+  <div class = "estab-reviews-container"> <!--Start of establishment reviews-->
+    <div class = "review-profile">
+      <div class = "img-box">
+      <img src = "https://static.wikia.nocookie.net/southpark/images/a/a8/Kyle-nohat.transparent.png/revision/latest?cb=20230422075123" />
+      </div>
+        <div class = "title-and-name-box">
+          <div class = "title-text">
+          This has the best food I have tasted
+          </div>
+          <div class = "name-text">
+            By: Kyle Broflovski
+          </div>    
+        </div>
+        <div class = "reco"> <!-- recommended or not-->
+          <div class = "reco-text">
+          ⭐ Recommended
+        </div>
+        </div>
+    </div>
+    <div class = "text-container-review">
+      <textarea readonly name ="review" rows = "10" cols = "10">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Scelerisque eu ultrices vitae auctor. Duis ultricies lacus sed turpis. Nulla facilisi etiam dignissim diam quis enim lobortis scelerisque fermentum. Nibh sed pulvinar proin gravida hendrerit lectus a.</textarea>
+    </div>
+
+    <div class = "button-container"> <!-- buttons for helpful or not helpful-->
+        <button class="button-btn"> Helpful </button>
+        <button class="button-btn"> Not Helpful </button>
+        <button class="button-btn"><a class="a-edit" href="edit-review.html">Edit review</a></button>
+    </div>
+  </div>
+</div>
+
+
+<script src="/js/view-establishment-reviews.js"></script>
