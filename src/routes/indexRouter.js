@@ -227,39 +227,45 @@ router.post('/submit-form-login', async (req, res) => {
 // Route to handle form submission for register
 router.post('/submit-form-register', async (req, res) => {
     try {
-        const { username, password, desc, profilePic, type } = req.body;
+        const { username, password, description, profilePic, type } = req.body;
 
         // Count documents in the User collection to generate a new userID
         const userID = await User.countDocuments() + 1;
+        const existingUser = await User.findOne({ username: username });
 
-        // console.log("Username: " + username + " Password: " + password + " Desc: " + desc + " PFP: " + profilePic + " Type: " + type)
-        // Create user object
-        const userObj = {
-            userID: userID,
-            username: username,
-            password: password,
-            type: type
-        };
+        if (!existingUser){
+            const userObj = {
+                userID: userID,
+                username: username,
+                password: password,
+                type: type
+            };
 
-        // Add optional fields if they are provided and valid
-        if (desc) {
-            userObj.description = desc;
+            if (description && description.trim() !== "") {
+                userObj.description = description;
+            }
+
+            if (profilePic && isValidURL(profilePic) && profilePic.trim() !== "") {
+                userObj.profpic = profilePic;
+            }
+
+            // Create a new user instance with the constructed user object
+            const newUser = await User.create(userObj);
+
+            // Respond with a status code and message
+            res.sendStatus(201)
+        } 
+
+        else{ // Duplicate
+            res.sendStatus(409) 
         }
-
-        if (profilePic && isValidURL(profilePic) && profilePic != "") {
-            userObj.profpic = profilePic;
-        }
-
-        // Create a new user instance with the constructed user object
-        const newUser = await User.create(userObj);
-
-        // Respond with a success message and status code
-        res.status(201).json({ message: 'User registered successfully' });
+        
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: 'An error occurred', error: error.message });
+        res.status(500)
     }
 });
+
 
 
 

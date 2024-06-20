@@ -1,12 +1,12 @@
 const form = document.getElementById('registerform');
 
 
-form.addEventListener('submit', async(e) => {
+form.addEventListener('submit', async (e) => {
     e.preventDefault();
     
     const formData = new FormData(form);
     
-    if(checkPasswords()){
+    if (checkPasswords()) {
         const myObj = { 
             profilePic: formData.get("profile"),
             username: formData.get("username"),
@@ -25,30 +25,31 @@ form.addEventListener('submit', async(e) => {
                     'Content-Type': 'application/json'
                 }
             });
-    
-            if(response.status == 201){
+
+            if (response.status === 201) {
                 window.location.href = "/view-establishment";
+            } else if (response.status === 409) {
+                showCustomAlert("Account already exists.");
+            } else {
+                showCustomAlert("Error.");
+                console.log(response.status);
             }
-    
-            else if(response.status === 404){
-                showCustomAlert("Login error, check your username and password. Try again");
-            }
-
-            else{
-                alert("Error")
-                console.log(response.status)
-            }
-    
         } catch (error) {
-            console.error(err);
+            console.error(error);
+            showCustomAlert("An unexpected error occurred.");
         }
+    } 
     
-    }
-
     else{
-        showCustomAlert("Passwords do not match");
+        showCustomAlert("Passwords do not match.");
     }
-})
+});
+
+function check(){
+    const formData = new FormData(form);
+    const description = formData.get("desc");
+    console.log(description);
+}            
 
 function checkPasswords() {
 
