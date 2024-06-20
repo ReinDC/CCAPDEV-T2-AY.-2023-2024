@@ -83,9 +83,18 @@ router.get("/search-establishments", (req, res) => {
 });
 
 // Route for rendering the edit review page
-router.get("/edit-review", (req, res) => {
+router.get("/edit-review", async (req, res) => {
+    const message = req.query.message ? decodeURIComponent(req.query.message) : 'No message';
+    const review = await Review.findOne({ reviewID: message });
+    const reviewer = await User.findOne({ userID: review.reviewerID });
+    
+    // console.log(user);
+
     res.render("edit-review", {
         title: "Edit Review",
+        message: message,
+        reviewer: reviewer,
+        review: review,
     });
 });
 

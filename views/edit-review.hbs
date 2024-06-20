@@ -6,25 +6,34 @@
 <div class = "estab-reviews-container"> <!--Start of establishment reviews-->
       <div class = "review-profile">
         <div class = "img-box">
-        <img src = "https://static.wikia.nocookie.net/southpark/images/a/a8/Kyle-nohat.transparent.png/revision/latest?cb=20230422075123" />
+        <img src = "{{reviewer.profpic}}" />
         </div>
           <div class = "title-and-name-box">
             <div class = "title-text">
             <label for="review-title">Title:</label>
-            <textarea class="title-textarea" name="review-title">This has the best food I have tasted</textarea>
+            <textarea class="title-textarea" name="review-title">{{review.reviewTitle}}</textarea>
             </div>
             <div class = "name-text">
-              By: User
+              By: {{reviewer.username}}
             </div>    
           </div>
-          <div class = "reco"> <!-- recommended or not-->
-            <div class = "reco-text">
-            ⭐ Recommended
-          </div>
+          {{#if review.isRecommended}}
+            <div class = "reco"> <!-- recommended or not-->
+              <div class = "reco-text">
+                ⭐ Recommended
+              </div>
+            </div>
+          {{else}}
+              <div class = "not-reco"> <!-- recommended or not-->
+                <div class = "reco-text">
+                  👎 Not recommended
+                </div>
+              </div>
+          {{/if}}
           </div>
       </div>
       <div class = "text-container">
-        <textarea class="review-textarea" name ="review" rows = "10" cols = "10">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Scelerisque eu ultrices vitae auctor. Duis ultricies lacus sed turpis. Nulla facilisi etiam dignissim diam quis enim lobortis scelerisque fermentum. Nibh sed pulvinar proin gravida hendrerit lectus a.</textarea>
+        <textarea class="review-textarea" name ="review" rows = "10" cols = "10">{{review.reviewContent}}</textarea>
       </div>
       
       <div class="button-container">

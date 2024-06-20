@@ -35,3 +35,9 @@ function getIMG(resturantName){
         console.error('There was a problem with the fetch operation:', error);
     });
 }
+
+function sendData(reviewID) {
+    const message = reviewID;
+    const encodedMessage = encodeURIComponent(message);
+    window.location.href = 'edit-review?message=' + encodedMessage;
+}
