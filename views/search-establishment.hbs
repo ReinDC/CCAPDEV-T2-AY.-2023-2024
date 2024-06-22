@@ -17,8 +17,8 @@
       <div class="section search-section">
           <h2>Search Establishments</h2>
           <div class="search-bar">
-              <input type="text" placeholder="Search for establishments...">
-              <button>Search</button>
+              <input type="text" placeholder="Search for establishments..." id="searchbar">
+              <button id="searchBtn">Search</button>
           </div>
           <div class="filters">
               <label for="location">Location:</label>
@@ -36,6 +36,37 @@
           </div>
           <div class="results">
               <!-- Dynamic content will be inserted here -->
+
+              
+{{!--           
+            <div class = "establishment">
+                <div class = "establishment-container">
+                    <div class="resto-image">
+                        <img src="{{resturantIMG}}"/>
+                    </div>
+                    <div class = "text-container">
+                        <div class = "name-font"> {{resturantName}} </div>
+
+                        <button class="edit-button" onclick="sendData3('{{this.resturantName}}')">Edit</button>
+
+                        <div class = "details-font">
+                            <p class="details-address">{{address}}</p>
+                            <div class="details-bestseller">
+                                Best sellers
+                                <ul>
+                                    <li></li>
+                                </ul>
+                            </div>
+                                </div>
+                        <button class = "button-container">View Establishment Reviews</button>
+                        <button class = "button-container">Create Review</button>
+                    </div>    
+                </div>
+            </div> 
+--}}
+
           </div>
       </div>
+    <script src="/js/search-establishment.js"></script>
+
 </body>

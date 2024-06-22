@@ -181,3 +181,116 @@ body{
         background-color: #c0392b;
     }
     
+    .establishment {
+
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 20px;
+    }
+    
+    .establishment-container{
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 20px;
+        display: flex;
+        width: 1200px;
+        height: 500px;
+        background: white;
+        justify-self: auto;
+        align-self: flex-start;
+        flex-direction: row;
+    
+    
+    }
+    .text-container > .name-font{
+    
+        font-family:'DM Sans', sans-serif;
+        font-size: 38px;
+        font-weight: bold;
+        margin-left: 20px;
+        text-align: justify;
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+    
+    .text-container > .details-font{
+    
+        font-family: 'DM Sans', monospace;
+        font-size: large;
+        margin-left: 20px;
+    
+    }
+    
+    .edit-button {
+        border: none;
+        border-radius: 20px;
+        background-color: #a5a5a5;
+        position: absolute;
+        padding: 20px;
+        margin-left: 580px;
+        margin-top: 20px;
+        color: white;
+        font-family: 'DM Sans';
+        font-size: 18px;
+        text-decoration: none;
+    
+    }
+    
+    .edit-button:hover{
+        background-color: #565353;
+        color: black;
+    
+    }
+    
+    .details-address{
+        margin-top: -20px;
+        color: #707070;
+        font-size: large;
+    }
+    
+    .details-time {
+    
+        margin-left: 10px;
+        font-size: 20px;
+    }
+    
+    .details-bestseller{
+        padding: 10px;
+        margin-left: 20px;
+        margin-right: 20px;
+        background-color: #f1f1f1;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    
+    }
+    
+    .resto-image{
+        align-self: flex-start;
+        display: flex;
+        justify-self: flex-start;
+    }
+    .resto-image > img{
+        border-bottom-left-radius: 20px; border-top-left-radius: 20px;
+        height: 500px;
+        width: 500px;
+        object-fit: fill;
+    }
+    .text-container{
+        display: flex;
+        flex-direction: column;
+    }
+    .button-container{
+    
+         font-family:'DM Sans', sans-serif;
+        border-radius: 10px;
+        background-color: #a5a5a5;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        margin-left: 50px;
+        width: 600px;
+    }
