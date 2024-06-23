@@ -4,33 +4,43 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 
 <div class = "body"> <!--body container -->
- <div class = "establishment-list">
-            <div class = "establishment"> <!-- view establishments container (make sure it is flex: column)-->
-                <div class = "establishment-container"> <!-- certain establishment container 1-->
-                <div class="resto-image">
-                    <img src = "https://i.pinimg.com/564x/18/83/e4/1883e497a4b6acb0ab1c077e1927a39b.jpg" id="restoMage"/>
-                </div>
-                <div class = "text-container">
-                    <div class = "name-font" id="name">{{message}}</div>
-                    <div class = "details-font">
-                        <p class="details-address">{{chosenResturant.address}}</p>
-                                                
-                        <div class="details-bestseller">
-                            Best sellers
-                                <ul>
-                                    {{#each chosenResturant}}
-                                      {{#each bestSellers}}
-                                        <li>{{this}}</li>
-                                      {{/each}}
-                                    {{/each}}
-                                </ul>
-                          </div>
-                    </div>
-                </div>    
+
+<div class = "establishment-list">
+  <div class = "establishment"> <!-- view establishments container (make sure it is flex: column)-->
+      <div class = "establishment-container"> <!-- certain establishment container 1-->
+        <div class="resto-image">
+            <img src = "https://i.pinimg.com/564x/18/83/e4/1883e497a4b6acb0ab1c077e1927a39b.jpg" id="restoMage"/>
+        </div>
+        <div class = "text-container">
+            <div class = "name-font" id="name">{{chosenResturant.resturantName}}</div>
+            <div class = "details-font">
+                <p class="details-address">{{chosenResturant.address}}</p>
+                                        
+                <div class="details-bestseller">
+                    Best sellers
+                        <ul>
+                            {{#each chosenResturant}}
+                              {{#each bestSellers}}
+                                <li>{{this}}</li>
+                              {{/each}}
+                            {{/each}}
+                        </ul>
                 </div>
             </div>
+        </div>    
+      </div>
   </div>
+</div>
 
+
+<div class="container">
+  <div class="section search-section">
+      <h2>Search for review/s</h2>
+      <div class="search-bar">
+          <input type="text" placeholder="Search for review/s..." id="searchbar">
+          <button id="searchBtn">Search</button>
+      </div>
+</div>
 
 {{#each reviews}}
   <div class = "estab-reviews-container"> <!--Start of establishment reviews-->
@@ -71,7 +81,7 @@
 
     <div class = "button-container">
         <button class="button-btn" onclick="markHelpful('{{this.reviewID}}')" id="helpfulBtn{{this.reviewID}}"> Helpful ({{helpfulCount}}) </button>
-        <button class="button-btn" onclick="markNotHelpful('{{this.reviewID}}')" id="notHelpfulBtn{{this.reviewID}}"> Not Helpful ({{notelpfulCount}})</button>
+        <button class="button-btn" onclick="markNotHelpful('{{this.reviewID}}')" id="notHelpfulBtn{{this.reviewID}}"> Not Helpful ({{notHelpfulCount}})</button>
         <button class="button-btn" onclick="sendData('{{this.reviewID}}')">Edit review</button>
     </div>
   </div> 
