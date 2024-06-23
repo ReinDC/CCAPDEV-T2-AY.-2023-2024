@@ -285,7 +285,6 @@ router.post('/search', async (req, res) => {
             res.status(200).send({ resturants: resturants });
         } else {
             res.status(404).send({ message: "No restaurants found" }); // Set status to 404 and send a message
-            console.log("Not Found");
         }
 
     } catch (error) {

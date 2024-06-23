@@ -22,7 +22,7 @@ searchBtn.addEventListener('click', (e) => {
         return response.json(); // Parse JSON from response
     })
     .then(data => {
-        if (data.resturants) {
+        if (data.resturants.length != 0) {
             const resultsContainer = document.querySelector('.results');
             resultsContainer.innerHTML = '';
 
@@ -31,18 +31,19 @@ searchBtn.addEventListener('click', (e) => {
 
             for(let i = 0; i < data.resturants.length; i++){
                 const resturants = data.resturants[i];
-                console.log('Restaurant object:', resturants);
                 const resturantIMG = resturants.resturantIMG;
                 const resturantName = resturants.resturantName;
                 const address = resturants.address;
                 const bestSellers = resturants.bestSellers;
                 createRestaurantElement(resturantIMG, resturantName, address, bestSellers)
-                console.log("Name: " + resturantName + " Image: " + resturantIMG + " Address: " + address + " Best Sellers: " + bestSellers)
-                
             }
-            console.log(data.resturants)
         } else {
             console.error('Restaurants not found in the response');
+            const parentContainer = document.querySelector('.parent-container');
+            parentContainer.style.display = 'flex';
+
+            const resultsContainer = document.querySelector('.results');
+            resultsContainer.textContent = 'No';
         }
     })
     .catch(error => {

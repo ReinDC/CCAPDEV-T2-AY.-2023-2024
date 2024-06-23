@@ -1,7 +1,33 @@
-document.addEventListener('DOMContentLoaded', function() {
+const helpfulBtn = document.getElementById("helpful");
+const notHelpfulBtn = document.getElementById("not-helpful");
+
+document.addEventListener('DOMContentLoaded', (e) => {
     const messageDiv = document.getElementById('name');
     getIMG(messageDiv.textContent.trim());
 });
+
+
+function markHelpful(userID){
+    const myObj = { 
+        userID: userID
+    };
+    
+    const jString = JSON.stringify(myObj);
+
+    fetch("/mark-helpful", {
+        method: 'POST',
+        body: jString,
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+
+}
+
+function markNotHelpful(userID){
+    fetch('/mark-helpful')
+
+}
 
 function getIMG(resturantName){
     const myObj = { 
