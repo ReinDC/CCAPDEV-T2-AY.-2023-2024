@@ -188,7 +188,7 @@ router.get("/view-establishment-reviews", async (req, res) => {
 router.post("/get-image", async (req, res) => {
     try {
         // Extract the restaurant name from the request body.
-        const resturantName = req.body.resturant;
+        const resturantName = req.body.resturantName;
         
         // Find the restaurant in the database using the provided restaurant name.
         const resturant = await Resturant.findOne({ resturantName: resturantName });
@@ -295,15 +295,39 @@ router.post('/search', async (req, res) => {
 
 router.post("/mark-helpful", async (req, res) => {
     try {
-        
+        const { reviewID } = req.body;
+        let review = await Review.findOne({ reviewID: reviewID }); // Use let for reassigning
+
+        if (review) {
+            await Review.updateOne({ reviewID: reviewID }, { $inc: { helpfulCount: 1 } });
+            review = await Review.findOne({ reviewID: reviewID });
+            res.status(200).send({ count: review.helpfulCount });
+        } else {
+            res.status(404).send({ message: "Review not found" });
+        }
     } catch (error) {
         console.error(error);
-        res.status(500).send({ error: 'An error occurred' }); // Send an error message along with the status
+        res.status(500).send({ error: 'An error occurred' });
     }
+});
 
+router.post("/mark-nothelpful", async (req, res) => {
+    try {
+        const { reviewID } = req.body;
+        let review = await Review.findOne({ reviewID: reviewID }); // Use let for reassigning
 
-
-})
+        if (review) {
+            await Review.updateOne({ reviewID: reviewID }, { $inc: { notHelpfulCount: 1 } });
+            review = await Review.findOne({ reviewID: reviewID });
+            res.status(200).send({ count: review.notHelpfulCount });
+        } else {
+            res.status(404).send({ message: "Review not found" });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({ error: 'An error occurred' });
+    }
+});
 
 
 module.exports = router; // Export the router to be used in other parts of the application

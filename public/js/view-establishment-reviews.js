@@ -3,35 +3,84 @@ const notHelpfulBtn = document.getElementById("not-helpful");
 
 document.addEventListener('DOMContentLoaded', (e) => {
     const messageDiv = document.getElementById('name');
-    getIMG(messageDiv.textContent.trim());
+    getIMG(messageDiv.textContent);
 });
 
 
-function markHelpful(userID){
+function markHelpful(reviewID) {
     const myObj = { 
-        userID: userID
+        reviewID: reviewID
     };
     
     const jString = JSON.stringify(myObj);
 
-    fetch("/mark-helpful", {
+    fetch("/mark-helpful", { 
         method: 'POST',
         body: jString,
         headers: {
             'Content-Type': 'application/json'
         }
     })
-
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json(); // Parse JSON from response
+    })
+    .then(data => {
+        if (data.count !== undefined) {
+            const helpfulBtn = document.getElementById(`helpfulBtn${reviewID}`);
+            helpfulBtn.innerText = "Helpful (" + data.count + ')';
+        } else {
+            console.error('Review not found');
+        }
+    })
+    .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+    });
 }
 
-function markNotHelpful(userID){
-    fetch('/mark-helpful')
 
+
+function markNotHelpful(reviewID){
+    const myObj = { 
+        reviewID: reviewID
+    };
+    
+    const jString = JSON.stringify(myObj);
+
+    fetch("/mark-nothelpful", { 
+        method: 'POST',
+        body: jString,
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json(); // Parse JSON from response
+    })
+    .then(data => {
+
+        const btnID = "notHelpfulBtn" + reviewID;
+        if (data.count !== undefined) {
+            const notHelpfulBtn = document.getElementById(btnID);
+            notHelpfulBtn.innerText = "Not Helpful (" + data.count + ')';
+        } else {
+            console.error('Review not found');
+        }
+    })
+    .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+    });
 }
+
 
 function getIMG(resturantName){
     const myObj = { 
-        resturant: resturantName
+        resturantName: resturantName
     };
 
     const jString = JSON.stringify(myObj);
