@@ -15,16 +15,16 @@
 
     <div class="container">
       <div class="section search-section">
-          <h2>Search Establishments</h2>
+          <h2>Search for a resturant</h2>
           <div class="search-bar">
-              <input type="text" placeholder="Search for establishments..." id="searchbar">
+              <input type="text" placeholder="Search for resturant/s..." id="searchbar">
               <button id="searchBtn">Search</button>
+              
           </div>
-          <div class="filters">
+          {{!-- <div class="filters">
               <label for="location">Location:</label>
               <select id="location" name="location">
                   <option value="all">All</option>
-                  <!-- Add more locations here -->
               </select>
               <label for="rating">Rating:</label>
               <select id="rating" name="rating">
@@ -33,40 +33,13 @@
                   <option value="not recommended">Not Recommended</option>
                   <!-- Add more rating options here -->
               </select>
-          </div>
-          <div class="results">
-              <!-- Dynamic content will be inserted here -->
-
-              
-{{!--           
-            <div class = "establishment">
-                <div class = "establishment-container">
-                    <div class="resto-image">
-                        <img src="{{resturantIMG}}"/>
-                    </div>
-                    <div class = "text-container">
-                        <div class = "name-font"> {{resturantName}} </div>
-
-                        <button class="edit-button" onclick="sendData3('{{this.resturantName}}')">Edit</button>
-
-                        <div class = "details-font">
-                            <p class="details-address">{{address}}</p>
-                            <div class="details-bestseller">
-                                Best sellers
-                                <ul>
-                                    <li></li>
-                                </ul>
-                            </div>
-                                </div>
-                        <button class = "button-container">View Establishment Reviews</button>
-                        <button class = "button-container">Create Review</button>
-                    </div>    
-                </div>
-            </div> 
---}}
-
-          </div>
+          </div> --}}
       </div>
-    <script src="/js/search-establishment.js"></script>
+    </div>
 
+    <div class="parent-container">
+        
+        <div class="results">resturants</div>
+    </div>
+    <script src="/js/search-establishment.js"></script>
 </body>

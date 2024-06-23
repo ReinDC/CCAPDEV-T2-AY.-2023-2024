@@ -41,3 +41,5 @@ function sendData(reviewID) {
     const encodedMessage = encodeURIComponent(message);
     window.location.href = 'edit-review?message=' + encodedMessage;
 }
+
+

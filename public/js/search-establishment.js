@@ -23,9 +23,24 @@ searchBtn.addEventListener('click', (e) => {
     })
     .then(data => {
         if (data.resturants) {
+            const resultsContainer = document.querySelector('.results');
+            resultsContainer.innerHTML = '';
+
+            const parentContainer = document.querySelector('.parent-container');
+            parentContainer.style.display = 'flex';
+
             for(let i = 0; i < data.resturants.length; i++){
-                createRestaurantElement(data.resturants[i].restaurantIMG,  data.resturants[i].restaurantName, data.resturants[i].address,data.resturants[i].bestSellers)
+                const resturants = data.resturants[i];
+                console.log('Restaurant object:', resturants);
+                const resturantIMG = resturants.resturantIMG;
+                const resturantName = resturants.resturantName;
+                const address = resturants.address;
+                const bestSellers = resturants.bestSellers;
+                createRestaurantElement(resturantIMG, resturantName, address, bestSellers)
+                console.log("Name: " + resturantName + " Image: " + resturantIMG + " Address: " + address + " Best Sellers: " + bestSellers)
+                
             }
+            console.log(data.resturants)
         } else {
             console.error('Restaurants not found in the response');
         }
@@ -38,6 +53,9 @@ searchBtn.addEventListener('click', (e) => {
 
 
 function createRestaurantElement(restaurantIMG, restaurantName, address, bestSellers) {
+    const resultsContainer = document.querySelector('.results');
+    const name = restaurantName;
+
     // Create the main container div
     const establishmentDiv = document.createElement('div');
     establishmentDiv.className = 'establishment';
@@ -67,7 +85,12 @@ function createRestaurantElement(restaurantIMG, restaurantName, address, bestSel
     const editButton = document.createElement('button');
     editButton.className = 'edit-button';
     editButton.textContent = 'Edit';
-    editButton.setAttribute('onclick', `sendData3('${restaurantName}')`);
+    editButton.onclick = function sendData3() {
+        const message = name;
+        const encodedMessage = encodeURIComponent(message);
+        window.location.href = 'edit-details?message=' + encodedMessage;
+    };
+    
 
     // Create the details container
     const detailsFontDiv = document.createElement('div');
@@ -96,11 +119,22 @@ function createRestaurantElement(restaurantIMG, restaurantName, address, bestSel
     const viewReviewsButton = document.createElement('button');
     viewReviewsButton.className = 'button-container';
     viewReviewsButton.textContent = 'View Establishment Reviews';
+    viewReviewsButton.onclick = function sendData() {
+        const message = name;
+        const encodedMessage = encodeURIComponent(message);
+        window.location.href = 'view-establishment-reviews?message=' + encodedMessage;
+    };
 
     // Create the create review button
     const createReviewButton = document.createElement('button');
     createReviewButton.className = 'button-container';
     createReviewButton.textContent = 'Create Review';
+    createReviewButton.onclick = function sendData2() {
+        const message = name;
+        const encodedMessage = encodeURIComponent(message);
+        window.location.href = 'create-review?message=' + encodedMessage;
+    };
+    
 
     // Append all elements to their respective parents
     textContainerDiv.appendChild(nameFontDiv);
@@ -114,25 +148,5 @@ function createRestaurantElement(restaurantIMG, restaurantName, address, bestSel
 
     establishmentDiv.appendChild(establishmentContainerDiv);
 
-    // Append the final establishment div to the results container
-    const resultsContainer = document.querySelector('.results');
     resultsContainer.appendChild(establishmentDiv);
-}
-
-function sendData(resturantName) {
-    const message = resturantName;
-    const encodedMessage = encodeURIComponent(message);
-    window.location.href = 'view-establishment-reviews?message=' + encodedMessage;
-}
-
-function sendData2(resturantName) {
-    const message = resturantName;
-    const encodedMessage = encodeURIComponent(message);
-    window.location.href = 'create-review?message=' + encodedMessage;
-}
-
-function sendData3(resturantName) {
-    const message = resturantName;
-    const encodedMessage = encodeURIComponent(message);
-    window.location.href = 'edit-details?message=' + encodedMessage;
 }

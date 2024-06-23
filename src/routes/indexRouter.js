@@ -294,7 +294,17 @@ router.post('/search', async (req, res) => {
     }
 });
 
+router.post("/mark-helpful", async (req, res) => {
+    try {
+        
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({ error: 'An error occurred' }); // Send an error message along with the status
+    }
 
+
+
+})
 
 
 module.exports = router; // Export the router to be used in other parts of the application
