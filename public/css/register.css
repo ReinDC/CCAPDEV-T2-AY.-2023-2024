@@ -1,31 +1,37 @@
-body{
+body {
     background-color: #f0f0f0;
-    margin:0;
+    margin: 0;
     font-family: 'DM Sans';
     overflow-y: hidden;
 }
 
-.body{
+.body {
     display: flex;
     justify-content: center;
     margin-top: 5%;
 }
 
-.content-container{
+.content-container {
     width: 50%;
     max-width: fit-content;
     background: #fff;
     display: flex;
-    flex: row;
+    flex-direction: row;
     border-radius: 10px;
 }
 
-.image-box{
+.image-box {
     width: 50%;
 }
-.image-box > img{width: 100%; height: 100%; border-bottom-left-radius: 10px; border-top-left-radius: 10px;}
 
-.form-box{
+.image-box > img {
+    width: 100%;
+    height: 100%;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.form-box {
     width: 50%;
     display: flex;
     flex-direction: column;
@@ -34,26 +40,26 @@ body{
     padding: 10px 20px 20px 20px;
 }
 
-.form-head{
+.form-head {
     margin-top: 20px;
-    height: 10%;
+    height: auto;
     justify-content: flex-start;
     align-self: center;
     color: #17191f;
 }
 
-.form-enter{
-    height: 60%;
+.form-enter {
+    height: auto;
     width: 100%;
     justify-content: flex-start;
     align-items: center;
     color: #17191f;
     font-size: 18px;
     margin-top: 25px;
-    overflow-y: scroll; /* Enable vertical scrolling */
+    overflow-y: hidden;
 }
 
-.button-upload{
+.button-upload {
     margin-left: 20px;
     background-color: #a5a5a5;
     border: none;
@@ -61,54 +67,37 @@ body{
     margin-bottom: 10px;
 }
 
-form{
-    margin-left:40px;
-    margin-right:40px;
+form {
+    margin-left: 40px;
+    margin-right: 40px;
 }
 
-form > button{
-    width: 20%;
-    height: 10%;
-    background-color: lightslategray;
-    border-radius: 15px;
-    border: 2px solid lightgray;
-    color: ghostwhite;
+form > button {
+    width: 100px;
+    height: 40px;
+    background-color: #c4c4c4;
+    border-radius: 5px;
+    border: 1px solid #c4c4c4;
+    color: black;
+    font-size: 15px;
+    margin-top: 10px;
+    cursor: pointer;
 }
 
-input{
+input {
     width: 100%;
-    height: 13%;
+    height: 30px;
     border: 2px solid #d6d6d6;
     border-radius: 10px;
     margin-top: 5px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
-button,
-input[type="submit"] {
-    border: none;
-    height: 60%;
+.button-container {
     width: 100%;
-    background-color: #a5a5a5;
-    font-size: 15px;
-    border-radius: 15px;
-}
-
-.button-container{
-    width: 80%;
-    height: 20%;
     display: flex;
-    align-self: center;
-    margin-top: 90px;
-}
-
-button{
-    border: none;
-    height: 50%;
-    width: 100%;
-    background-color: #a5a5a5;
-    font-size: 15px;
-    border-radius: 15px;
+    justify-content: center;
+    margin-top: 20px;
 }
 
 a {
@@ -117,27 +106,28 @@ a {
     text-decoration: none;
 }
 
-a:visited{
-    color:ghostwhite;
+a:visited {
+    color: ghostwhite;
     background-color: transparent;
     text-decoration: none;
 }
 
-a:hover{
-    color:#6f6f6f;
+a:hover {
+    color: #6f6f6f;
     background-color: transparent;
     text-decoration: dotted;
 }
 
-.sign-link{
-    height: 10%;
+.sign-link {
+    height: auto;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 10px;
 }
 
-.sign-link a{
+.sign-link a {
     color: #17191f;
     font-size: 15px;
 }
@@ -178,13 +168,13 @@ a:hover{
 .custom-alert-content > button {
     padding: 10px 20px;
     font-size: 14px;
-    margin-top: 20px; 
+    margin-top: 20px;
     background-color: #a5a5a5;
-    border: none; 
+    border: none;
     border-radius: 5px;
     cursor: pointer;
     width: 100%;
-    height: 10%;
+    height: auto;
     font-family: 'DM Sans';
 }
 
