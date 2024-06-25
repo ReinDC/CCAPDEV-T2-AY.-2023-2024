@@ -1,7 +1,19 @@
 const searchBtn = document.getElementById("searchBtn");
+const searchbar = document.getElementById("searchbar");
 
+searchbar.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        getSearchData();
+    }
+});
 
 searchBtn.addEventListener('click', (e) => {
+    getSearchData();
+});
+
+
+function getSearchData(){
     const searchBar = document.getElementById("searchbar");
     const myObj = { 
         search: searchBar.value
@@ -22,34 +34,35 @@ searchBtn.addEventListener('click', (e) => {
         return response.json(); // Parse JSON from response
     })
     .then(data => {
-        if (data.resturants.length != 0) {
-            const resultsContainer = document.querySelector('.results');
-            resultsContainer.innerHTML = '';
+        const resultsContainer = document.querySelector('.results');
+        const parentContainer = document.querySelector('.parent-container');
 
-            const parentContainer = document.querySelector('.parent-container');
-            parentContainer.style.display = 'flex';
+        resultsContainer.innerHTML = '';
+        resultsContainer.classList.remove('transparent-text');
 
-            for(let i = 0; i < data.resturants.length; i++){
-                const resturants = data.resturants[i];
-                const resturantIMG = resturants.resturantIMG;
-                const resturantName = resturants.resturantName;
-                const address = resturants.address;
-                const bestSellers = resturants.bestSellers;
-                createRestaurantElement(resturantIMG, resturantName, address, bestSellers)
-            }
-        } else {
-            console.error('Restaurants not found in the response');
-            const parentContainer = document.querySelector('.parent-container');
-            parentContainer.style.display = 'flex';
+        parentContainer.style.display = 'flex';
 
-            const resultsContainer = document.querySelector('.results');
-            resultsContainer.textContent = 'No';
+        for(let i = 0; i < data.resturants.length; i++){
+            const resturants = data.resturants[i];
+            const resturantIMG = resturants.resturantIMG;
+            const resturantName = resturants.resturantName;
+            const address = resturants.address;
+            const bestSellers = resturants.bestSellers;
+            createRestaurantElement(resturantIMG, resturantName, address, bestSellers)
         }
     })
     .catch(error => {
-        console.error('There was a problem with the fetch operation:', error);
+        const parentContainer = document.querySelector('.parent-container');
+        const resultsContainer = document.querySelector('.results');
+        const searchbar = document.getElementById("searchbar");
+
+        parentContainer.style.display = 'flex';
+
+        resultsContainer.textContent = "No restaurants with '" + searchBar.value + "' found.";
+        resultsContainer.classList.add('transparent-text');
+        searchBar.value = '';
     });
-});
+}
 
 
 

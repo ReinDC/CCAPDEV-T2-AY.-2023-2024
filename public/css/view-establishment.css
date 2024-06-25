@@ -92,10 +92,9 @@ body{
 
 }
 
-.edit-button:hover{
+.edit-button:hover, .button-container:hover{
     background-color: #565353;
     color: black;
-
 }
 
 .details-address{

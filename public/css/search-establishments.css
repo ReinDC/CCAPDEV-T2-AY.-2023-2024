@@ -243,7 +243,7 @@ body{
     
     }
     
-    .edit-button:hover{
+    .edit-button:hover, .button-container:hover{
         background-color: #565353;
         color: black;
     
@@ -301,4 +301,12 @@ body{
         cursor: pointer;
         margin-left: 50px;
         width: 600px;
+    }
+
+    .transparent-text {
+        color: rgba(0, 0, 0, 0.5);
+        font-family:'DM Sans';
+        width: 45%;
+        text-align: center;
+        margin: auto;
     }

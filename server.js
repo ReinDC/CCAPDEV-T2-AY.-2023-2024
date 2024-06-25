@@ -43,18 +43,16 @@ server.use(router);
 
 var port = process.env.PORT || 3000;
 
-// Function to start the server
-async function startServer() {
+async function database() {
     try {
-        await connectToMongo(); // Connect to MongoDB
-        await populateDatabase(); // Populate the database with initial data
-
-        server.listen(port, function() {
-            console.log(`Server: Running on http://localhost:${port}`);
-        });
+        await connectToMongo();
+        await populateDatabase();
     } catch (error) {
         console.error('Server: Failed to start server', error);
     }
 }
 
-startServer();
+server.listen(port, async function() {
+    await database();
+    console.log(`Server: Running on http://localhost:${port}`);
+});
