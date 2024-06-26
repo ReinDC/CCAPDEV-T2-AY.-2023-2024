@@ -17,9 +17,13 @@
 
                             <div class = "text-container">
                                 <div class = "name-font"> {{resturantName}} </div>
-
-                                <button class="edit-button" onclick="sendData3('{{this.resturantName}}')">Edit</button>
-
+                                
+                                {{#ifEquals ../type "Owner"}}
+                                    <button class="edit-button" onclick="sendData3('{{this.name}}')">Edit</button>
+                                {{else}}
+                                    <button class="edit-button" onclick="sendData3('{{this.name}}')" style="display: none;">Edit</button>
+                                {{/ifEquals}}
+                                
                                 <div class = "details-font">
                                     <p class="details-address">{{address}}</p>
                                     <div class="details-bestseller">

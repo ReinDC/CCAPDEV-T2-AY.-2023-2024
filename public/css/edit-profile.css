@@ -164,3 +164,80 @@ body{
     color:#CE6A85;
     text-decoration: dotted;
 }
+
+.custom-alert {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.custom-alert-content {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+    font-family: 'DM Sans';
+}
+
+.close-btn{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.custom-alert-content > button {
+    font-size: 14px;
+    margin-top: 20px; 
+    background-color: #a5a5a5;
+    border: none; 
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    height: 10%;
+    font-family: 'DM Sans';
+    height: 5%;
+}
+
+.custom-alert-content button:hover {
+    background-color: #7d9cbd;
+}
+
+.custom-alert-content > input{
+    width: 100%;
+    height: 5%;
+    border: 2px solid #d6d6d6;
+    border-radius: 10px;
+}
+
+.confirm-button > button{
+    border-radius: 10px;
+    margin-top: 10px;
+    width: 100%;
+    height: 50px;
+    background-color: #a5a5a5;
+    border: none;
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.confirm-button > button:hover{
+    width: 100%;
+    background-color: #7f7f7f;
+    color: white;
+    cursor: pointer;
+}
+

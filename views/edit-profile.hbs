@@ -11,12 +11,23 @@
       </div>
 
       <div class="profile-pic">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png" alt="">
-        <button>Change Avatar</button>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png" alt="" id="pfp">
+        <button onclick="changePFP()">Change Avatar</button>
       </div>
     </div>
 
     <div class="confirm-button">
-      <button><a href="/user-profile">CONFIRM CHANGES</a></button>
+      <button onclick="confirmChanges()">Confirm changes</button>
     </div>
+
+
+    <div id="customAlert" class="custom-alert">
+        <div class="custom-alert-content">
+            <span class="close-btn" onclick="closeCustomAlert()">&times;</span>
+            {{!-- <p id="alertMessage"></p>
+            <button onclick="closeCustomAlert()">OK</button> --}}
+        </div>
+    </div>
+
+    <script src="/js/edit-profile.js"></script>
 </body>

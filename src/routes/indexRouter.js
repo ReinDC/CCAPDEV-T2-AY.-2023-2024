@@ -43,11 +43,14 @@ router.get("/logout", (req, res) => {
 });
 
 // Route for viewing all establishments
-router.get("/view-establishment", async (req, res) => {
+router.get('/view-establishment', async (req, res) => {
     try {
-        const resturants = await Resturant.find().lean(); // Fetch all restaurants
+        const userData = await User.findOne({username:req.query.user});
+        const userType = userData.type
+        const resturants = await Resturant.find().lean(); // Fetch all resturants
         res.render('view-establishment', {
-            resturants: resturants // Pass restaurants to the view
+            type: userType, // Pass the username to the view
+            resturants: resturants, // Pass resturants to the view
         });
     } catch (err) {
         res.status(500).json({ message: err.message });

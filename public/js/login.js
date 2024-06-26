@@ -25,7 +25,8 @@ form.addEventListener('submit', async(e) => {
         });
 
         if(response.status === 200){
-            window.location.href = "/view-establishment";
+            // window.location.href = "/view-establishment";
+            userData(myObj.username);
         }
 
         else if(response.status === 404){
@@ -41,6 +42,11 @@ form.addEventListener('submit', async(e) => {
     }
 
 })
+
+function userData(username) {
+    const encodedUsername = encodeURIComponent(username);
+    window.location.href = 'view-establishment?user=' + encodedUsername;
+}
 
 function showCustomAlert(message) {
     document.getElementById('alertMessage').textContent = message;

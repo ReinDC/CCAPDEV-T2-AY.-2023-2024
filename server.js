@@ -34,7 +34,10 @@ server.engine('hbs', handlebars.engine({
         getUserProfilePic: function(userID, users) {
             const user = users.find(user => user.userID === userID);
             return user ? user.profpic : 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png';
-        }    
+        },
+        ifEquals: function(arg1, arg2, options) {
+            return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+        },
     },
 }));
 
