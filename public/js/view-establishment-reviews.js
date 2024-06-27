@@ -1,9 +1,18 @@
 const helpfulBtn = document.getElementById("helpful");
 const notHelpfulBtn = document.getElementById("not-helpful");
+const searchbar = document.getElementById("searchbar");
+
+searchbar.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        filter();
+    }
+});
 
 document.addEventListener('DOMContentLoaded', (e) => {
     const messageDiv = document.getElementById('name');
     getIMG(messageDiv.textContent);
+
 });
 
 
