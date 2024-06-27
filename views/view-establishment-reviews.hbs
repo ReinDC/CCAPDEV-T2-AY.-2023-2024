@@ -38,12 +38,14 @@
       <h2>Search for review/s</h2>
       <div class="search-bar">
           <input type="text" placeholder="Search for review/s..." id="searchbar">
-          <button id="searchBtn">Search</button>
+          <button onclick="filter()">Search</button>
       </div>
 </div>
+<div class="review-container">
 
-{{#each reviews}}
-  <div class = "estab-reviews-container"> <!--Start of establishment reviews-->
+{{#each reviews}} <!--Start of establishment reviews-->
+  <div class = "estab-reviews-container"> 
+    
     <div class = "review-profile">
       <div class = "img-box">
       <img src = "{{getUserProfilePic reviewerID ../users}}" alt="Profile pic"/>
@@ -87,6 +89,8 @@
   </div> 
 
 {{/each}}
+</div>
+
 
 
 {{!--       TEMPLATE FOR REVIEWS

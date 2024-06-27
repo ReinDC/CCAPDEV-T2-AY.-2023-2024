@@ -355,3 +355,14 @@ textarea{
     color: black;
 }
 
+.review-container{
+    margin-top: 20px;
+    border-radius: 20px;
+    background-color: none;
+    width:1200px;
+    height:100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+}
+

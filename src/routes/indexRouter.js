@@ -281,7 +281,7 @@ router.post('/submit-form-register', async (req, res) => {
 router.post('/search', async (req, res) => {
     try {
         const { search } = req.body;
-        const searchM = new RegExp(search, 'i'); // Create a case-insensitive regular expression from the search string
+        const searchM = new RegExp(search, 'i'); //
         const resturants = await Resturant.find({ resturantName: searchM });
         
         if (resturants.length != 0) {
@@ -317,7 +317,7 @@ router.post("/mark-helpful", async (req, res) => {
 router.post("/mark-nothelpful", async (req, res) => {
     try {
         const { reviewID } = req.body;
-        let review = await Review.findOne({ reviewID: reviewID }); // Use let for reassigning
+        const review = await Review.findOne({ reviewID: reviewID }); // Use let for reassigning
 
         if (review) {
             await Review.updateOne({ reviewID: reviewID }, { $inc: { notHelpfulCount: 1 } });
@@ -327,10 +327,33 @@ router.post("/mark-nothelpful", async (req, res) => {
             res.status(404).send({ message: "Review not found" });
         }
     } catch (error) {
-        console.error(error);
         res.status(500).send({ error: 'An error occurred' });
     }
 });
 
+
+router.post("/reviews-search", async (req, res) => {
+    try {
+        const { reviewTitle, resturantName} = req.body;
+        console.log(reviewTitle)
+        const search = new RegExp(reviewTitle, 'i');
+        const resturant = await Resturant.findOne({ resturantName: resturantName});
+        const reviews = await Review.find({reviewTitle: search, resturantID: resturant.resturantID});
+        const users = [];
+        for(let i = 0; i < reviews.length; i++){
+            const id = reviews[i].reviewerID;
+            const user = await User.findOne({userID: id});
+            users[i] = user;
+        }
+
+        if (reviews.length != 0) {
+            res.status(200).send({ reviews: reviews, users: users});
+        } else {
+            res.status(404).send({ message: "No restaurants found" }); // Set status to 404 and send a message
+        }
+    } catch (error) {
+        res.status(500).send({ error: 'An error occurred' });
+    }
+})
 
 module.exports = router;
