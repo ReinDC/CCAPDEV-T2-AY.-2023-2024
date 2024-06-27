@@ -46,12 +46,22 @@ router.get("/logout", (req, res) => {
 router.get('/view-establishment', async (req, res) => {
     try {
         const userData = await User.findOne({username:req.query.user});
-        const userType = userData.type
         const resturants = await Resturant.find().lean(); // Fetch all resturants
-        res.render('view-establishment', {
-            type: userType, // Pass the username to the view
-            resturants: resturants, // Pass resturants to the view
-        });
+
+        if(userData){
+            const userType = userData.type;
+
+            res.render('view-establishment', {
+                type: userType, // Pass the username to the view
+                resturants: resturants, // Pass resturants to the view
+            });
+        }
+        else{
+            res.render('view-establishment', {
+                resturants: resturants, // Pass resturants to the view
+            });
+        }
+        
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
@@ -317,7 +327,7 @@ router.post("/mark-helpful", async (req, res) => {
 router.post("/mark-nothelpful", async (req, res) => {
     try {
         const { reviewID } = req.body;
-        const review = await Review.findOne({ reviewID: reviewID }); // Use let for reassigning
+        let review = await Review.findOne({ reviewID: reviewID }); // Use let for reassigning
 
         if (review) {
             await Review.updateOne({ reviewID: reviewID }, { $inc: { notHelpfulCount: 1 } });

@@ -1,6 +1,6 @@
 body{
     background-color: #f0f0f0;
-    margin:0;
+    margin: 0;
     font-family: 'DM Sans';
 }
 
@@ -14,7 +14,7 @@ body{
     display: flex;
     background-color: white;
     flex-direction: row;
-    padding: 30px;;
+    padding: 30px;
     margin-bottom: 50px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     align-items: center;
@@ -56,7 +56,6 @@ body{
 
 }
 .text-container > .name-font{
-
     font-family:'DM Sans', sans-serif;
     font-size: 40px;
     font-weight: bold;
@@ -68,7 +67,6 @@ body{
 }
 
 .text-container > .details-font{
-
     font-family: 'DM Sans', monospace;
     font-size: large;
     margin-left: 50px;;
@@ -310,7 +308,7 @@ textarea{
     margin: 10px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 45%;
+    width: 79%;
     min-width: 300px;
 }
 
@@ -351,7 +349,7 @@ textarea{
 }
 
 .button-btn:hover{
-    background-color: #565353;
+    background-color: #8f8080;
     color: black;
 }
 
@@ -365,4 +363,13 @@ textarea{
     flex-direction: column;
     margin-bottom: 40px;
 }
+
+.transparent-text {
+    color: rgba(0, 0, 0, 0.5);
+    font-family:'DM Sans';
+    width: 75%;
+    text-align: center;
+    margin: auto;
+}
+
 

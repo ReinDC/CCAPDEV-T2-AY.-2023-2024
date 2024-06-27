@@ -17,13 +17,16 @@
 
                             <div class = "text-container">
                                 <div class = "name-font"> {{resturantName}} </div>
-                                
-                                {{#ifEquals ../type "Owner"}}
-                                    <button class="edit-button" onclick="sendData3('{{this.name}}')">Edit</button>
-                                {{else}}
+                                {{#ifNullOrUndefined type}}
                                     <button class="edit-button" onclick="sendData3('{{this.name}}')" style="display: none;">Edit</button>
-                                {{/ifEquals}}
-                                
+                                {{else}}
+                                    {{#ifEquals ../type "Owner"}}
+                                        <button class="edit-button" onclick="sendData3('{{this.name}}')">Edit</button>
+                                    {{else}}
+                                        <button class="edit-button" onclick="sendData3('{{this.name}}')" style="display: none;">Edit</button>
+                                    {{/ifEquals}}
+                                {{/ifNullOrUndefined}}
+
                                 <div class = "details-font">
                                     <p class="details-address">{{address}}</p>
                                     <div class="details-bestseller">

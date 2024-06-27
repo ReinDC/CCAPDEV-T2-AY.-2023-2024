@@ -70,10 +70,8 @@ function markNotHelpful(reviewID){
         return response.json(); // Parse JSON from response
     })
     .then(data => {
-
-        const btnID = "notHelpfulBtn" + reviewID;
         if (data.count !== undefined) {
-            const notHelpfulBtn = document.getElementById(btnID);
+            const notHelpfulBtn = document.getElementById(`notHelpfulBtn${reviewID}`);
             notHelpfulBtn.innerText = "Not Helpful (" + data.count + ')';
         } else {
             console.error('Review not found');
@@ -151,29 +149,40 @@ function filter(){
     })
     .then(data => {
         reviewContainerDiv.innerHTML = "";
-
         for(let i = 0; i < data.reviews.length; i++){
             const user = data.users[i];
             const review = data.reviews[i]
+            console.log(review.isRecommended)
+
             createReviewElement( 
                 user.profpic,
                 user.username,
                 review.reviewID,
                 review.reviewTitle, 
                 review.reviewContent, 
-                review.isRecomended, 
+                review.isRecommended, 
                 review.helpfulCount, 
                 review.notHelpfulCount
             );
         }
     })
     .catch(error => {
-        reviewContainerDiv.innerText= "No review found";
+        const searchbar = document.getElementById("searchbar");
+        const realContainer = document.querySelector(".review-container");
+        realContainer.innerHTML = ""
+        const reviewContainer = document.createElement('div');
+        reviewContainer.className = 'estab-reviews-container';
+        reviewContainer.style.cssText = "align-items: center; border-radius: 0px;"
+        reviewContainer.classList.add('transparent-text');
+        reviewContainer.innerText = "No review/s found with the title: " + searchbar.value + '.'
+
+
+        realContainer.appendChild(reviewContainer);
     });
 }
 
 
-function createReviewElement(profpic, username, reviewID, reviewTitle, reviewContent, isRecomended, helpfulCount, notHelpfulCount) {
+function createReviewElement(profpic, username, reviewID, reviewTitle, reviewContent, isRecommended, helpfulCount, notHelpfulCount) {
     const reviewContainer = document.createElement('div');
     reviewContainer.className = 'estab-reviews-container';
   
@@ -201,13 +210,15 @@ function createReviewElement(profpic, username, reviewID, reviewTitle, reviewCon
     titleAndNameBox.appendChild(nameText);
   
     const reco = document.createElement('div');
-    reco.className = 'reco';
+    
     const recoText = document.createElement('div');
     recoText.className = 'reco-text';
-    if(isRecomended){
+    if(isRecommended){
+        reco.className = 'reco';
         recoText.textContent = '⭐ Recommended';
     }
     else{
+        reco.className = 'not-reco';
         recoText.textContent = '👎 Not recommended';
     }
     reco.appendChild(recoText);
@@ -231,14 +242,16 @@ function createReviewElement(profpic, username, reviewID, reviewTitle, reviewCon
   
     const helpfulButton = document.createElement('button');
     helpfulButton.className = 'button-btn';
-    helpfulButton.textContent = 'Helpful';
+    helpfulButton.id = "helpfulBtn" + reviewID;
+    helpfulButton.textContent = 'Helpful (' + helpfulCount + ')';
     helpfulButton.onclick = function() {
         markHelpful(reviewID);
     };
   
     const notHelpfulButton = document.createElement('button');
     notHelpfulButton.className = 'button-btn';
-    notHelpfulButton.textContent = 'Not Helpful';
+    notHelpfulButton.id = "notHelpfulBtn" + reviewID;
+    notHelpfulButton.textContent = 'Not Helpful (' + notHelpfulCount + ')';
     notHelpfulButton.onclick = function() {
         markNotHelpful(reviewID);
     };
@@ -247,10 +260,9 @@ function createReviewElement(profpic, username, reviewID, reviewTitle, reviewCon
     editButton.className = 'button-btn';
     editButton.innerText = "Edit";
     editButton.onclick = function(){
-    editLink.textContent = 'Edit review';
         sendData(reviewID);
     }
-
+    
     buttonContainer.appendChild(helpfulButton);
     buttonContainer.appendChild(notHelpfulButton);
     buttonContainer.appendChild(editButton);
@@ -258,7 +270,7 @@ function createReviewElement(profpic, username, reviewID, reviewTitle, reviewCon
     reviewContainer.appendChild(reviewProfile);
     reviewContainer.appendChild(textContainerReview);
     reviewContainer.appendChild(buttonContainer);
-
-    document.body.appendChild(reviewContainer);
+    const realContainer = document.querySelector(".review-container");
+    realContainer.appendChild(reviewContainer);
 }
 
