@@ -335,7 +335,6 @@ router.post("/mark-nothelpful", async (req, res) => {
 router.post("/reviews-search", async (req, res) => {
     try {
         const { reviewTitle, resturantName} = req.body;
-        console.log(reviewTitle)
         const search = new RegExp(reviewTitle, 'i');
         const resturant = await Resturant.findOne({ resturantName: resturantName});
         const reviews = await Review.find({reviewTitle: search, resturantID: resturant.resturantID});
