@@ -15,8 +15,18 @@ searchBtn.addEventListener('click', (e) => {
 
 function getSearchData(){
     const searchBar = document.getElementById("searchbar");
+
+    if (searchbar.value.trim() === "") {
+        showCustomAlert("Please enter a search term.")
+        searchbar.focus();
+        return true;
+    }
+
+    const searchTerm = getSelectedValue();
+
     const myObj = { 
-        search: searchBar.value
+        search: searchTerm,
+        searchTerm: searchBar.value
     };
     const jString = JSON.stringify(myObj);
 
@@ -163,4 +173,25 @@ function createRestaurantElement(restaurantIMG, restaurantName, address, bestSel
     establishmentDiv.appendChild(establishmentContainerDiv);
 
     resultsContainer.appendChild(establishmentDiv);
+}
+
+function showCustomAlert(message) {
+    document.getElementById('alertMessage').textContent = message;
+    document.getElementById('customAlert').style.display = 'block';
+}
+
+function closeCustomAlert() {
+    document.getElementById('customAlert').style.display = 'none';
+}
+
+function getSelectedValue() {
+    const radios = document.getElementsByName('search');
+    let selectedValue;
+    for (const radio of radios) {
+        if (radio.checked) {
+            selectedValue = radio.value;
+            break;
+        }
+    }
+    return selectedValue;
 }

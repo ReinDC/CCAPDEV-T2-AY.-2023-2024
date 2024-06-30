@@ -38,7 +38,19 @@
       <h2>Search for review/s</h2>
       <div class="search-bar">
           <input type="text" placeholder="Search for review/s..." id="searchbar" autocomplete="off">
+          
+          
           <button onclick="filter()">Search</button>
+      </div>
+
+      <div class="radio-btns">
+        Search in:
+
+        <input type="radio" id="title" name="search" value="title" checked>
+        <label for="title">Title</label>
+        
+        <input type="radio" id="content" name="search" value="content">
+        <label for="content">Content</label>
       </div>
 </div>
 
@@ -91,6 +103,14 @@
 
 {{/each}}
 </div>
+
+<div id="customAlert" class="custom-alert">
+        <div class="custom-alert-content">
+            <span class="close-btn" onclick="closeCustomAlert()">&times;</span>
+            <p id="alertMessage"></p>
+            <button onclick="closeCustomAlert()">OK</button>
+        </div>
+    </div>
 
 
 

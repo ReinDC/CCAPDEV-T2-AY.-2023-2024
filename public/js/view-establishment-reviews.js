@@ -125,60 +125,68 @@ function filter(){
     const messageDiv = document.getElementById('name');
     const searchBarValue = document.getElementById("searchbar").value;
     const reviewContainerDiv = document.querySelector(".review-container");
-    reviewContainerDiv.innerHTML = "";
+    let radioBtnValue = getSelectedValue();
 
-    const myObj = {
-        reviewTitle: searchBarValue,
-        resturantName: messageDiv.textContent,
-    };
+    if (searchbar.value.trim() === "") {
+        showCustomAlert("Please enter a search term.")
+        searchbar.focus(); // Set focus back to the search bar
+    }
 
-    const jString = JSON.stringify(myObj);
+    else{
+        const myObj = {
+            searchTerm: radioBtnValue,
+            search: searchBarValue,
+            resturantName: messageDiv.textContent,
+        };
     
-    fetch("/reviews-search", {
-        method: 'POST',
-        body: jString,
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok ' + response.statusText);
-        }
-        return response.json(); // Parse JSON from response
-    })
-    .then(data => {
-        reviewContainerDiv.innerHTML = "";
-        for(let i = 0; i < data.reviews.length; i++){
-            const user = data.users[i];
-            const review = data.reviews[i]
-            console.log(review.isRecommended)
-
-            createReviewElement( 
-                user.profpic,
-                user.username,
-                review.reviewID,
-                review.reviewTitle, 
-                review.reviewContent, 
-                review.isRecommended, 
-                review.helpfulCount, 
-                review.notHelpfulCount
-            );
-        }
-    })
-    .catch(error => {
-        const searchbar = document.getElementById("searchbar");
-        const realContainer = document.querySelector(".review-container");
-        realContainer.innerHTML = ""
-        const reviewContainer = document.createElement('div');
-        reviewContainer.className = 'estab-reviews-container';
-        reviewContainer.style.cssText = "align-items: center; border-radius: 0px;"
-        reviewContainer.classList.add('transparent-text');
-        reviewContainer.innerText = "No review/s found with the title: " + searchbar.value + '.'
-
-
-        realContainer.appendChild(reviewContainer);
-    });
+        const jString = JSON.stringify(myObj);
+        
+        fetch("/reviews-search", {
+            method: 'POST',
+            body: jString,
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.json(); // Parse JSON from response
+        })
+        .then(data => {
+            reviewContainerDiv.innerHTML = "";
+            for(let i = 0; i < data.reviews.length; i++){
+                const user = data.users[i];
+                const review = data.reviews[i]
+    
+                createReviewElement( 
+                    user.profpic,
+                    user.username,
+                    review.reviewID,
+                    review.reviewTitle, 
+                    review.reviewContent, 
+                    review.isRecommended, 
+                    review.helpfulCount, 
+                    review.notHelpfulCount
+                );
+            }
+        })
+        .catch(error => {
+            console.log(error);
+            console.log("\nNo reviews found with the search term.")
+            const searchbar = document.getElementById("searchbar");
+            const realContainer = document.querySelector(".review-container");
+            realContainer.innerHTML = ""
+            const reviewContainer = document.createElement('div');
+            reviewContainer.className = 'estab-reviews-container';
+            reviewContainer.style.cssText = "align-items: center; border-radius: 0px;"
+            reviewContainer.classList.add('transparent-text');
+            reviewContainer.innerText = "No review/s found with the "+ radioBtnValue +': ' + searchbar.value + '.'
+    
+            realContainer.appendChild(reviewContainer);
+        });
+    }
 }
 
 
@@ -274,3 +282,23 @@ function createReviewElement(profpic, username, reviewID, reviewTitle, reviewCon
     realContainer.appendChild(reviewContainer);
 }
 
+function getSelectedValue() {
+    const radios = document.getElementsByName('search');
+    let selectedValue;
+    for (const radio of radios) {
+        if (radio.checked) {
+            selectedValue = radio.value;
+            break;
+        }
+    }
+    return selectedValue;
+}
+
+function showCustomAlert(message) {
+    document.getElementById('alertMessage').textContent = message;
+    document.getElementById('customAlert').style.display = 'block';
+}
+
+function closeCustomAlert() {
+    document.getElementById('customAlert').style.display = 'none';
+}

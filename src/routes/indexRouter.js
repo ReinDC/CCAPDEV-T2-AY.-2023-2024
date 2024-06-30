@@ -50,7 +50,6 @@ router.get('/view-establishment', async (req, res) => {
 
         if(userData){
             const userType = userData.type;
-
             res.render('view-establishment', {
                 type: userType, // Pass the username to the view
                 resturants: resturants, // Pass resturants to the view
@@ -290,9 +289,15 @@ router.post('/submit-form-register', async (req, res) => {
 
 router.post('/search', async (req, res) => {
     try {
-        const { search } = req.body;
-        const searchM = new RegExp(search, 'i'); //
-        const resturants = await Resturant.find({ resturantName: searchM });
+        const { search, searchTerm } = req.body;
+        const searchValue = new RegExp(searchTerm, 'i');
+        let resturants;
+        if(search == 'name'){
+            resturants = await Resturant.find({ resturantName: searchValue });
+        }
+        else if(search == 'sellers'){
+            resturants = await Resturant.find({ bestSellers: { $in: [searchValue] } });
+        }
         
         if (resturants.length != 0) {
             res.status(200).send({ resturants: resturants });
@@ -344,10 +349,18 @@ router.post("/mark-nothelpful", async (req, res) => {
 
 router.post("/reviews-search", async (req, res) => {
     try {
-        const { reviewTitle, resturantName} = req.body;
-        const search = new RegExp(reviewTitle, 'i');
+        const { searchTerm, search, resturantName} = req.body;
+        const rawSearch = new RegExp(search, 'i');
         const resturant = await Resturant.findOne({ resturantName: resturantName});
-        const reviews = await Review.find({reviewTitle: search, resturantID: resturant.resturantID});
+        let reviews;
+        if(searchTerm == 'title'){
+            reviews = await Review.find({reviewTitle: rawSearch, resturantID: resturant.resturantID});
+        }
+        else if(searchTerm == 'content'){
+            reviews = await Review.find({reviewContent: rawSearch, resturantID: resturant.resturantID});
+        }
+
+
         const users = [];
         for(let i = 0; i < reviews.length; i++){
             const id = reviews[i].reviewerID;

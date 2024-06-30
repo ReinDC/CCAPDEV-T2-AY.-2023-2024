@@ -9,9 +9,9 @@ const sampleUsers = [
     },
     {
         userID: 2,
-        username: 'jane_smith',
+        username: 'owner',
         type: 'Owner',
-        password: 'hashedpassword456',
+        password: 'owner',
         profpic: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png',
         description: 'Owner of a popular restaurant chain.'
     },
