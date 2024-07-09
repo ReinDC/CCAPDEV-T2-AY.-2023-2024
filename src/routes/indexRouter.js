@@ -51,7 +51,7 @@ router.get('/view-establishment', async (req, res) => {
         if(userData){
             const userType = userData.type;
             res.render('view-establishment', {
-                type: userType, // Pass the username to the view
+                type: userType, // Pass the type of the user to the view
                 resturants: resturants, // Pass resturants to the view
             });
         }
