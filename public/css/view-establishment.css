@@ -25,13 +25,13 @@ body{
 .resto-header > h1 {
     margin: 0%;
     margin-right: 25px;
-    color: #17191f;
+    color:  #17191f;
 }
 .resto-header > .text{
     font-weight: bold;
     font-size: 18px;
     margin-left: 25px;
-    color: #17191f;
+    color:  #17191f;
 }
 
 .establishment-list {
@@ -93,7 +93,7 @@ body{
 }
 
 .edit-button:hover, .button-container:hover{
-    background-color: #565353;
+    background-color: #8f8080;
     color: black;
 }
 

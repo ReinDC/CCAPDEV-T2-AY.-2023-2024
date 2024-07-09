@@ -293,6 +293,36 @@ textarea{
     background-color: #a5a5a5;
     cursor: pointer;
 }
+.button-btn:hover{
+    background-color: #8f8080;
+    color: black;
+}
+
+.button-btn-helpful{
+    color: white;
+    border-radius: 10px;
+    font-weight: 700;
+    font-family: 'DM Sans';
+    height: 40px;
+    width: 200px;
+    margin-right: 20px;
+    border: none;
+    background-color: #a5a5a5;
+    cursor: pointer;
+}
+
+.button-btn-nothelpful{
+    color: white;
+    border-radius: 10px;
+    font-weight: 700;
+    font-family: 'DM Sans';
+    height: 40px;
+    width: 200px;
+    margin-right: 20px;
+    border: none;
+    background-color: #a5a5a5;
+    cursor: pointer;
+}
 
 .container {
     display: flex;
@@ -347,9 +377,14 @@ textarea{
     cursor: pointer;
 }
 
-.button-btn:hover{
-    background-color: #8f8080;
-    color: black;
+.button-btn-helpful:hover{
+    background-color: #96A677;
+    color: white
+}
+
+.button-btn-nothelpful:hover{
+    background-color: #CE6A85;
+    color:white;
 }
 
 .review-container{
