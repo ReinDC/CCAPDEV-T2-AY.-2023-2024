@@ -110,9 +110,9 @@ function createRestaurantElement(restaurantIMG, restaurantName, address, bestSel
     editButton.className = 'edit-button';
     editButton.textContent = 'Edit';
     editButton.onclick = function sendData3() {
-        const message = name;
-        const encodedMessage = encodeURIComponent(message);
-        window.location.href = 'edit-details?message=' + encodedMessage;
+        const name = restaurantName;
+        const encodedMessage = encodeURIComponent(name);
+        window.location.href = 'edit-details?name=' + encodedMessage;
     };
     
 
@@ -144,9 +144,9 @@ function createRestaurantElement(restaurantIMG, restaurantName, address, bestSel
     viewReviewsButton.className = 'button-container';
     viewReviewsButton.textContent = 'View Establishment Reviews';
     viewReviewsButton.onclick = function sendData() {
-        const message = name;
-        const encodedMessage = encodeURIComponent(message);
-        window.location.href = 'view-establishment-reviews?message=' + encodedMessage;
+        const name = restaurantName;
+        const encodedMessage = encodeURIComponent(name);
+        window.location.href = 'view-establishment-reviews?name=' + encodedMessage;
     };
 
     // Create the create review button
@@ -154,9 +154,9 @@ function createRestaurantElement(restaurantIMG, restaurantName, address, bestSel
     createReviewButton.className = 'button-container';
     createReviewButton.textContent = 'Create Review';
     createReviewButton.onclick = function sendData2() {
-        const message = name;
-        const encodedMessage = encodeURIComponent(message);
-        window.location.href = 'create-review?message=' + encodedMessage;
+        const name = restaurantName;
+        const encodedMessage = encodeURIComponent(name);
+        window.location.href = 'create-review?name=' + encodedMessage;
     };
     
 
