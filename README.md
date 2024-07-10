@@ -18,8 +18,3 @@ Welcome to Yappers Elite, your premier destination for discovering and sharing t
 ### Notes:
 - Make sure you have installed [Node.js](https://nodejs.org/), npm and MongoDB on your machine.
 - No other express server is running on the chosen port or the default port (3000).
-
-## HOW TO RUN (DEVELOPER)
- 1. Type "npm i" in the terminal
- 2. Type "npm run devStart" in the terminal
- 3. Go to your browser and type "http://localhost:3000/" in the address bar.

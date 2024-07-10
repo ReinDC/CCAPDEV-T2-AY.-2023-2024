@@ -113,12 +113,11 @@ router.get("/edit-review", async (req, res) => {
 // Route for editing details of a specific restaurant
 router.get("/edit-details", async (req, res) => {
     try {
-        const message = req.query.message ? decodeURIComponent(req.query.message) : 'No message';
-        const resturantName = message;
+        const name = req.query.name ? decodeURIComponent(req.query.name) : 'No name';
+        const resturantName = name;
         const resturant = await Resturant.findOne({ resturantName: resturantName });   
         res.render("edit-details", {
             title: "Edit details",
-            message: message,
             chosenResturant: resturant
         });
     } catch (error) {
@@ -129,12 +128,12 @@ router.get("/edit-details", async (req, res) => {
 // Route for creating a review for a specific restaurant
 router.get("/create-review", async (req, res) => {
     try {
-        // Get the 'message' query parameter from the request and decode it. 
-        // If 'message' is not provided, default to 'No message'.
-        const message = req.query.message ? decodeURIComponent(req.query.message) : 'No message';
+        // Get the 'name' query parameter from the request and decode it. 
+        // If 'name' is not provided, default to 'No name'.
+        const name = req.query.name ? decodeURIComponent(req.query.name) : 'No name';
 
         // Use the 'message' as the restaurant name to search for the restaurant in the database.
-        const resturantName = message;
+        const resturantName = name;
         const resturant = await Resturant.findOne({ resturantName: resturantName }); 
 
         // Render the 'create-review' page and pass the following data:
@@ -143,7 +142,6 @@ router.get("/create-review", async (req, res) => {
         // - chosenResturant: The restaurant object found in the database.
         res.render("create-review", {
             title: "Create-review",
-            message: message,
             chosenResturant: resturant
         });
     } catch (error) {
@@ -156,12 +154,12 @@ router.get("/create-review", async (req, res) => {
 // Route for viewing reviews of a specific establishment
 router.get("/view-establishment-reviews", async (req, res) => {
     try {
-        // Get the 'message' query parameter from the request and decode it.
-        // If 'message' is not provided, default to 'No message'.
-        const message = req.query.message ? decodeURIComponent(req.query.message) : 'No message';   
+        // Get the 'name' query parameter from the request and decode it.
+        // If 'name' is not provided, default to 'No name'.
+        const name = req.query.name ? decodeURIComponent(req.query.name) : 'No name';   
         
         // Use the 'message' as the restaurant name to search for the restaurant in the database.
-        const resturantName = message;
+        const resturantName = name;
         const resturant = await Resturant.findOne({ resturantName: resturantName });
         
         // Find all reviews for the found restaurant using its ID.
@@ -185,7 +183,6 @@ router.get("/view-establishment-reviews", async (req, res) => {
         res.render('view-establishment-reviews', {
             title: "View establishment reviews",
             reviews: reviews, // Pass reviews to the view
-            message: message, // Pass restaurant name to the view
             users: users, // Pass users who reviewed to the view
             chosenResturant: chosenResturant // Pass chosen restaurant to the view
         });

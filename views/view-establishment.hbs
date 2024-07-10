@@ -19,9 +19,9 @@
                                 <div class = "name-font"> {{resturantName}} </div>
 
                                 {{#ifEquals ../type "Owner"}}
-                                    <button class="edit-button" onclick="sendData3('{{resturantName}}')">Edit</button>
+                                    <button class="edit-button" onclick="sendName('{{resturantName}}', 'edit')">Edit</button>
                                 {{else}}
-                                    <button class="edit-button" onclick="sendData3('{{resturantName}}')" style="display: none;">Edit</button>
+                                    <button class="edit-button" onclick="sendName('{{resturantName}}', 'edit')" style="display: none;">Edit</button>
                                 {{/ifEquals}}
 
                                 <div class = "details-font">
@@ -35,8 +35,8 @@
                                             </ul>
                                     </div>
                                         </div>
-                                <button class = "button-container" onclick="sendData('{{this.resturantName}}')">View Establishment Reviews</button>
-                                <button class = "button-container" onclick="sendData2('{{this.resturantName}}')">Create Review</button>
+                                <button class = "button-container" onclick="sendName('{{this.resturantName}}', 'view')">View Establishment Reviews</button>
+                                <button class = "button-container" onclick="sendName('{{this.resturantName}}', 'review')">Create Review</button>
                             </div>    
                         </div>
                     </div>

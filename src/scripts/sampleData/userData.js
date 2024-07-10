@@ -10,7 +10,7 @@ const sampleUsers = [
     {
         userID: 2,
         username: 'owner',
-        type: 'Owner',
+        type: 'Owner', // Owner of Meaning of Things
         password: 'owner',
         profpic: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png',
         description: 'Owner of a popular restaurant chain.'
@@ -26,7 +26,7 @@ const sampleUsers = [
     {
         userID: 4,
         username: 'bob_builder',
-        type: 'Owner',
+        type: 'Owner', // Maayos na Restaurant
         password: 'hashedpassword321',
         profpic: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png',
     },
@@ -49,7 +49,7 @@ const sampleUsers = [
     {
         userID: 7,
         username: 'edward_snow',
-        type: 'Owner',
+        type: 'Owner', // Owner of City Works
         password: 'hashedpassword234',
         profpic: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png',
         description: 'Cafe owner and barista trainer.'
@@ -73,7 +73,7 @@ const sampleUsers = [
     {
         userID: 10,
         username: 'harry_potter',
-        type: 'Owner',
+        type: 'Owner', // Owner of CHROMA
         password: 'hashedpassword567',
         profpic: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png',
         description: 'Owner of a magical bookstore.'
@@ -89,7 +89,7 @@ const sampleUsers = [
     {
         userID: 12,
         username: 'jack_sparrow',
-        type: 'Owner',
+        type: 'Owner', // Owner of Commonwealth
         password: 'hashedpassword789',
         profpic: 'https://vignette.wikia.nocookie.net/disney/images/9/90/Pirates4JackSparrowPosterCropped.jpg/revision/latest?cb=20151120172626',
         description: 'Owner of a pirate-themed restaurant.'
@@ -113,10 +113,11 @@ const sampleUsers = [
     {
         userID: 15,
         username: 'mickey_mouse',
-        type: 'Owner',
+        type: 'Reviewer',
         password: 'hashedpassword012',
         profpic: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png',
-        description: 'Owner of an amusement park.'
+        description: "The mouse who escaped from a lab and now haunts children's dreams."
+
     },
     {
         userID: 16,
