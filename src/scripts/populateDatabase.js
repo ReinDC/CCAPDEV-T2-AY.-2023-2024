@@ -6,8 +6,10 @@ const Review = require('../models/reviews.js');
 const sampleUsers = require('./sampleData/userData.js');
 const sampleRestaurants = require('./sampleData/resturantData.js');
 const sampleReviews = require('./sampleData/reviewData.js');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
-async function dropDatabase() { // To clear the database first
+async function dropDatabase() {
     try {
         await mongoose.connection.dropDatabase();
         console.log('Database: Old DB Dropped successfully');
@@ -16,11 +18,23 @@ async function dropDatabase() { // To clear the database first
     }
 }
 
+async function hashPassword(password) {
+    try {
+        const hashedPassword = await bcrypt.hash(password, saltRounds);
+        return hashedPassword;
+    } catch (error) {
+        console.error('Error hashing password:', error);
+        throw error;
+    }
+}
+
 async function populateDatabase() {
     try {
         await dropDatabase();
 
         for (const userData of sampleUsers) {
+            const hashedPassword = await hashPassword(userData.password);
+            userData.password = hashedPassword;
             const user = new User(userData);
             await user.save();
         }

@@ -28,13 +28,13 @@ form.addEventListener('submit', async(e) => {
             // window.location.href = "/view-establishment";
             userData(myObj.username);
         }
-
-        else if(response.status === 404){
-            showCustomAlert("Login error, check your username and password. Try again");
+        
+        else if(response.status === 405){
+            showCustomAlert("Login Error, check your username and password. Try again");
         }
 
         else{
-            alert("Error")
+            showCustomAlert("Error");
         }
 
     } catch (error) {

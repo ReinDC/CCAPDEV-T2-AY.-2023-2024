@@ -1,16 +1,21 @@
-// Import required modules
-const Router = require('express');
-const bodyParser = require('body-parser');
+// Essential libraries
 const express = require('express');
+const Router = require('express');
+
+// Other libraries
+const bcrypt = require('bcrypt');
 const validator = require('validator');
+
+// Mongoose Models
 const User = require('../models/users'); // User model
 const Resturant = require('../models/resturants'); // Restaurant model
 const Review = require('../models/reviews'); // Review model
 
+
 const router = Router();
 router.use(express.json());
 
-function isValidURL(url) {
+function isValidURL(url) { // For registrarion
     return validator.isURL(url);
 }
 
@@ -226,14 +231,21 @@ router.post('/submit-form-login', async (req, res) => {
         const password = req.body.password;
 
         // Find a user in the database with the provided username and password
-        const user = await User.findOne({ username: username, password: password });
+        const user = await User.findOne({ username: username });
 
         // If a user is found, respond with a status 200 and a success message
         if (user) {
-            res.status(200).json({ message: 'Login successful' });
+            bcrypt.compare(password, user.password).then(function(result) {
+                if(result == true){
+                    res.status(200).json({ message: 'Login successful' });
+                }
+                else{
+                    res.status(404)
+                }
+            });
         } else {
             // If no user is found, respond with a status 404 and a 'User not found' message
-            res.status(404).json({ message: 'User not found' });
+            res.status(404)
         }
     } catch (error) {
         // If an error occurs, log the error and respond with a status 500 and the error message
@@ -251,11 +263,23 @@ router.post('/submit-form-register', async (req, res) => {
         const userID = await User.countDocuments() + 1;
         const existingUser = await User.findOne({ username: username });
 
-        if (!existingUser){
+        const saltRounds = 10;
+
+        if (existingUser) {
+            return res.sendStatus(409); // Duplicate user
+        }
+
+        // Hash the password
+        await bcrypt.hash(password, saltRounds, async function (err, hash) {
+            if (err) {
+                console.error('Error hashing password:', err);
+                return res.status(500).send('Error hashing password');
+            }
+
             const userObj = {
                 userID: userID,
                 username: username,
-                password: password,
+                password: hash,
                 type: type
             };
 
@@ -267,20 +291,20 @@ router.post('/submit-form-register', async (req, res) => {
                 userObj.profpic = profilePic;
             }
 
-            // Create a new user instance with the constructed user object
-            const newUser = await User.create(userObj);
+            try {
+                // Create a new user instance with the constructed user object
+                await User.create(userObj);
 
-            // Respond with a status code and message
-            res.sendStatus(201)
-        } 
-
-        else{ // Duplicate
-            res.sendStatus(409) 
-        }
-        
+                // Respond with a status code and message
+                res.sendStatus(201);
+            } catch (creationError) {
+                console.error('Error creating user:', creationError);
+                res.status(500).send('Error creating user');
+            }
+        });
     } catch (error) {
-        console.error(error);
-        res.status(500)
+        console.error('Error processing request:', error);
+        res.status(500).send('Error processing request');
     }
 });
 

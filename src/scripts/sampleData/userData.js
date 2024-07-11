@@ -40,9 +40,9 @@ const sampleUsers = [
     },
     {
         userID: 6,
-        username: 'daisy_duck',
+        username: 'Nicole',
         type: 'Reviewer',
-        password: 'hashedpassword123',
+        password: 'rein',
         profpic: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJe0FIBpnbLeiJRAetj7i5MbyG4NBKA8_RTw&s',
         description: 'Travel blogger and food critic.'
     },
