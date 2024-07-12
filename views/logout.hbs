@@ -12,22 +12,14 @@
         <h2>Are you sure you want to leave?</h2>
         <div class="button-container">
             <div class="buttons">
-                <button type="button">
-                    <strong><a href="#" onclick="goBack()">Go Back</a></strong>
-                </button>
+                <button type="button" onclick="goBack()">Go Back</button>
             </div>
 
             <div class="buttons">
-                <button type="button"> 
-                    <strong><a href="/login">Logout</a></strong>
-                </button>
+                <button type="button" onclick="logout()">Logout</button>
             </div>
         </div>
     </div>
     
-    <script>
-        function goBack() {
-            window.history.back();
-        }
-    </script>
+    <script src="/js/logout.js"></script>
 </body>

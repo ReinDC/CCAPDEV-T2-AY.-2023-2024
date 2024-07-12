@@ -5,6 +5,7 @@ const Router = require('express');
 // Other libraries
 const bcrypt = require('bcrypt');
 const validator = require('validator');
+const session = require('express-session');
 
 // Mongoose Models
 const User = require('../models/users'); // User model
@@ -41,9 +42,9 @@ router.get("/register", (req, res) => {
 });
 
 // Route for rendering the logout page
-router.get("/logout", (req, res) => {
+router.get('/logout', (req, res) => {
     res.render("logout", {
-        title: "Logout",
+        title: "logout",
     });
 });
 
@@ -79,9 +80,12 @@ router.get("/user-profile", (req, res) => {
 });
 
 // Route for rendering the edit profile page
-router.get("/edit-profile", (req, res) => {
+router.get("/edit-profile", async (req, res) => {
+    const user = await User.findOne({ username: req.session.username})
+    username = user.username
     res.render("edit-profile", {
         title: "Edit profile",
+        username: username,
     });
 });
 
@@ -237,6 +241,7 @@ router.post('/submit-form-login', async (req, res) => {
         if (user) {
             bcrypt.compare(password, user.password).then(function(result) {
                 if(result == true){
+                    req.session.username = user.username;
                     res.status(200).json({ message: 'Login successful' });
                 }
                 else{
@@ -399,4 +404,13 @@ router.post("/reviews-search", async (req, res) => {
     }
 })
 
+
+router.post("/sign-out", (req, res) =>{
+    req.session.destroy(err => {
+        if (err) {
+          return res.status(500).send('Could not log out');
+        }
+        res.status(200).send('Logout successful');
+      });
+})
 module.exports = router;
