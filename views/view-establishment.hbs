@@ -19,7 +19,11 @@
                                 <div class = "name-font"> {{resturantName}} </div>
 
                                 {{#ifEquals ../type "Owner"}}
-                                    <button class="edit-button" onclick="sendName('{{resturantName}}', 'edit')">Edit</button>
+                                    {{#ifEquals ownerID ../userID}}
+                                        <button class="edit-button" onclick="sendName('{{resturantName}}', 'edit')">Edit</button>
+                                    {{else}}
+                                        <button class="edit-button" onclick="sendName('{{resturantName}}', 'edit')" style="display: none;">Edit</button>
+                                    {{/ifEquals}}
                                 {{else}}
                                     <button class="edit-button" onclick="sendName('{{resturantName}}', 'edit')" style="display: none;">Edit</button>
                                 {{/ifEquals}}

@@ -6,12 +6,12 @@
 <body>
     <div class="profile-body">
       <div class="profile-info">
-        <h2>Profile Name</h2>
-        <textarea name="User Description" class="profile-description"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra. Odio euismod lacinia at quis risus sed vulputate odio. Id nibh tortor id aliquet. Erat velit scelerisque in dictum. </textarea>
+        <h2>{{user.username}}</h2>
+        <textarea name="User Description" class="profile-description"> {{user.description}} </textarea>
       </div>
 
       <div class="profile-pic">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png" alt="" id="pfp">
+        <img src="{{user.profpic}}" alt="" id="pfp">
         <button onclick="changePFP()">Change Avatar</button>
       </div>
     </div>

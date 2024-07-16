@@ -5,12 +5,12 @@
 <body>
     <div class="profile-body">
         <div class="profile-info">
-            <h2>{{username}}</h2>
-            <textarea readonly name="User Description" class="profile-description"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra. Odio euismod lacinia at quis risus sed vulputate odio. Id nibh tortor id aliquet. Erat velit scelerisque in dictum. </textarea>
+            <h2>{{user.username}}</h2>
+            <textarea readonly name="User Description" class="profile-description"> {{user.description}} </textarea>
         </div>
 
         <div class="profile-pic">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png" alt="">
+            <img src="{{user.profpic}}" alt="">
         </div>
     </div>
 
@@ -19,20 +19,28 @@
         </div>
 
     <div class="comments-reviews">
-        <div class="comment">
-            This resturant is awesome!
-            <hr>
-            Pellentesque id nibh tortor id
-            <hr>
-            <div class="comment-footer"> ⭐ Recommended</div>
-        </div>
-        <div class="comment">
+
+        {{#each reviews}}
+            <div class="comment">
+                {{reviewTitle}}
+                <hr>
+                {{reviewContent}}
+                <hr>
+                {{#if isRecommended}}
+                    <div class="comment-footer"> ⭐ Recommended</div>
+                {{else}}
+                    <div class="comment-footer"> 👎 Not recommended </div>
+                {{/if}}
+            </div>
+        {{/each}}
+
+        {{!-- <div class="comment">
             Bug UNDER the table
             <hr>
             Tempor commodo ullamcorper a lacus
             <hr>
             <div class="comment-footer"> 👎 Not recommended </div>
-        </div>
+        </div> --}}
     </div>
 
     <script src="/js/user-profile.js"></script>

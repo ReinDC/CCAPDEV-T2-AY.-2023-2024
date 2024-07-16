@@ -1,5 +1,12 @@
 const form = document.getElementById('loginform');
 
+document.addEventListener("DOMContentLoaded", function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('unauthenticated')) {
+        showCustomAlert('You need to be logged in to access the user profile.');
+    }
+});
+
 
 form.addEventListener('submit', async(e) => {
     e.preventDefault();

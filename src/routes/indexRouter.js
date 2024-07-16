@@ -16,6 +16,11 @@ const Review = require('../models/reviews'); // Review model
 const router = Router();
 router.use(express.json());
 
+router.use((req, res, next) => {
+    res.locals.username = req.session.username || null;
+    next();
+});
+
 function isValidURL(url) { // For registrarion
     return validator.isURL(url);
 }
@@ -50,43 +55,53 @@ router.get('/logout', (req, res) => {
 
 // Route for viewing all establishments
 router.get('/view-establishment', async (req, res) => {
-    try {
-        const userData = await User.findOne({username:req.query.user});
-        const resturants = await Resturant.find().lean(); // Fetch all resturants
+    const resturants = await Resturant.find().lean(); // Fetch all resturants
 
-        if(userData){
-            const userType = userData.type;
-            res.render('view-establishment', {
-                type: userType, // Pass the type of the user to the view
-                resturants: resturants, // Pass resturants to the view
-            });
-        }
-        else{
-            res.render('view-establishment', {
-                resturants: resturants, // Pass resturants to the view
-            });
-        }
-        
-    } catch (err) {
-        res.status(500).json({ message: err.message });
+    if(req.session.username){
+        const userData = await User.findOne({username: req.session.username});
+
+        res.render('view-establishment', {
+            type: userData.type, // Pass the type of the user to the view
+            userID: userData.userID.toString(),
+            resturants: resturants, // Pass resturants to the view
+        });
+
+    } else {
+
+        res.render('view-establishment', {
+            resturants: resturants, // Pass resturants to the view
+        });
     }
 });
 
 // Route for rendering the user profile page
-router.get("/user-profile", (req, res) => {
-    res.render("user-profile", {
-        title: "User profile",
-    });
+router.get("/user-profile", async (req, res) => {
+    if (req.session.username){
+        const user = await User.findOne({ username: req.session.username });   
+        const reviews = await Review.find({ reviewerID: user.userID});
+
+        res.render('user-profile', { 
+            title: "User profile",
+            user: user,
+            reviews: reviews,
+        });
+    } else {
+        res.redirect('/login?unauthenticated=true'); 
+    }
 });
 
 // Route for rendering the edit profile page
 router.get("/edit-profile", async (req, res) => {
-    const user = await User.findOne({ username: req.session.username})
-    username = user.username
-    res.render("edit-profile", {
-        title: "Edit profile",
-        username: username,
-    });
+    if (req.session.username){
+        const user = await User.findOne({ username: req.session.username });
+
+        res.render("edit-profile", { 
+            title: "Edit profile",
+            user: user,
+        });
+    } else {
+        res.redirect('/login?unauthenticated=true'); 
+    }
 });
 
 // Route for rendering the about us page
@@ -228,29 +243,30 @@ router.post("/get-image", async (req, res) => {
 
 
 // Route to handle form submission for login
+
 router.post('/submit-form-login', async (req, res) => {
     try {
         // Extract username and password from the request body
-        const username = req.body.username;
-        const password = req.body.password;
+        const { username, password } = req.body;
 
-        // Find a user in the database with the provided username and password
-        const user = await User.findOne({ username: username });
+        // Find a user in the database with the provided username
+        const user = await User.findOne({ username });
 
-        // If a user is found, respond with a status 200 and a success message
+        // If a user is found, compare the provided password with the hashed password in the database
         if (user) {
-            bcrypt.compare(password, user.password).then(function(result) {
-                if(result == true){
-                    req.session.username = user.username;
-                    res.status(200).json({ message: 'Login successful' });
-                }
-                else{
-                    res.status(404)
-                }
-            });
+            const result = await bcrypt.compare(password, user.password);
+
+            if (result) {
+                // Passwords match, set the username in the session
+                req.session.username = user.username;
+                res.status(200).json({ message: 'Login successful' });
+            } else {
+                // Passwords do not match
+                res.status(401).json({ message: 'Invalid credentials' });
+            }
         } else {
-            // If no user is found, respond with a status 404 and a 'User not found' message
-            res.status(404)
+            // No user is found with the provided username
+            res.status(404).json({ message: 'User not found' });
         }
     } catch (error) {
         // If an error occurs, log the error and respond with a status 500 and the error message
@@ -403,7 +419,6 @@ router.post("/reviews-search", async (req, res) => {
         res.status(500).send({ error: 'An error occurred' });
     }
 })
-
 
 router.post("/sign-out", (req, res) =>{
     req.session.destroy(err => {
