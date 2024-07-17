@@ -187,6 +187,16 @@ router.get("/view-establishment-reviews", async (req, res) => {
     try {
         // Get the 'name' query parameter from the request and decode it.
         // If 'name' is not provided, default to 'No name'.
+        let user, userID;
+
+        if(req.session.username){
+            user = await User.findOne({ username: req.session.username});
+            userID = user.userID;
+        }
+        else{
+            userID = 0;
+        }
+
         const name = req.query.name ? decodeURIComponent(req.query.name) : 'No name';   
         
         // Use the 'message' as the restaurant name to search for the restaurant in the database.
@@ -215,7 +225,8 @@ router.get("/view-establishment-reviews", async (req, res) => {
             title: "View establishment reviews",
             reviews: reviews, // Pass reviews to the view
             users: users, // Pass users who reviewed to the view
-            chosenResturant: chosenResturant // Pass chosen restaurant to the view
+            chosenResturant: chosenResturant, // Pass chosen restaurant to the view
+            currentUserID: userID
         });
     } catch (err) {
         // If an error occurs, respond with a 500 status code and the error message.

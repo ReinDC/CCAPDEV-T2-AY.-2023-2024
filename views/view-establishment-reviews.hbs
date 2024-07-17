@@ -98,7 +98,12 @@
     <div class = "button-container">
         <button class="button-btn-helpful" onclick="markHelpful('{{this.reviewID}}')" id="helpfulBtn{{this.reviewID}}"> Helpful ({{helpfulCount}}) </button>
         <button class="button-btn-nothelpful" onclick="markNotHelpful('{{this.reviewID}}')" id="notHelpfulBtn{{this.reviewID}}"> Not Helpful ({{notHelpfulCount}})</button>
-        <button class="button-btn" onclick="sendData('{{this.reviewID}}')">Edit review</button>
+        {{#ifEquals reviewerID ../currentUserID}}
+          <button class="button-btn" onclick="sendData('{{this.reviewID}}')">Edit review</button>
+        {{else}}
+          <button class="button-btn" onclick="sendData('{{this.reviewID}}')" style="display: none;">Edit review</button>
+        {{/ifEquals}}
+
     </div>
   </div> 
 
