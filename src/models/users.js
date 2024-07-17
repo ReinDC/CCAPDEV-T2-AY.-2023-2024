@@ -28,6 +28,10 @@ const userSchema = new mongoose.Schema({
     description: {
         type: String,
         default: 'No description provided.'
+    },
+    deleted: {
+        type: Boolean,
+        default: 0
     }
 });
 

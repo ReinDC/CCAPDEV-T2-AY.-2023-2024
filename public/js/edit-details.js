@@ -34,3 +34,49 @@ function editDetails() {
 function goBack() {
     window.history.back();
 }
+
+async function confirmDetails(){
+    let restoBestSellers = document.getElementById("details-bestseller").value;
+    restoBestSellers = restoBestSellers.split('\n').map(item => item.trim());
+
+    const restoAdd = document.getElementById("details-address").value;
+
+    const restoName = document.getElementById("name").textContent
+
+    try {
+        const myObj = {
+            restoName: restoName,
+            restoAdd: restoAdd,
+            restoBestSellers: restoBestSellers
+        }
+
+        const jString = JSON.stringify(myObj);
+
+        const response = await fetch("/changeRestoDetails", {
+            method: 'POST',
+            body: jString,
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if(response.status == 200){
+            window.location.href = "/view-establishment";
+        }
+        else{
+            showCustomAlert("Error");
+
+        }
+    } catch (error) {
+        showCustomAlert("Error");
+    }
+}
+
+function showCustomAlert(message) {
+    document.getElementById('alertMessage').textContent = message;
+    document.getElementById('customAlert').style.display = 'block';
+}
+
+function closeCustomAlert() {
+    document.getElementById('customAlert').style.display = 'none';
+}

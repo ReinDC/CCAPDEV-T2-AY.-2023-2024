@@ -136,17 +136,24 @@ router.get("/edit-review", async (req, res) => {
 
 // Route for editing details of a specific restaurant
 router.get("/edit-details", async (req, res) => {
-    try {
-        const name = req.query.name ? decodeURIComponent(req.query.name) : 'No name';
-        const resturantName = name;
-        const resturant = await Resturant.findOne({ resturantName: resturantName });   
-        res.render("edit-details", {
-            title: "Edit details",
-            chosenResturant: resturant
-        });
-    } catch (error) {
-        res.status(500).json({ message: error.message });
+
+    if(req.session.username){
+        try {
+            const name = req.query.name ? decodeURIComponent(req.query.name) : 'No name';
+            const resturantName = name;
+            const resturant = await Resturant.findOne({ resturantName: resturantName });   
+            res.render("edit-details", {
+                title: "Edit details",
+                chosenResturant: resturant
+            });
+        } catch (error) {
+            res.status(500).json({ message: error.message });
+        }
     }
+    else{
+        res.redirect('/login?unauthenticated=true'); 
+    }
+    
 });
 
 // Route for creating a review for a specific restaurant
@@ -428,4 +435,74 @@ router.post("/sign-out", (req, res) =>{
         res.status(200).send('Logout successful');
       });
 })
+
+
+router.post("/changepfp", async (req, res) =>{
+    const username = req.session.username;
+    const link = req.body.link;
+
+    if(!isValidURL(link)){
+        return res.sendStatus(500)
+    }
+    
+    try {
+        const result = await User.updateOne(
+            { username: username }, 
+            { $set: { profpic: link }}
+        );
+    
+        if (result.nModified === 0) {
+            return res.status(404).send({ message: 'User not found or no changes made' });
+        }
+    
+        res.status(200).send({ message: 'Profile picture updated successfully'});
+    } catch (error) {
+        res.status(500).send({ message: 'Error updating profile picture'});
+    }
+})
+
+router.post("/changeDesc", async(req, res) =>{
+    const username = req.session.username;
+    const desc = req.body.desc;
+
+    try {
+        const result = await User.updateOne(
+            { username: username }, 
+            { $set: { description: desc }}
+        );
+
+        if (result.nModified === 0) {
+            return res.status(404).send({ message: 'User not found or no changes made' });
+        }
+
+        res.status(200).send({ message: 'Profile updated successfully'});
+    } catch (error) {
+        res.status(500).send({ message: 'Error updating profile picture'});
+    }
+})
+
+
+router.post("/changeRestoDetails", async (req, res) =>{
+    const {restoName, restoAdd, restoBestSellers} = req.body;
+
+    try {
+        const result = await Resturant.updateOne(
+            { resturantName: restoName }, 
+            { $set: { 
+                address: restoAdd,
+                bestSellers: restoBestSellers
+            }}
+        );
+
+        if (result.nModified === 0) {
+            return res.status(404).send({ message: 'Resturant not found or no changes made' });
+        }
+
+        res.status(200).send({ message: 'Resturant updated successfully'});
+    } catch (error) {
+        res.status(500).send({ message: 'Error updating Resturant'});
+    }
+})
+
+
 module.exports = router;

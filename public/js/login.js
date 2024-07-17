@@ -3,7 +3,7 @@ const form = document.getElementById('loginform');
 document.addEventListener("DOMContentLoaded", function() {
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.has('unauthenticated')) {
-        showCustomAlert('You need to be logged in to access the user profile.');
+        showCustomAlert('You need to be logged in to access that.');
     }
 });
 
@@ -32,8 +32,7 @@ form.addEventListener('submit', async(e) => {
         });
 
         if(response.status === 200){
-            // window.location.href = "/view-establishment";
-            userData(myObj.username);
+            window.location.href = "/view-establishment";
         }
         
         else if(response.status === 405){
@@ -49,11 +48,6 @@ form.addEventListener('submit', async(e) => {
     }
 
 })
-
-function userData(username) {
-    const encodedUsername = encodeURIComponent(username);
-    window.location.href = 'view-establishment?user=' + encodedUsername;
-}
 
 function showCustomAlert(message) {
     document.getElementById('alertMessage').textContent = message;

@@ -31,7 +31,12 @@ const resturantSchema = new mongoose.Schema({
     address: {
         type: String,
         default: "2401 Taft Ave, Malate, Manila, 1004 Metro Manila"
+    },
+    deleted: {
+        type: Boolean,
+        default: 0
     }
+
 });
 
 const Resturant = mongoose.model('Resturants', resturantSchema);

@@ -12,7 +12,7 @@ const sampleUsers = [
         username: 'owner',
         type: 'Owner', // Owner of Meaning of Things
         password: 'owner',
-        profpic: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png',
+        profpic: 'https://www.shutterstock.com/image-photo/smiling-professional-young-latin-business-600nw-2346440627.jpg',
         description: 'Owner of a popular restaurant chain.'
     },
     {
