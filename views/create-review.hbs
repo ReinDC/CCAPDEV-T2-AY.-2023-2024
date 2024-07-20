@@ -14,12 +14,14 @@
             {{chosenResturant.resturantName}}
           </div>
           <p class="details-address"><p class="details-address">{{chosenResturant.address}}</p>
-          <div class = ""><!--Recommend / Dont't Recommend-->
-            <!-- will add at a later date, will continue to do others then improve afterwards-->
+          <div class = "button-reco-container">
+                      <button class = "button-btn-reco" id = "recoBtn" onclick ="goBack()">⭐ Recommended</button>
+                      <button class = "button-btn-notreco" id = "notRecoBtn" onclick ="goBack()">👎 Not recommended</button> 
           </div>
           <div class = ""> <!--text area + submit-->
                 <form method = "post">
-                    <textarea name  ="review" rows = "10" cols = "79"></textarea>
+                    <textarea name = "title" rows = "1" cols = "79" placeholder = "Title"></textarea>
+                    <textarea name  = "review" rows = "10" cols = "79" placeholder = "Post review here"></textarea>
                 </form> 
                 <div class = "button-post-container"> <!--submit button-->
                     <button class="button-post" id="postBtn" onclick="goBack()">Post review</button>

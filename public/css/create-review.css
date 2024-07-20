@@ -28,7 +28,7 @@ body{
 }
 
 .details-class {
-    padding-top: 40px;
+    padding-top: 20px;
     padding-left: 50px;
 }
 
@@ -166,5 +166,53 @@ a:hover{
     background-color: transparent;
     text-decoration: dotted;
 }*/
+.button-reco-container{
+    width: 50%;
+    text-align: center;
+    color: #fff;
+    font-size: 15px;
+    font-weight: bold;
+    flex-direction: row;
+    display: flex;
+}
 
+.button-btn-reco{
+    color: white;
+    border-radius: 10px;
+    font-weight: 700;
+    font-family: 'DM Sans';
+    height: 40px;
+    width: 200px;
+    margin-right: 10px;
+    border: none;
+    background-color: #a5a5a5;
+    cursor: pointer;
+    
+}
+.button-btn-notreco{
+    color: white;
+    border-radius: 10px;
+    font-weight: 700;
+    font-family: 'DM Sans';
+    height: 40px;
+    width: 250px;
+    margin-right: 10px;
+    border: none;
+    background-color: #a5a5a5;
+    cursor: pointer;
+    
+}
 
+.button-btn-reco:hover{
+    background-color: #96A677;
+    color: white;
+    transform: scale(1.1);
+    transition: 0.1s;
+}
+
+.button-btn-notreco:hover{
+    background-color: #CE6A85;
+    color:white;
+    transform: scale(1.1);
+    transition: 0.1s;
+}
