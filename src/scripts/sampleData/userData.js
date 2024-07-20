@@ -4,7 +4,7 @@ const sampleUsers = [
         username: 'test',
         type: 'Reviewer',
         password: 'test',
-        profpic: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png',
+        profpic: 'https://game-cdn.appsample.com/gim/comments/o46/70541/2407170335-2WtfYvS2.jpeg?height=600&quality=85',
         description: 'Test profile.'
     },
     {

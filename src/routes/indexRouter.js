@@ -79,7 +79,7 @@ router.get("/user-profile", async (req, res) => {
     if (req.session.username){
         const user = await User.findOne({ username: req.session.username });   
         const reviews = await Review.find({ reviewerID: user.userID});
-
+        console.log(reviews)
         res.render('user-profile', { 
             title: "User profile",
             user: user,

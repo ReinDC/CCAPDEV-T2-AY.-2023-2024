@@ -78,7 +78,6 @@ function getSearchData(){
 
 function createRestaurantElement(restaurantIMG, restaurantName, address, bestSellers) {
     const resultsContainer = document.querySelector('.results');
-    const name = restaurantName;
 
     // Create the main container div
     const establishmentDiv = document.createElement('div');
