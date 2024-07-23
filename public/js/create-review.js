@@ -29,7 +29,7 @@ postBtn.addEventListener('click', async (e) => {
         helpfulCount: parseInt(formData.get('helpfulCount'), 10),
         notHelpfulCount: parseInt(formData.get('notHelpfulCount'), 10)
     };
-
+    
     const jString = JSON.stringify(myObj);
 
     try{
@@ -39,10 +39,25 @@ postBtn.addEventListener('click', async (e) => {
             headers: {
                 'Content-Type': 'application/json'
             }
-        })
+        });
+        if(response.status === 201){
+            window.location.href="/view-establishments";
+        }
+        else{
+            showCustomAlert("Error: " + (await response.json().message));
+        }
+
     }catch(error){
         console.error(error);
         showCustomAlert("An unexpected error occurred.")
+    }
+    function showCustomAlert(message) {
+        document.getElementById('alertMessage').textContent = message;
+        document.getElementById('customAlert').style.display = 'block';
+    }
+    
+    function closeCustomAlert() {
+        document.getElementById('customAlert').style.display = 'none';
     }
     
 });
