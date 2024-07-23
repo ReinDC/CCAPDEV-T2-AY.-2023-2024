@@ -15,16 +15,16 @@
           </div>
           <p class="details-address"><p class="details-address">{{chosenResturant.address}}</p>
           <div class = "button-reco-container">
-                      <button class = "button-btn-reco" id = "recoBtn" onclick ="goBack()">⭐ Recommended</button>
-                      <button class = "button-btn-notreco" id = "notRecoBtn" onclick ="goBack()">👎 Not recommended</button> 
+                      <button class = "button-btn-reco" id = "recoBtn">⭐ Recommended</button>
+                      <button class = "button-btn-notreco" id = "notRecoBtn">👎 Not recommended</button> 
           </div>
           <div class = ""> <!--text area + submit-->
                 <form method = "post" id = "reviewSubmission" name = "reviewSubmission">
                     <input type = "hidden" name = "reviewID" id = "reviewID" value = "{{reviewID}}"/>
-                    <input type = "hidden" name = "reviewerID" id = "reviewerID" value = "{{reviewerID}}"/>
+                    <input type = "hidden" name = "reviewerID" id = "reviewerID" value = "{{userID}}"/>
                     <input type = "hidden" name = "resturantID" id = "resturantID" value = "{{chosenResturant.resturantID}}"/>
                     <input type = "hidden" name = "helpfulCount" id = "helpfulCount" value = "0"/>
-                    <input type = "hidden" name = "notHelpfulCount" id = "notHelpfulCont" value = "0"/>
+                    <input type = "hidden" name = "notHelpfulCount" id = "notHelpfulCount" value = "0"/>
                     <input type = "hidden" name = "isRecommended" id = "isRecommended" value = "true"/>
                     <textarea name = "reviewTitle" id = "reviewTitle" rows = "1" cols = "79" placeholder = "Title"></textarea>
                     <textarea name  = "reviewContent" id = "reviewContent" rows = "10" cols = "79" placeholder = "Post review here"></textarea>
