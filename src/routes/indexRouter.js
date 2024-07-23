@@ -516,15 +516,16 @@ router.post("/changeRestoDetails", async (req, res) =>{
 })
 
 router.post("/submit-review", async (req, res) => {
-    
+    const username = req.session.username;
     try{
 
         const maxReviewID = await Review.findOne().sort({ reviewID: -1}).exec();
         const newReviewID = maxReviewID ? maxReviewID.reviewID + 1 : 1;
-        const{reviewerID, resturantID, reviewContent, reviewTitle, isRecommended, helpfulCount, notHelpfulCount} = req.body;
-        //const user = await User.findOne({userID : reviewerID}).exec()
-
-    const newReview = new Review({
+        const{resturantID, reviewContent, reviewTitle, isRecommended, helpfulCount, notHelpfulCount} = req.body;
+        
+        const user = await User.findOne({username}).exec()
+        const reviewerID = user.userID;
+        const newReview = new Review({
 
         reviewID: newReviewID,
         reviewerID: reviewerID,
@@ -543,7 +544,6 @@ router.post("/submit-review", async (req, res) => {
     }catch(error){
         console.error(error);
     }
-    res.status(500).json({message: 'An error occured while submitting' });
 
 })
 

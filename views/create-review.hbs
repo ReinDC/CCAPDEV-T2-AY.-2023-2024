@@ -19,9 +19,9 @@
                       <button class = "button-btn-notreco" id = "notRecoBtn">👎 Not recommended</button> 
           </div>
           <div class = ""> <!--text area + submit-->
-                <form method = "post" id = "reviewSubmission" name = "reviewSubmission">
+                <form method = "POST" id = "reviewSubmission" name = "reviewSubmission">
                     <input type = "hidden" name = "reviewID" id = "reviewID" value = "{{reviewID}}"/>
-                    <input type = "hidden" name = "reviewerID" id = "reviewerID" value = "{{userID}}"/>
+                    <input type = "hidden" name = "reviewerID" id = "reviewerID" value = "{{reviewerID}}"/>
                     <input type = "hidden" name = "resturantID" id = "resturantID" value = "{{chosenResturant.resturantID}}"/>
                     <input type = "hidden" name = "helpfulCount" id = "helpfulCount" value = "0"/>
                     <input type = "hidden" name = "notHelpfulCount" id = "notHelpfulCount" value = "0"/>

@@ -29,7 +29,7 @@ postBtn.addEventListener('click', async (e) => {
         helpfulCount: parseInt(formData.get('helpfulCount'), 10),
         notHelpfulCount: parseInt(formData.get('notHelpfulCount'), 10)
     };
-    
+
     const jString = JSON.stringify(myObj);
 
     try{
@@ -41,7 +41,7 @@ postBtn.addEventListener('click', async (e) => {
             }
         });
         if(response.status === 201){
-            window.location.href="/view-establishments";
+            window.location.href="/view-establishment";
         }
         else{
             showCustomAlert("Error: " + (await response.json().message));

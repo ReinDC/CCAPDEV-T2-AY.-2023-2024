@@ -216,3 +216,15 @@ a:hover{
     transform: scale(1.1);
     transition: 0.1s;
 }
+.button-btn-reco:active{
+    background-color: #96A677;
+    color: white;
+    transform: scale(1.1);
+    transition: 0.1s;
+}
+.button-btn-notreco:active{
+    background-color: #CE6A85;
+    color:white;
+    transform: scale(1.1);
+    transition: 0.1s;
+}
