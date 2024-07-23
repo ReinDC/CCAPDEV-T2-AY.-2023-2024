@@ -518,11 +518,15 @@ router.post("/changeRestoDetails", async (req, res) =>{
 router.post("/submit-review", async (req, res) => {
     
     try{
-        const{reviewID, reviewerID, resturantID, reviewContent, reviewTitle, isRecommended, helpfulCount, notHelpfulCount} = req.body;
+
+        const maxReviewID = await Review.findOne().sort({ reviewID: -1}).exec();
+        const newReviewID = maxReviewID ? maxReviewID.reviewID + 1 : 1;
+        const{reviewerID, resturantID, reviewContent, reviewTitle, isRecommended, helpfulCount, notHelpfulCount} = req.body;
+        //const user = await User.findOne({userID : reviewerID}).exec()
 
     const newReview = new Review({
 
-        reviewID: reviewID,
+        reviewID: newReviewID,
         reviewerID: reviewerID,
         resturantID: resturantID,
         reviewContent: reviewContent,
