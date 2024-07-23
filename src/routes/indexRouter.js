@@ -515,5 +515,32 @@ router.post("/changeRestoDetails", async (req, res) =>{
     }
 })
 
+router.post("/submit-review", async (req, res) => {
+    
+    try{
+        const{reviewID, reviewerID, resturantID, reviewContent, reviewTitle, isRecommended, helpfulCount, notHelpfulCount} = req.body;
+
+    const newReview = new Review({
+
+        reviewID: reviewID,
+        reviewerID: reviewerID,
+        resturantID: resturantID,
+        reviewContent: reviewContent,
+        reviewTitle: reviewTitle, 
+        isRecommended: isRecommended,
+        helpfulCount: helpfulCount,
+        notHelpfulCount: notHelpfulCount
+    });
+
+    await newReview.save();
+
+    res.status(201).json({message:'Review submitted!'});
+
+    }catch(error){
+        console.error(error);
+    }
+    res.status(500).json({message: 'An error occured while submitting' });
+
+})
 
 module.exports = router;
