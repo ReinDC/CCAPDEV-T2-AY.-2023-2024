@@ -80,3 +80,28 @@ function showCustomAlert(message) {
 function closeCustomAlert() {
     document.getElementById('customAlert').style.display = 'none';
 }
+
+async function deleteResto(){
+    const myObj = { 
+        type: "resto",
+        id: document.getElementById("id").value
+    };
+    
+    const jString = JSON.stringify(myObj);
+    
+
+    const response = await fetch("/delete",{
+        method: 'POST',
+        body: jString,
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+
+    if(response.status == 200){
+        window.location.href = "/view-establishment";
+    }
+    else{
+        alert("Error");
+    }
+}

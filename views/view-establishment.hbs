@@ -9,6 +9,7 @@
         <div class = "body"> <!--body container-->
             <div class = "establishment-list">
                 {{#each resturants}}
+                {{#unless deleted}}
                     <div class = "establishment"> <!-- estab1-->
                         <div class = "establishment-container"> <!-- certain establishment container 1-->
                             <div class="resto-image">
@@ -44,6 +45,7 @@
                             </div>    
                         </div>
                     </div>
+                {{/unless}}
                 {{/each}}
             </div>
         </div>

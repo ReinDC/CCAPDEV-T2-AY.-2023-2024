@@ -10,6 +10,7 @@
                 <div class="establishment-container"> <!-- certain establishment container 1-->
                     <div class="resto-image">
                         <img src="{{chosenResturant.resturantIMG}}" />
+                        <input type="number" id="id" hidden value="{{chosenResturant.resturantID}}">
                     </div>
                     <div class="text-container">
                         <div class="name-font" id="name">{{chosenResturant.resturantName}}</div>
@@ -25,7 +26,7 @@
                             </div>
                         </div>
                         <button class="button-container" onclick="editDetails()">Edit Details</button>
-                        <button class="button-container" onclick="goBack()">Delete</button>
+                        <button class="button-container" onclick="deleteResto()">Delete</button>
                         <button class="button-container" onclick="confirmDetails()">Confirm edit</button>
                     </div>
                 </div>

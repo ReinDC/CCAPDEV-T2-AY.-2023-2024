@@ -98,7 +98,7 @@ async function deleteAccount(){
         window.location.href = "/login";
     }
     else{
-        alert("Error, there was a problem changing your profile picture.");
+        alert("Error");
     }
 }
 
