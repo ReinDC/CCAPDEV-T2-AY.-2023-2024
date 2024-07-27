@@ -18,30 +18,23 @@
             <button class="profile-button" onclick="editBtn()">Edit profile</button>
         </div>
 
-    <div class="comments-reviews">
-
-        {{#each reviews}}
-            <div class="comment">
-                {{reviewTitle}}
-                <hr>
-                {{reviewContent}}
-                <hr>
-                {{#if isRecommended}}
-                    <div class="comment-footer"> ⭐ Recommended</div>
-                {{else}}
-                    <div class="comment-footer"> 👎 Not recommended </div>
-                {{/if}}
-            </div>
-        {{/each}}
-
-        {{!-- <div class="comment">
-            Bug UNDER the table
-            <hr>
-            Tempor commodo ullamcorper a lacus
-            <hr>
-            <div class="comment-footer"> 👎 Not recommended </div>
-        </div> --}}
-    </div>
+    {{#if reviews}}
+        <div class="comments-reviews">
+            {{#each reviews}}
+                <div class="comment">
+                    {{reviewTitle}}
+                    <hr>
+                    {{reviewContent}}
+                    <hr>
+                    {{#if isRecommended}}
+                        <div class="comment-footer"> ⭐ Recommended</div>
+                    {{else}}
+                        <div class="comment-footer"> 👎 Not recommended </div>
+                    {{/if}}
+                </div>
+            {{/each}}
+        </div>
+    {{/if}}
 
     <script src="/js/user-profile.js"></script>
 </body>
