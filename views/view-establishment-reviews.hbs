@@ -101,7 +101,7 @@
         {{#ifEquals reviewerID ../currentUserID}}
           <button class="button-btn" onclick="sendData('{{this.reviewID}}')">Edit review</button>
         {{else}}
-          <button class="button-btn" onclick="sendData('{{this.reviewID}}')" style="display: none;">Edit review</button>
+          <button class="button-btn" onclick="sendData('{{this.reviewID}}')" hidden>Edit review</button>
         {{/ifEquals}}
 
     </div>

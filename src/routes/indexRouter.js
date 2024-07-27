@@ -125,18 +125,22 @@ router.get("/search-establishments", (req, res) => {
 
 // Route for rendering the edit review page
 router.get("/edit-review", async (req, res) => {
-    const message = req.query.message ? decodeURIComponent(req.query.message) : 'No message';
-    const review = await Review.findOne({ reviewID: message });
-    const reviewer = await User.findOne({ userID: review.reviewerID });
+    if (req.session.username){
+        const message = req.query.message ? decodeURIComponent(req.query.message) : 'No message';
+        const review = await Review.findOne({ reviewID: message });
+        const reviewer = await User.findOne({ userID: review.reviewerID });
+        
+        // console.log(user);
     
-    // console.log(user);
-
-    res.render("edit-review", {
-        title: "Edit Review",
-        message: message,
-        reviewer: reviewer,
-        review: review,
-    });
+        res.render("edit-review", {
+            title: "Edit Review",
+            message: message,
+            reviewer: reviewer,
+            review: review,
+        });
+    } else {
+        res.redirect('/login?unauthenticated=true'); 
+    }
 });
 
 // Route for editing details of a specific restaurant
@@ -199,7 +203,7 @@ router.get("/view-establishment-reviews", async (req, res) => {
             userID = user.userID;
         }
         else{
-            userID = 0;
+            userID = -1;
         }
 
         const name = req.query.name ? decodeURIComponent(req.query.name) : 'No name';   
@@ -505,9 +509,10 @@ router.post("/changeRestoDetails", async (req, res) =>{
         const result = await Resturant.updateOne(
             { resturantName: restoName }, 
             { $set: { 
-                address: restoAdd,
-                bestSellers: restoBestSellers
-            }}
+                        address: restoAdd,
+                        bestSellers: restoBestSellers
+                    }
+            }
         );
 
         if (result.nModified === 0) {
@@ -551,5 +556,38 @@ router.post("/submit-review", async (req, res) => {
     }
 
 })
+
+router.post("/review-edit", async (req, res) => {
+    const { reviewTitle, reviewContent, isRecommended, reviewID } = req.body;
+
+    // Debugging: Print types and values
+    // console.log("Type of reviewTitle: " + typeof reviewTitle);
+    // console.log("Type of reviewContent: " + typeof reviewContent);
+    // console.log("Type of isRecommended: " + typeof isRecommended);
+    // console.log("Type of reviewID: " + typeof reviewID);
+
+    console.log("Type of reviewTitle: " + reviewTitle);
+
+    try {
+        const result = await Review.updateOne(
+            { reviewID: reviewID },
+            { 
+                $set: {
+                    reviewTitle: reviewTitle, 
+                    reviewContent: reviewContent, 
+                    isRecommended: isRecommended
+                }
+            }
+        );
+        if (result.nModified === 0) {
+            return res.status(404).json({ message: 'Review not found or no changes made.' });
+        }
+
+        res.sendStatus(200);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'An error occurred while updating the review.' });
+    }
+});
 
 module.exports = router;

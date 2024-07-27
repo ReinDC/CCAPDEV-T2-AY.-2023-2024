@@ -74,13 +74,13 @@ body{
     flex-direction: row;
     width: 100%;
     align-items: center;
-    
 }
+
 .img-box{
     width:20%;
     height: 20%;
-    margin-left: 70px;
-    margin-top: 20px;
+    margin-left: 2%;
+    margin-top: 2%;
 }
 .img-box > img{
     width:140px;
@@ -92,13 +92,12 @@ body{
 }
 .review-profile > .title-and-name-box{
     display: flex;
-   flex-direction: column;
+    flex-direction: column;
+    padding: 4px;
 }
 .title-and-name-box > .title-text{
     font-family:'DM Sans', sans-serif;
-    font-size: 38px;
-    font-weight: bold;
-    margin-left: -40px;
+    font-size: 30px;
     text-align: justify;
     margin-top: 40px;
 }
@@ -108,7 +107,6 @@ body{
     font-weight: 500;
     font-family:'DM Sans', sans-serif;
     font-size: 18px;
-    margin-left: -40px;
     text-align: justify;
     margin-bottom: 20px;
   
@@ -189,7 +187,8 @@ textarea{
     background-color: #a5a5a5;
     padding: 1%;
     margin-bottom: 20px;
-    color: white;}
+    color: white;
+}
 
 .button-delete{
     margin-left: 60px;
@@ -211,7 +210,9 @@ textarea{
 
 .button-container > button:hover {
     color:#18020C;
+    background-color: #6a6a6a;
     text-decoration: dotted;
+    cursor: pointer;
 }
 
 .text-container{
@@ -222,6 +223,120 @@ textarea{
 
 .title-text > textarea{
     overflow: hidden;
-    width: 150%;
+    width: 300%;
 }
 
+
+.button-reco-container{
+    text-align: center;
+    color: #fff;
+    font-size: 15px;
+    font-weight: bold;
+    flex-direction: row;
+    display: flex;
+    margin-bottom: 10%;
+}
+
+.button-btn-reco{
+    color: white;
+    border-radius: 10px;
+    font-weight: 700;
+    font-family: 'DM Sans';
+    height: 40px;
+    width: 200px;
+    margin-right: 10px;
+    border: none;
+    background-color: #a5a5a5;
+    cursor: pointer;
+    
+}
+.button-btn-notreco{
+    color: white;
+    border-radius: 10px;
+    font-weight: 700;
+    font-family: 'DM Sans';
+    height: 40px;
+    width: 250px;
+    margin-right: 10px;
+    border: none;
+    background-color: #a5a5a5;
+    cursor: pointer;
+    
+}
+
+.button-btn-reco:hover{
+    background-color: #96A677;
+    color: white;
+    transform: scale(1.1);
+    transition: 0.1s;
+}
+
+.button-btn-notreco:hover{
+    background-color: #CE6A85;
+    color:white;
+    transform: scale(1.1);
+    transition: 0.1s;
+}
+.button-btn-reco:active{
+    background-color: #96A677;
+    color: white;
+    transform: scale(1.1);
+    transition: 0.1s;
+}
+.button-btn-notreco:active{
+    background-color: #CE6A85;
+    color:white;
+    transform: scale(1.1);
+    transition: 0.1s;
+}
+
+.custom-alert {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.custom-alert-content {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+    font-family: 'DM Sans';
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.custom-alert-content > button {
+    padding: 10px 20px;
+    font-size: 14px;
+    margin-top: 20px; 
+    background-color: #a5a5a5;
+    border: none; 
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    height: 10%;
+    font-family: 'DM Sans';
+    height: 5%;
+}
+
+.custom-alert-content button:hover {
+    background-color: #7d9cbd;
+}

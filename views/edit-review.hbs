@@ -3,44 +3,51 @@
 <link rel="stylesheet" href="/css/edit-review.css">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 
-<div class = "estab-reviews-container"> <!--Start of establishment reviews-->
+<div class = "estab-reviews-container">
+
       <div class = "review-profile">
         <div class = "img-box">
-        <img src = "{{reviewer.profpic}}" />
+          <img src = "{{reviewer.profpic}}" />
         </div>
-          <div class = "title-and-name-box">
-            <div class = "title-text">
-            <label for="review-title">Title:</label>
+
+        <div class = "title-and-name-box">
+
+          <div class = "title-text">
+            Title:
             <textarea class="title-textarea" name="review-title">{{review.reviewTitle}}</textarea>
-            </div>
-            <div class = "name-text">
-              By: {{reviewer.username}}
-            </div>    
+            <input type="number" id="reviewID" value="{{review.reviewID}}" hidden>
+            <input type="number" id="reviewID" value="{{review.resturantID}}" hidden>
+
           </div>
-          {{#if review.isRecommended}}
-            <div class = "reco"> <!-- recommended or not-->
-              <div class = "reco-text">
-                ⭐ Recommended
-              </div>
-            </div>
-          {{else}}
-              <div class = "not-reco"> <!-- recommended or not-->
-                <div class = "reco-text">
-                  👎 Not recommended
-                </div>
-              </div>
-          {{/if}}
-          </div>
+
+          <div class = "name-text">
+            By: {{reviewer.username}}
+          </div>    
+        </div>
+
+        <div class = "button-reco-container">
+          <button class = "button-btn-reco" id = "recoBtn">⭐ Recommended</button>
+          <button class = "button-btn-notreco" id = "notRecoBtn">👎 Not recommended</button> 
+        </div>
       </div>
+      
       <div class = "text-container">
         <textarea class="review-textarea" name ="review" rows = "10" cols = "10">{{review.reviewContent}}</textarea>
       </div>
       
       <div class="button-container">
         <button class="button-delete" onclick="goBack()">Delete Review</button>
-        <button class="button-confirm" onclick="goBack()">Confirm changes</button>
-    </div>
-  
+        <button class="button-confirm" onclick="confirmChanges()">Confirm changes</button>
+      </div>
     </div>
 
-    <script src="/js/edit-review.js"></script>
+    <div id="customAlert" class="custom-alert">
+      <div class="custom-alert-content">
+          <span class="close-btn" onclick="closeCustomAlert()">&times;</span>
+          <p id="alertMessage"></p>
+          <button onclick="closeCustomAlert()">OK</button>
+      </div>
+    </div>
+
+
+<script src="/js/edit-review.js"></script>
