@@ -79,11 +79,16 @@ router.get("/user-profile", async (req, res) => {
     if (req.session.username){
         const user = await User.findOne({ username: req.session.username });   
         const reviews = await Review.find({ reviewerID: user.userID});
-        console.log(reviews)
+        let resturantNames = [];
+        for(let i = 0; i < reviews.length; i++){
+            let resto = await Resturant.findOne({resturantID: reviews[i].resturantID});
+            resturantNames.push(resto.resturantName);
+        }
         res.render('user-profile', { 
             title: "User profile",
             user: user,
             reviews: reviews,
+            resturantNames: resturantNames,
         });
     } else {
         res.redirect('/login?unauthenticated=true'); 
