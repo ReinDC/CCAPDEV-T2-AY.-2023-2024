@@ -33,6 +33,10 @@ const reviewsSchema = new mongoose.Schema({
     notHelpfulCount: {  // Count for not helpful
         type: Number,
         required: true
+    },
+    deleted: {
+        type: Boolean,
+        default: 0
     }
 });
 
