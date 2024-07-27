@@ -277,28 +277,28 @@ router.post('/submit-form-login', async (req, res) => {
         const { username, password } = req.body;
 
         // Find a user in the database with the provided username
-        const user = await User.findOne({ username });
+        const user = await User.findOne({ username: username });
 
         // If a user is found, compare the provided password with the hashed password in the database
-        if (user) {
+        if (user && user.deleted != true) {
             const result = await bcrypt.compare(password, user.password);
 
             if (result) {
                 // Passwords match, set the username in the session
                 req.session.username = user.username;
-                res.status(200).json({ message: 'Login successful' });
+                res.status(200)
             } else {
                 // Passwords do not match
-                res.status(401).json({ message: 'Invalid credentials' });
+                res.status(401)
             }
         } else {
             // No user is found with the provided username
-            res.status(404).json({ message: 'User not found' });
+            res.status(404)
         }
     } catch (error) {
         // If an error occurs, log the error and respond with a status 500 and the error message
         console.error(error);
-        res.status(500).json({ message: 'An error occurred', error: error.message });
+        res.status(500)
     }
 });
 

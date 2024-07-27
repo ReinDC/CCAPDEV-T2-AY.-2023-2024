@@ -35,12 +35,8 @@ form.addEventListener('submit', async(e) => {
             window.location.href = "/view-establishment";
         }
         
-        else if(response.status === 405){
-            showCustomAlert("Login Error, check your username and password. Try again");
-        }
-
         else{
-            showCustomAlert("Error");
+            showCustomAlert("Login Error, check your username and password. Try again");
         }
 
     } catch (error) {
