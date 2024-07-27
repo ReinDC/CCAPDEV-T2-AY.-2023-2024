@@ -177,6 +177,32 @@ body{
     cursor: pointer;
 }
 
+.no-reviews{
+    margin: auto;
+    margin-top: 50px;
+    background-color: white;
+    width: 50%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 5px;
+    text-align: center;
+    color: gray;
+}
+
+.no-reviews > button{
+    color: rgba(0, 0, 0, 0.5);
+    text-decoration: none;
+    background-color: #ffffff;
+    border-radius: 5px;
+    border: 0px none #b2b2b2;
+}
+
+.no-reviews > button:hover{
+    text-decoration: none;
+    color: #515050;
+    cursor: pointer;
+}
+
 
 
 

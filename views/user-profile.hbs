@@ -34,6 +34,11 @@
                 </div>
             {{/each}}
         </div>
+    {{else}}
+        <div class="no-reviews">
+            You have no reviews. <button onclick="goToViewEstablishment()">Create a review for a resturant!</button>
+        </div>
+
     {{/if}}
 
     <script src="/js/user-profile.js"></script>
