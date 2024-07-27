@@ -58,3 +58,28 @@ function closeCustomAlert() {
     document.getElementById('customAlert').style.display = 'none';
     window.location = "/view-establishment"
 }
+
+
+async function deleteReview(){
+    const myObj = { 
+        type: "review",
+        id: reviewID
+    };
+
+    const jString = JSON.stringify(myObj);
+
+    const response = await fetch("/delete",{
+        method: 'POST',
+        body: jString,
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+
+    if(response.status == 200){
+        window.location.href = "/view-establishment";
+    }
+    else{
+        alert("Error, there was a problem changing your profile picture.");
+    }
+}

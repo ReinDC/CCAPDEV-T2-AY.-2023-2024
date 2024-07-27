@@ -58,56 +58,56 @@
 <div class="review-container">
 
 {{#each reviews}} <!--Start of establishment reviews-->
-  <div class = "estab-reviews-container"> 
-    
-    <div class = "review-profile">
-      <div class = "img-box">
-      <img src = "{{getUserProfilePic reviewerID ../users}}" alt="Profile pic"/>
-      </div>
-        <div class = "title-and-name-box">
-          <div class = "title-text">
-          {{reviewTitle}}
-          </div>
-          <div class = "name-text">
-
-            By: {{getUserUserame reviewerID ../users}}
-          </div>    
+  {{#unless deleted}}
+    <div class = "estab-reviews-container"> 
+      
+      <div class = "review-profile">
+        <div class = "img-box">
+        <img src = "{{getUserProfilePic reviewerID ../users}}" alt="Profile pic"/>
         </div>
-
-
-        {{#if isRecommended}}
-            <div class = "reco"> <!-- recommended or not-->
-              <div class = "reco-text">
-                ⭐ Recommended
-              </div>
+          <div class = "title-and-name-box">
+            <div class = "title-text">
+            {{reviewTitle}}
             </div>
-        {{else}}
-            <div class = "not-reco"> <!-- recommended or not-->
-              <div class = "reco-text">
-                👎 Not recommended
+            <div class = "name-text">
+
+              By: {{getUserUserame reviewerID ../users}}
+            </div>    
+          </div>
+
+
+          {{#if isRecommended}}
+              <div class = "reco"> <!-- recommended or not-->
+                <div class = "reco-text">
+                  ⭐ Recommended
+                </div>
               </div>
-            </div>
-        {{/if}}
+          {{else}}
+              <div class = "not-reco"> <!-- recommended or not-->
+                <div class = "reco-text">
+                  👎 Not recommended
+                </div>
+              </div>
+          {{/if}}
 
-        
-    </div>
-    <div class = "text-container-review">
-      <textarea readonly name ="review" rows = "10" cols = "10">{{reviewContent}}</textarea>
-    </div>
-
-    <div class = "button-container">
-        <button class="button-btn-helpful" onclick="markHelpful('{{this.reviewID}}')" id="helpfulBtn{{this.reviewID}}"> Helpful ({{helpfulCount}}) </button>
-        <button class="button-btn-nothelpful" onclick="markNotHelpful('{{this.reviewID}}')" id="notHelpfulBtn{{this.reviewID}}"> Not Helpful ({{notHelpfulCount}})</button>
-        {{#ifEquals reviewerID ../currentUserID}}
-          <button class="button-btn" onclick="sendData('{{this.reviewID}}')">Edit review</button>
           
-        {{else}}
-          <button class="button-btn" onclick="sendData('{{this.reviewID}}')" hidden>Edit review</button>
-        {{/ifEquals}}
+      </div>
+      <div class = "text-container-review">
+        <textarea readonly name ="review" rows = "10" cols = "10">{{reviewContent}}</textarea>
+      </div>
 
-    </div>
-  </div> 
+      <div class = "button-container">
+          <button class="button-btn-helpful" onclick="markHelpful('{{this.reviewID}}')" id="helpfulBtn{{this.reviewID}}"> Helpful ({{helpfulCount}}) </button>
+          <button class="button-btn-nothelpful" onclick="markNotHelpful('{{this.reviewID}}')" id="notHelpfulBtn{{this.reviewID}}"> Not Helpful ({{notHelpfulCount}})</button>
+          {{#ifEquals reviewerID ../currentUserID}}
+            <button class="button-btn" onclick="sendData('{{this.reviewID}}')">Edit review</button>
+          {{else}}
+            <button class="button-btn" onclick="sendData('{{this.reviewID}}')" hidden>Edit review</button>
+          {{/ifEquals}}
 
+      </div>
+    </div> 
+  {{/unless}}
 {{/each}}
 </div>
 

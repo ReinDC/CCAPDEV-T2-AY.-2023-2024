@@ -48,9 +48,14 @@ router.get("/register", (req, res) => {
 
 // Route for rendering the logout page
 router.get('/logout', (req, res) => {
-    res.render("logout", {
-        title: "logout",
-    });
+    if(req.session.username){
+        res.render("logout", {
+            title: "logout",
+        });
+    } else {
+        res.redirect('/login?unauthenticated=true'); 
+    }
+
 });
 
 // Route for viewing all establishments
@@ -156,7 +161,7 @@ router.get("/edit-details", async (req, res) => {
                 chosenResturant: resturant
             });
         } catch (error) {
-            res.sendStatus(500).json({ message: error.message });
+            res.status(500).json({ message: error.message });
         }
     }
     else{
@@ -167,26 +172,30 @@ router.get("/edit-details", async (req, res) => {
 
 // Route for creating a review for a specific restaurant
 router.get("/create-review", async (req, res) => {
-    try {
-        // Get the 'name' query parameter from the request and decode it. 
-        // If 'name' is not provided, default to 'No name'.
-        const name = req.query.name ? decodeURIComponent(req.query.name) : 'No name';
-
-        // Use the 'message' as the restaurant name to search for the restaurant in the database.
-        const resturantName = name;
-        const resturant = await Resturant.findOne({ resturantName: resturantName }); 
-
-        // Render the 'create-review' page and pass the following data:
-        // - title: The title of the page.
-        // - message: The decoded message which contains the restaurant name.
-        // - chosenResturant: The restaurant object found in the database.
-        res.render("create-review", {
-            title: "Create-review",
-            chosenResturant: resturant
-        });
-    } catch (error) {
-        // If an error occurs, respond with a 500 sendStatus code and the error message.
-        res.sendStatus(500).json({ message: error.message });
+    if(req.session.username){
+        try {
+            // Get the 'name' query parameter from the request and decode it. 
+            // If 'name' is not provided, default to 'No name'.
+            const name = req.query.name ? decodeURIComponent(req.query.name) : 'No name';
+    
+            // Use the 'message' as the restaurant name to search for the restaurant in the database.
+            const resturantName = name;
+            const resturant = await Resturant.findOne({ resturantName: resturantName }); 
+    
+            // Render the 'create-review' page and pass the following data:
+            // - title: The title of the page.
+            // - message: The decoded message which contains the restaurant name.
+            // - chosenResturant: The restaurant object found in the database.
+            res.render("create-review", {
+                title: "Create-review",
+                chosenResturant: resturant
+            });
+        } catch (error) {
+            // If an error occurs, respond with a 500 sendStatus code and the error message.
+            res.status(500).json({ message: error.message });
+        }
+    } else {
+        res.redirect('/login?unauthenticated=true'); 
     }
 });
 
@@ -219,7 +228,10 @@ router.get("/view-establishment-reviews", async (req, res) => {
         const reviewerIDs = reviews.map(review => review.reviewerID);
         
         // Find users who have written reviews using their IDs.
-        const users = await User.find({ userID: { $in: reviewerIDs } });
+        let users;
+        if(userID){
+            users = await User.find({ userID: { $in: reviewerIDs } });
+        }
         
         // Assign the found restaurant to a variable for clarity.
         const chosenResturant = resturant;
@@ -239,7 +251,7 @@ router.get("/view-establishment-reviews", async (req, res) => {
         });
     } catch (err) {
         // If an error occurs, respond with a 500 sendStatus code and the error message.
-        res.sendStatus(500).json({ message: err.message });
+        res.status(500).json({ message: err.message });
     }
 });
 
@@ -255,7 +267,7 @@ router.post("/get-image", async (req, res) => {
 
         // If the restaurant is found, respond with a sendStatus 200 and send the image link.
         if (resturant) {
-            res.sendStatus(200).send({ imgLink: resturant.resturantIMG });
+            res.status(200).send({ imgLink: resturant.resturantIMG });
         } else {
             // If the restaurant is not found, respond with a sendStatus 404.
             res.sendStatus(404);
@@ -264,7 +276,7 @@ router.post("/get-image", async (req, res) => {
     } catch (error) {
         // If an error occurs, log the error and respond with a sendStatus 500 and the error message.
         console.error(error);
-        res.sendStatus(500).json({ message: 'An error occurred', error: error.message });
+        res.status(500).json({ message: 'An error occurred', error: error.message });
     }
 });
 
@@ -321,7 +333,7 @@ router.post('/submit-form-register', async (req, res) => {
         await bcrypt.hash(password, saltRounds, async function (err, hash) {
             if (err) {
                 console.error('Error hashing password:', err);
-                return res.sendStatus(500).send('Error hashing password');
+                return res.status(500).send('Error hashing password');
             }
 
             const userObj = {
@@ -347,12 +359,12 @@ router.post('/submit-form-register', async (req, res) => {
                 res.sendStatus(201);
             } catch (creationError) {
                 console.error('Error creating user:', creationError);
-                res.sendStatus(500).send('Error creating user');
+                res.status(500).send('Error creating user');
             }
         });
     } catch (error) {
         console.error('Error processing request:', error);
-        res.sendStatus(500).send('Error processing request');
+        res.status(500).send('Error processing request');
     }
 });
 
@@ -369,9 +381,9 @@ router.post('/search', async (req, res) => {
         }
         
         if (resturants.length != 0) {
-            res.sendStatus(200).send({ resturants: resturants });
+            res.status(200).send({ resturants: resturants });
         } else {
-            res.sendStatus(404).send({ message: "No restaurants found" }); // Set sendStatus to 404 and send a message
+            res.status(404).send({ message: "No restaurants found" }); // Set sendStatus to 404 and send a message
         }
 
     } catch (error) {
@@ -388,13 +400,13 @@ router.post("/mark-helpful", async (req, res) => {
         if (review) {
             await Review.updateOne({ reviewID: reviewID }, { $inc: { helpfulCount: 1 } });
             review = await Review.findOne({ reviewID: reviewID });
-            res.sendStatus(200).send({ count: review.helpfulCount });
+            res.status(200).send({ count: review.helpfulCount });
         } else {
-            res.sendStatus(404).send({ message: "Review not found" });
+            res.status(404).send({ message: "Review not found" });
         }
     } catch (error) {
         console.error(error);
-        res.sendStatus(500).send({ error: 'An error occurred' });
+        res.status(500).send({ error: 'An error occurred' });
     }
 });
 
@@ -406,12 +418,12 @@ router.post("/mark-nothelpful", async (req, res) => {
         if (review) {
             await Review.updateOne({ reviewID: reviewID }, { $inc: { notHelpfulCount: 1 } });
             review = await Review.findOne({ reviewID: reviewID });
-            res.sendStatus(200).send({ count: review.notHelpfulCount });
+            res.status(200).send({ count: review.notHelpfulCount });
         } else {
-            res.sendStatus(404).send({ message: "Review not found" });
+            res.status(404).send({ message: "Review not found" });
         }
     } catch (error) {
-        res.sendStatus(500).send({ error: 'An error occurred' });
+        res.status(500).send({ error: 'An error occurred' });
     }
 });
 
@@ -438,19 +450,19 @@ router.post("/reviews-search", async (req, res) => {
         }
 
         if (reviews.length != 0) {
-            res.sendStatus(200).send({ reviews: reviews, users: users});
+            res.status(200).send({ reviews: reviews, users: users});
         } else {
-            res.sendStatus(404).send({ message: "No restaurants found" }); // Set sendStatus to 404 and send a message
+            res.sendStatus(404)
         }
     } catch (error) {
-        res.sendStatus(500).send({ error: 'An error occurred' });
+        res.sendStatus(500)
     }
 })
 
 router.post("/sign-out", (req, res) =>{
     req.session.destroy(err => {
         if (err) {
-          return res.sendStatus(500).send('Could not log out');
+          return res.sendStatus(500)
         }
         res.sendStatus(200)
       });
@@ -472,12 +484,12 @@ router.post("/changepfp", async (req, res) =>{
         );
     
         if (result.nModified === 0) {
-            return res.sendStatus(404).send({ message: 'User not found or no changes made' });
+            return res.status(404).send({ message: 'User not found or no changes made' });
         }
     
-        res.sendStatus(200).send({ message: 'Profile picture updated successfully'});
+        res.status(200).send({ message: 'Profile picture updated successfully'});
     } catch (error) {
-        res.sendStatus(500).send({ message: 'Error updating profile picture'});
+        res.status(500).send({ message: 'Error updating profile picture'});
     }
 })
 
@@ -492,12 +504,12 @@ router.post("/changeDesc", async(req, res) =>{
         );
 
         if (result.nModified === 0) {
-            return res.sendStatus(404).send({ message: 'User not found or no changes made' });
+            return res.status(404).send({ message: 'User not found or no changes made' });
         }
 
-        res.sendStatus(200).send({ message: 'Profile updated successfully'});
+        res.status(200).send({ message: 'Profile updated successfully'});
     } catch (error) {
-        res.sendStatus(500).send({ message: 'Error updating profile picture'});
+        res.status(500).send({ message: 'Error updating profile picture'});
     }
 })
 
@@ -516,12 +528,12 @@ router.post("/changeRestoDetails", async (req, res) =>{
         );
 
         if (result.nModified === 0) {
-            return res.sendStatus(404).send({ message: 'Resturant not found or no changes made' });
+            return res.status(404).send({ message: 'Resturant not found or no changes made' });
         }
 
-        res.sendStatus(200).send({ message: 'Resturant updated successfully'});
+        res.status(200).send({ message: 'Resturant updated successfully'});
     } catch (error) {
-        res.sendStatus(500).send({ message: 'Error updating Resturant'});
+        res.status(500).send({ message: 'Error updating Resturant'});
     }
 })
 
@@ -549,7 +561,7 @@ router.post("/submit-review", async (req, res) => {
 
     await newReview.save();
 
-    res.sendStatus(201).json({message:'Review submitted!'});
+    res.status(201).json({message:'Review submitted!'});
 
     }catch(error){
         console.error(error);
@@ -580,13 +592,13 @@ router.post("/review-edit", async (req, res) => {
             }
         );
         if (result.nModified === 0) {
-            return res.sendStatus(404).json({ message: 'Review not found or no changes made.' });
+            return res.sendStatus(404)
         }
 
         res.sendStatus(200);
     } catch (error) {
         console.error(error);
-        res.sendStatus(500).json({ message: 'An error occurred while updating the review.' });
+        res.sendStatus(500)
     }
 });
 
@@ -598,21 +610,21 @@ router.post("/delete", async (req, res) => {
         result = await Resturant.updateOne({ resturantID: id}, {$set: {deleted: true}});
 
         if (result.nModified === 0) {
-            return res.sendStatus(404).json({ message: 'Document not found' });
+            return res.sendStatus(404)
         }
 
-        res.sendStatus(200).json({ message: 'Document deleted successfully' });
+        res.sendStatus(200)
 
     } else if(type == "acc"){
         result = await User.updateOne({ userID: id}, {$set: {deleted: true}});
 
         if (result.nModified === 0) {
-            return res.sendStatus(404).json({ message: 'Document not found' });
+            return res.sendStatus(404)
         }
 
         req.session.destroy(err => {
             if (err) {
-              return res.sendStatus(500).send('Could not log out');
+              return res.sendStatus(500)
             }
             res.sendStatus(200)
         }); 
@@ -621,10 +633,10 @@ router.post("/delete", async (req, res) => {
         result = await Review.updateOne({ reviewID: id}, {$set: {deleted: true}});
 
         if (result.nModified === 0) {
-            return res.sendStatus(404).json({ message: 'Document not found' });
+            return res.sendStatus(404)
         }
 
-        res.sendStatus(200).json({ message: 'Document deleted successfully' });
+        res.sendStatus(200)
     }
 });
 
