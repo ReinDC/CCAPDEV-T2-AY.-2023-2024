@@ -1,0 +1,43 @@
+{{> navbar}}
+
+<!-- CHANGE ACCORDINGLY FOR OWNERS REPONSE -->
+
+<link rel="stylesheet" href="/css/create-review.css">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+<div class = "body"><!-- body container-->
+    
+    <div class = "review-container"> <!--create review container-->  
+        <div class = "resto-image">
+            <img src = "{{chosenResturant.resturantIMG}}" />
+        </div>
+        <div  class="details-class">
+            <div class = "establishmentname-font"><!--Restaurant name-->
+            {{chosenResturant.resturantName}}
+        </div>
+        <!-- Remove buttons-->
+            <p class="details-address"><p class="details-address">{{chosenResturant.address}}</p>
+            <div class = "button-reco-container">
+                        <button class = "button-btn-reco" id = "recoBtn">⭐ Recommended</button>
+                        <button class = "button-btn-notreco" id = "notRecoBtn">👎 Not recommended</button> 
+            </div>
+            <div class = ""> <!--text area + submit--> <!-- CHANGE ACCORDINGLY FOR OWNERS REPONSE -->
+                <form method = "POST" id = "reviewSubmission" name = "reviewSubmission">
+                    <input type = "hidden" name = "reviewID" id = "reviewID" value = "{{reviewID}}"/>
+                    <input type = "hidden" name = "reviewerID" id = "reviewerID" value = "{{reviewerID}}"/>
+                    <input type = "hidden" name = "resturantID" id = "resturantID" value = "{{chosenResturant.resturantID}}"/>
+                    <input type = "hidden" name = "helpfulCount" id = "helpfulCount" value = "0"/>
+                    <input type = "hidden" name = "notHelpfulCount" id = "notHelpfulCount" value = "0"/>
+                    <input type = "hidden" name = "isRecommended" id = "isRecommended" value = "true"/>
+                    <textarea name = "reviewTitle" id = "reviewTitle" rows = "1" cols = "79" placeholder = "Title"></textarea>
+                    <textarea name  = "reviewContent" id = "reviewContent" rows = "10" cols = "79" placeholder = "Post review here"></textarea>
+                </form> 
+                <div class = "button-post-container"> <!--submit button-->
+                    <button class="button-post" id="postBtn">Post review</button>
+                </div>  
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/owner-response.js"></script>
