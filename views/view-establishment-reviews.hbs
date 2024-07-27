@@ -100,6 +100,7 @@
         <button class="button-btn-nothelpful" onclick="markNotHelpful('{{this.reviewID}}')" id="notHelpfulBtn{{this.reviewID}}"> Not Helpful ({{notHelpfulCount}})</button>
         {{#ifEquals reviewerID ../currentUserID}}
           <button class="button-btn" onclick="sendData('{{this.reviewID}}')">Edit review</button>
+          
         {{else}}
           <button class="button-btn" onclick="sendData('{{this.reviewID}}')" hidden>Edit review</button>
         {{/ifEquals}}
