@@ -76,3 +76,29 @@ async function confirmChanges(){
         alert("Error, there was a problem changing your profile picture.");
     }
 }
+
+async function deleteAccount(){
+    const myObj = { 
+        type: "acc",
+        id: document.getElementById("id").value
+    };
+    
+    const jString = JSON.stringify(myObj);
+    
+
+    const response = await fetch("/delete",{
+        method: 'POST',
+        body: jString,
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+
+    if(response.status == 200){
+        window.location.href = "/login";
+    }
+    else{
+        alert("Error, there was a problem changing your profile picture.");
+    }
+}
+

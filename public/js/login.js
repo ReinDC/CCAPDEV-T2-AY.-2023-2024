@@ -30,7 +30,7 @@ form.addEventListener('submit', async(e) => {
                 'Content-Type': 'application/json'
             }
         });
-
+        console.log(response.status)
         if(response.status === 200){
             window.location.href = "/view-establishment";
         }
