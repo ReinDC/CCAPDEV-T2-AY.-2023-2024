@@ -2,7 +2,7 @@
 
 <!-- CHANGE ACCORDINGLY FOR OWNERS REPONSE -->
 
-<link rel="stylesheet" href="/css/create-review.css">
+<link rel="stylesheet" href="/css/owner-response.css">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 
 <div class = "body"><!-- body container-->
@@ -17,25 +17,26 @@
         </div>
         <!-- Remove buttons-->
             <p class="details-address"><p class="details-address">{{chosenResturant.address}}</p>
-            <div class = "button-reco-container">
-                        <button class = "button-btn-reco" id = "recoBtn">⭐ Recommended</button>
-                        <button class = "button-btn-notreco" id = "notRecoBtn">👎 Not recommended</button> 
-            </div>
             <div class = ""> <!--text area + submit--> <!-- CHANGE ACCORDINGLY FOR OWNERS REPONSE -->
-                <form method = "POST" id = "reviewSubmission" name = "reviewSubmission">
+                <form method = "POST" id = "responseSubmission" name = "responseSubmission">
+                    <input type = "hidden" name = "responseID" id = "responseID" value = "{{responseID}}"/>
                     <input type = "hidden" name = "reviewID" id = "reviewID" value = "{{reviewID}}"/>
-                    <input type = "hidden" name = "reviewerID" id = "reviewerID" value = "{{reviewerID}}"/>
+                    <input type = "hidden" name = "ownerID" id = "ownerID" value = "{{ownerID}}"/>
                     <input type = "hidden" name = "resturantID" id = "resturantID" value = "{{chosenResturant.resturantID}}"/>
-                    <input type = "hidden" name = "helpfulCount" id = "helpfulCount" value = "0"/>
-                    <input type = "hidden" name = "notHelpfulCount" id = "notHelpfulCount" value = "0"/>
-                    <input type = "hidden" name = "isRecommended" id = "isRecommended" value = "true"/>
-                    <textarea name = "reviewTitle" id = "reviewTitle" rows = "1" cols = "79" placeholder = "Title"></textarea>
-                    <textarea name  = "reviewContent" id = "reviewContent" rows = "10" cols = "79" placeholder = "Post review here"></textarea>
+                    <textarea name = "responseTitle" id = "responseTitle" rows = "1" cols = "79" placeholder = "Response Title"></textarea>
+                    <textarea name  = "responseContent" id = "responseContent" rows = "10" cols = "79" placeholder = "Post response here"></textarea>
                 </form> 
                 <div class = "button-post-container"> <!--submit button-->
-                    <button class="button-post" id="postBtn">Post review</button>
+                    <button class="button-post" id="postBtn">Post response</button>
                 </div>  
             </div>
+        </div>
+    </div>
+    <div id="customAlert" class="custom-alert">
+        <div class="custom-alert-content">
+            <span class="close-btn" id = "alertOKBtn" onclick="closeCustomAlert()">&times;</span>
+            <p id="alertMessage"></p>
+            <button id = "alertOKBtn" onclick="closeCustomAlert()">Ok</button>
         </div>
     </div>
 </div>
