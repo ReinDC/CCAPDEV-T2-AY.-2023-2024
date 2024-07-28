@@ -11,7 +11,7 @@ const session = require('express-session');
 const User = require('../models/users'); // User model
 const Resturant = require('../models/resturants'); // Restaurant model
 const Review = require('../models/reviews'); // Review model
-
+const Response = require('../models/ownerResponse'); //Owner response model
 
 const router = Router();
 router.use(express.json());
@@ -553,7 +553,7 @@ router.post("/submit-review", async (req, res) => {
         const newReviewID = maxReviewID ? maxReviewID.reviewID + 1 : 1;
         const{resturantID, reviewContent, reviewTitle, isRecommended, helpfulCount, notHelpfulCount} = req.body;
         
-        const user = await User.findOne({username}).exec()
+        const user = await User.findOne({username}).exec();
         const reviewerID = user.userID;
         const newReview = new Review({
 
@@ -632,7 +632,7 @@ router.post("/delete", async (req, res) => {
 
         req.session.destroy(err => {
             if (err) {
-              return res.sendStatus(500)
+                return res.sendStatus(500)
             }
             res.sendStatus(200)
         }); 
@@ -647,6 +647,45 @@ router.post("/delete", async (req, res) => {
         res.sendStatus(200)
     }
 });
+
+//from here on, still not sure about this, will revise. 
+router.get("/owner-response", async (req,res) =>{
+    const{reviewID, resturantID} = req.query;
+    const chosenResturant = await Resturant.findOne({resturantID}).exec();
+    res.render("owner-response", {reviewID, resturantID, chosenResturant});
+});
+
+router.post("/submit-response", async (req, res) => {
+    const username = req.session.username;
+    const usertype = req.session.type;
+    try{
+        const user = await User.findOne({username}).exec();
+
+        if(usertype == "Owner"){
+            const maxResponseID = await Response.findOne().sort({responseID: -1}).exec();
+            const newResponseID = maxResponseID ? maxResponseID.responseID + 1 : 1;
+            const{reviewID, resturantID, responseContent, responseTitle} = req.body;
+            const ownerID = user.userID;
+            const newResponse = new Response({
+                responseID: newResponseID,
+                ownerID: ownerID,
+                reviewID: reviewID,
+                resturantID: resturantID,
+                responseContent: responseContent,
+                responseTitle: responseTitle
+            });
+            await newResponse.save();
+            res.status(201).json({message:'Response submitted!'});
+        }
+
+    }catch(error){
+        console.error(error);
+    }
+
+})
+
+
+
 
 
 module.exports = router;
