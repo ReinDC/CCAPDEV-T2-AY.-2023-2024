@@ -1,19 +1,8 @@
 
 // CHANGE ACCORDINGLY FOR OWNERS REPONSE
 
-const form = document.getElementById('reviewSubmission');
+const form = document.getElementById('responseSubmission');
 const postBtn = document.getElementById('postBtn');
-const recoBtn = document.getElementById('recoBtn');
-const notRecoBtn = document.getElementById('notRecoBtn');
-
-
-recoBtn.addEventListener('click', () => {
-    document.getElementById('isRecommended').value = 'true';
-})
-
-notRecoBtn.addEventListener('click', () => {
-    document.getElementById('isRecommended').value = 'false';
-})
 
 
 postBtn.addEventListener('click', async (e) => {
@@ -23,20 +12,19 @@ postBtn.addEventListener('click', async (e) => {
     
 
     const myObj = { 
+        responseID: formData.get('responseID'),
+        ownerID: formData.get('ownerID'),
         reviewID: formData.get('reviewID'),
-        reviewerID: formData.get('reviewerID'),
         resturantID: formData.get('resturantID'),
-        reviewContent: formData.get('reviewContent'),
-        reviewTitle: formData.get('reviewTitle'),
-        isRecommended: formData.get('isRecommended') === "true",
-        helpfulCount: parseInt(formData.get('helpfulCount'), 10),
-        notHelpfulCount: parseInt(formData.get('notHelpfulCount'), 10)
+        reviewContent: formData.get('responseContent'),
+        reviewTitle: formData.get('responseTitle'),
     };
 
     const jString = JSON.stringify(myObj);
 
     try{
-        const response = await fetch("/submit-review",{
+        // MAKE SUBMIT-RESPONSE IN INDEXROUTER.JS
+        const response = await fetch("/submit-response",{
             method: 'POST',
             body: jString,
             headers: {
@@ -44,7 +32,7 @@ postBtn.addEventListener('click', async (e) => {
             }
         });
         if(response.status === 201){
-            window.location.href="/view-establishment";
+            showCustomAlert("Response posted!");
         }
         else{
             showCustomAlert("Error: " + (await response.json().message));
@@ -61,6 +49,7 @@ postBtn.addEventListener('click', async (e) => {
     
     function closeCustomAlert() {
         document.getElementById('customAlert').style.display = 'none';
+        window.location.href = "/view-establishment"
     }
     
 });
