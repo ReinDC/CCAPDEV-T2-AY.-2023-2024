@@ -46,11 +46,14 @@ function getSearchData(){
     .then(data => {
         const resultsContainer = document.querySelector('.results');
         const parentContainer = document.querySelector('.parent-container');
-
+        let hasNotDeleted = false; 
+        
         resultsContainer.innerHTML = '';
         resultsContainer.classList.remove('transparent-text');
 
         parentContainer.style.display = 'flex';
+
+        
 
         for(let i = 0; i < data.resturants.length; i++){
             const resturant = data.resturants[i];
@@ -61,12 +64,19 @@ function getSearchData(){
             const ownerID = resturant.ownerID;
             const userID = data.userID;
             if(!resturant.deleted){
+                hasNotDeleted = true;
                 createRestaurantElement(resturantIMG, resturantName, address, bestSellers, ownerID, userID);
-            } else {
-                const searchbar = document.getElementById("searchbar");
+            } 
+            // else {
+            //     const searchbar = document.getElementById("searchbar");
 
-                parentContainer.style.display = 'flex';
+            //     parentContainer.style.display = 'flex';
         
+            //     resultsContainer.textContent = "No restaurants with '" + searchBar.value + "' found.";
+            //     resultsContainer.classList.add('transparent-text');
+            //     searchBar.value = '';
+            // }
+            if(!hasNotDeleted){
                 resultsContainer.textContent = "No restaurants with '" + searchBar.value + "' found.";
                 resultsContainer.classList.add('transparent-text');
                 searchBar.value = '';
