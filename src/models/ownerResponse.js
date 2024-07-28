@@ -10,6 +10,10 @@ const responseSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
+    reviewID: { // ID of a existing review || 0001, 0002, 0003, ... , XXXX
+        type: Number,
+        required: true,
+    },
     resturantID: { // Should be equal to a existing resturantID || 0001, 0002, 0003, ... , XXXX
         type: Number,
         required: true
