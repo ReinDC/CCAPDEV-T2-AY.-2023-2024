@@ -302,3 +302,7 @@ function showCustomAlert(message) {
 function closeCustomAlert() {
     document.getElementById('customAlert').style.display = 'none';
 }
+
+function respondToReview(reviewID, resturantID){
+    window.location.href = `owner-response?reviewID=${reviewID}&resturantID=${resturantID}`;
+}
