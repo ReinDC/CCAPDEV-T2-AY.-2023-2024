@@ -53,12 +53,24 @@ function getSearchData(){
         parentContainer.style.display = 'flex';
 
         for(let i = 0; i < data.resturants.length; i++){
-            const resturants = data.resturants[i];
-            const resturantIMG = resturants.resturantIMG;
-            const resturantName = resturants.resturantName;
-            const address = resturants.address;
-            const bestSellers = resturants.bestSellers;
-            createRestaurantElement(resturantIMG, resturantName, address, bestSellers)
+            const resturant = data.resturants[i];
+            const resturantIMG = resturant.resturantIMG;
+            const resturantName = resturant.resturantName;
+            const address = resturant.address;
+            const bestSellers = resturant.bestSellers;
+            const ownerID = resturant.ownerID;
+            const userID = data.userID;
+            if(!resturant.deleted){
+                createRestaurantElement(resturantIMG, resturantName, address, bestSellers, ownerID, userID);
+            } else {
+                const searchbar = document.getElementById("searchbar");
+
+                parentContainer.style.display = 'flex';
+        
+                resultsContainer.textContent = "No restaurants with '" + searchBar.value + "' found.";
+                resultsContainer.classList.add('transparent-text');
+                searchBar.value = '';
+            }
         }
     })
     .catch(error => {
@@ -76,10 +88,11 @@ function getSearchData(){
 
 
 
-function createRestaurantElement(restaurantIMG, restaurantName, address, bestSellers) {
+function createRestaurantElement(restaurantIMG, restaurantName, address, bestSellers, ownerID, userID) {
     const resultsContainer = document.querySelector('.results');
 
-    // Create the main container div
+    const inputElement = document.createElement('input');
+
     const establishmentDiv = document.createElement('div');
     establishmentDiv.className = 'establishment';
 
@@ -108,6 +121,9 @@ function createRestaurantElement(restaurantIMG, restaurantName, address, bestSel
     const editButton = document.createElement('button');
     editButton.className = 'edit-button';
     editButton.textContent = 'Edit';
+    if(ownerID != userID){
+        editButton.setAttribute("hidden", "")
+    }
     editButton.onclick = function sendData3() {
         const name = restaurantName;
         const encodedMessage = encodeURIComponent(name);

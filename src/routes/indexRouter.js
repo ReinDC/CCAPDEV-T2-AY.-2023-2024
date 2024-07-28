@@ -372,6 +372,14 @@ router.post('/search', async (req, res) => {
     try {
         const { search, searchTerm } = req.body;
         const searchValue = new RegExp(searchTerm, 'i');
+        let userID;
+        if(req.session.username){
+            const user = await User.findOne({ username: req.session.username})
+            userID = user.userID;
+        } else {
+            userID = -1;
+        }
+
         let resturants;
         if(search == 'name'){
             resturants = await Resturant.find({ resturantName: searchValue });
@@ -381,7 +389,7 @@ router.post('/search', async (req, res) => {
         }
         
         if (resturants.length != 0) {
-            res.status(200).send({ resturants: resturants });
+            res.status(200).send({ resturants: resturants, userID: userID });
         } else {
             res.status(404).send({ message: "No restaurants found" }); // Set sendStatus to 404 and send a message
         }
