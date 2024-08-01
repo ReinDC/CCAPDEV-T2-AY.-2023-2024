@@ -656,27 +656,31 @@ router.get("/owner-response", async (req,res) =>{
 });
 
 router.post("/submit-response", async (req, res) => {
-    const username = req.session.username;
-    const usertype = req.session.type;
+    //const username = req.session.username;
+    //const usertype = req.session.type;
+    
     try{
-        const user = await User.findOne({username}).exec();
 
-        if(usertype == "Owner"){
-            const maxResponseID = await Response.findOne().sort({responseID: -1}).exec();
-            const newResponseID = maxResponseID ? maxResponseID.responseID + 1 : 1;
-            const{reviewID, resturantID, responseContent, responseTitle} = req.body;
-            const ownerID = user.userID;
-            const newResponse = new Response({
-                responseID: newResponseID,
-                ownerID: ownerID,
-                reviewID: reviewID,
-                resturantID: resturantID,
-                responseContent: responseContent,
-                responseTitle: responseTitle
-            });
-            await newResponse.save();
-            res.status(201).json({message:'Response submitted!'});
-        }
+        const {reviewID, resturantID, responseTitle, responseContent} = req.body;
+
+        
+        const user = await User.findOne({username: req.session.username}).exec()
+        const ownerID = user.userID;
+        //const review = await Review.findOne({reviewID});
+        const lastResponse = await Response.findOne().sort({responseID: -1});
+        const newResponseID = lastResponse ? lastResponse.responseID + 1 : 1;
+
+        const newResponse = new Response({
+            responseID: newResponseID,  
+            ownerID,
+            reviewID,
+            resturantID,
+            responseTitle,
+            responseContent
+        });
+
+        await newResponse.save();
+        res.status(201).json({message: 'Response created successfully', response: newResponse});
 
     }catch(error){
         console.error(error);

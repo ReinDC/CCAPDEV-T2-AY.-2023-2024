@@ -18,14 +18,15 @@ const responseSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    responseTitle: { // Review Title
+        type: String,
+        required: true,
+    },
     responseContent: { // Review Content
         type: String,
         required: true,
     },
-    responseTitle: { // Review Title
-        type: String,
-        required: true,
-    }
+    
 });
 
 const Response = mongoose.model('Response', responseSchema);

@@ -3,7 +3,7 @@
 
 const form = document.getElementById('responseSubmission');
 const postBtn = document.getElementById('postBtn');
-
+const alertOKBtn = document.getElementById('alertOKBtn');
 
 postBtn.addEventListener('click', async (e) => {
     e.preventDefault();
@@ -12,12 +12,10 @@ postBtn.addEventListener('click', async (e) => {
     
 
     const myObj = { 
-        responseID: formData.get('responseID'),
-        ownerID: formData.get('ownerID'),
         reviewID: formData.get('reviewID'),
         resturantID: formData.get('resturantID'),
-        reviewContent: formData.get('responseContent'),
-        reviewTitle: formData.get('responseTitle'),
+        responseTitle: formData.get('responseTitle'),
+        responseContent: formData.get('responseContent')
     };
 
     const jString = JSON.stringify(myObj);
@@ -33,6 +31,7 @@ postBtn.addEventListener('click', async (e) => {
         });
         if(response.status === 201){
             showCustomAlert("Response posted!");
+            
         }
         else{
             showCustomAlert("Error: " + (await response.json().message));
