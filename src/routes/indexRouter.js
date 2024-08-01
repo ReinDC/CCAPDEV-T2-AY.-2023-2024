@@ -670,8 +670,15 @@ router.post("/delete", async (req, res) => {
 //from here on, still not sure about this, will revise. 
 router.get("/owner-response", async (req,res) =>{
     const{reviewID, resturantID} = req.query;
+    const review = await Review.findOne({reviewID});
     const chosenResturant = await Resturant.findOne({resturantID}).exec();
-    res.render("owner-response", {reviewID, resturantID, chosenResturant});
+    res.render("owner-response", {
+        reviewID, 
+        resturantID, 
+        chosenResturant,
+        reviewTitle: review.reviewTitle,
+        reviewContent: review.reviewContent
+    });
 });
 
 router.post("/submit-response", async (req, res) => {
