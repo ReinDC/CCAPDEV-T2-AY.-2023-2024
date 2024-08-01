@@ -1,6 +1,8 @@
 const helpfulBtn = document.getElementById("helpful");
 const notHelpfulBtn = document.getElementById("not-helpful");
 const searchbar = document.getElementById("searchbar");
+const reviewContainerDiv = document.querySelector(".review-container");
+
 
 searchbar.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
@@ -12,6 +14,42 @@ searchbar.addEventListener('keydown', (e) => {
 document.addEventListener('DOMContentLoaded', (e) => {
     const messageDiv = document.getElementById('name');
     getIMG(messageDiv.textContent);
+    
+    const myObj = {
+        resturantName: messageDiv.textContent
+    }
+
+    const jString = JSON.stringify(myObj);
+
+    fetch("get-reviews", {
+        method: "POST",
+        body: jString,
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json(); // Parse JSON from response
+    })
+    .then(data =>{
+        reviewContainerDiv.innerHTML = "";
+
+        for(let i = 0; i < data.reviews.length; i++){
+            const review = reviews[i]
+            let index;
+            for(let j = 0; data.response.length; j++){
+                if(review.reviewID == response[j].reviewID){
+                    index = j;
+                }
+            }
+
+            createReviewElement(reviews[i], response[j]);
+        }
+
+    })
 
 });
 
@@ -124,7 +162,6 @@ function sendData(reviewID) {
 function filter(){
     const messageDiv = document.getElementById('name');
     const searchBarValue = document.getElementById("searchbar").value;
-    const reviewContainerDiv = document.querySelector(".review-container");
     let radioBtnValue = getSelectedValue();
 
     if (searchbar.value.trim() === "") {

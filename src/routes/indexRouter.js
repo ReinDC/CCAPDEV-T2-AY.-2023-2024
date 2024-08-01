@@ -226,6 +226,8 @@ router.get("/view-establishment-reviews", async (req, res) => {
 
         // Extract reviewer IDs from the reviews.
         const reviewerIDs = reviews.map(review => review.reviewerID);
+
+        const reponses = await Response.find({ resturantID: resturant.resturantID});
         
         // Find users who have written reviews using their IDs.
         let users;
@@ -255,6 +257,22 @@ router.get("/view-establishment-reviews", async (req, res) => {
     }
 });
 
+
+router.post("/get-reviews", async (req, res) => {
+    try {
+        const resturantName = req.body.resturantName;
+
+        const resturant = await Resturant.findOne({ resturantName: resturantName });
+        const reviews = await Review.find({ resturantID: resturant.resturantID });
+        const reponses = await Response.find({ resturantID: resturant.resturantID});
+
+        res.status(200).send({reviews: reviews, responses: reponses});
+
+
+    } catch (error) {
+        res.sendStatus(404);
+    }   
+})
 
 // Route to get the image of a specific restaurant
 router.post("/get-image", async (req, res) => {
@@ -586,7 +604,7 @@ router.post("/review-edit", async (req, res) => {
     // console.log("Type of isRecommended: " + typeof isRecommended);
     // console.log("Type of reviewID: " + typeof reviewID);
 
-    console.log("Type of reviewTitle: " + reviewTitle);
+    // console.log("Type of reviewTitle: " + reviewTitle);
 
     try {
         const result = await Review.updateOne(
