@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
         resturantName: messageDiv.textContent
     }
 
+
     const jString = JSON.stringify(myObj);
 
     fetch("get-reviews", {
@@ -38,19 +39,46 @@ document.addEventListener('DOMContentLoaded', (e) => {
         reviewContainerDiv.innerHTML = "";
 
         for(let i = 0; i < data.reviews.length; i++){
-            const review = reviews[i]
-            let index;
-            for(let j = 0; data.response.length; j++){
-                if(review.reviewID == response[j].reviewID){
-                    index = j;
+            const review = data.reviews[i]
+            const responses = data.responses;
+            const users = data.users;
+            const responseLength = data.responses.length;
+            let responseIndex = -1, j, usersIndex = -1;
+
+
+            // console.log(responses);
+            // console.log(review);
+            // console.log(data.user);
+
+            if(responseLength > i){
+                for(j = 0; j < responseLength; j++){
+                    if(review.reviewID == responses[j].reviewID){
+                        responseIndex = j;
+                        break;
+                    }
                 }
             }
+            
 
-            createReviewElement(reviews[i], response[j]);
+            for(j = 0; data.users.length; j++){
+                if(review.reviewerID == users[j].userID){
+                    usersIndex = j;
+                    break;
+                }
+
+            }
+
+            if(data.user){
+                createReview(review, data.responses[responseIndex], data.users[usersIndex], data.user.userID);
+            } else{
+                createReview(review, data.responses[responseIndex], data.users[usersIndex], 0);
+            }
         }
 
     })
-
+    .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+    });
 });
 
 
@@ -315,6 +343,102 @@ function createReviewElement(profpic, username, reviewID, reviewTitle, reviewCon
     reviewContainer.appendChild(reviewProfile);
     reviewContainer.appendChild(textContainerReview);
     reviewContainer.appendChild(buttonContainer);
+    const realContainer = document.querySelector(".review-container");
+    realContainer.appendChild(reviewContainer);
+}
+
+
+function createReview(review, response, user, currentUserID){
+    const reviewContainer = document.createElement('div');
+    reviewContainer.className = 'estab-reviews-container';
+    const reviewProfile = document.createElement('div');
+    reviewProfile.className = 'review-profile';
+
+    const imgBox = document.createElement('div');
+    imgBox.className = 'img-box';
+    const img = document.createElement('img');
+    img.src = user.profpic;
+    imgBox.appendChild(img);
+
+    const titleAndNameBox = document.createElement('div');
+    titleAndNameBox.className = 'title-and-name-box';
+
+    const titleText = document.createElement('div');
+    titleText.className = 'title-text';
+    titleText.textContent = review.reviewTitle;
+
+    const nameText = document.createElement('div');
+    nameText.className = 'name-text';
+    nameText.textContent = 'By: ' + user.username;
+
+    titleAndNameBox.appendChild(titleText);
+    titleAndNameBox.appendChild(nameText);
+
+    const reco = document.createElement('div');
+
+    const recoText = document.createElement('div');
+    recoText.className = 'reco-text';
+    if(review.isRecommended){
+        reco.className = 'reco';
+        recoText.textContent = '⭐ Recommended';
+    }
+    else{
+        reco.className = 'not-reco';
+        recoText.textContent = '👎 Not recommended';
+    }
+    reco.appendChild(recoText);
+
+    reviewProfile.appendChild(imgBox);
+    reviewProfile.appendChild(titleAndNameBox);
+    reviewProfile.appendChild(reco);
+
+    const textContainerReview = document.createElement('div');
+    textContainerReview.className = 'text-container-review';
+    const textarea = document.createElement('textarea');
+    textarea.readOnly = true;
+    textarea.name = 'review';
+    textarea.rows = 10;
+    textarea.cols = 10;
+    textarea.textContent = review.reviewContent;
+    textContainerReview.appendChild(textarea);
+
+    const buttonContainer = document.createElement('div');
+    buttonContainer.className = 'button-container';
+
+    const helpfulButton = document.createElement('button');
+    helpfulButton.className = 'button-btn';
+    helpfulButton.id = "helpfulBtn" + review.reviewID;
+    helpfulButton.textContent = 'Helpful (' + review.helpfulCount + ')';
+    helpfulButton.onclick = function() {
+        markHelpful(review.reviewID);
+    };
+
+    const notHelpfulButton = document.createElement('button');
+    notHelpfulButton.className = 'button-btn';
+    notHelpfulButton.id = "notHelpfulBtn" + review.reviewID;
+    notHelpfulButton.textContent = 'Not Helpful (' + review.notHelpfulCount + ')';
+    notHelpfulButton.onclick = function() {
+        markNotHelpful(review.reviewID);
+    };
+    const editButton = document.createElement('button');
+    editButton.className = 'button-btn';
+    editButton.innerText = "Edit";
+    if(review.reviewerID != currentUserID){
+        editButton.style.display = "none";
+
+    }
+    editButton.onclick = function(){
+        sendData(review.reviewID);
+    }
+
+    buttonContainer.appendChild(helpfulButton);
+    buttonContainer.appendChild(notHelpfulButton);
+    buttonContainer.appendChild(editButton);
+
+    reviewContainer.appendChild(reviewProfile);
+    reviewContainer.appendChild(textContainerReview);
+    reviewContainer.appendChild(buttonContainer);
+
     const realContainer = document.querySelector(".review-container");
     realContainer.appendChild(reviewContainer);
 }

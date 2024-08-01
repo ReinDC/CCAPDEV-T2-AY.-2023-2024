@@ -263,12 +263,16 @@ router.post("/get-reviews", async (req, res) => {
         const resturantName = req.body.resturantName;
 
         const resturant = await Resturant.findOne({ resturantName: resturantName });
-        const reviews = await Review.find({ resturantID: resturant.resturantID });
-        const reponses = await Response.find({ resturantID: resturant.resturantID});
+        const reviews = await Review.find({ resturantID: resturant.resturantID, deleted: false }).lean();
+        const reponses = await Response.find({ resturantID: resturant.resturantID}).lean();
+        const users = await User.find({deleted: false}).lean();
+        const user = await User.findOne({username: req.session.username});
 
-        res.status(200).send({reviews: reviews, responses: reponses});
+        // if(!user){
+        //     user.userID = 0;
+        // }
 
-
+        res.status(200).send({reviews: reviews, responses: reponses, users: users, user: user});
     } catch (error) {
         res.sendStatus(404);
     }   

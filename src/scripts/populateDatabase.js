@@ -3,8 +3,10 @@ const connectToMongo = require('./conn.js');
 const User = require('../models/users.js');
 const Restaurant = require('../models/resturants.js');
 const Review = require('../models/reviews.js');
+const Response = require('../models/ownerResponse.js');
 const sampleUsers = require('./sampleData/userData.js');
 const sampleRestaurants = require('./sampleData/resturantData.js');
+const sampleResponses = require("./sampleData/ownerResponse.js");
 const sampleReviews = require('./sampleData/reviewData.js');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
@@ -49,10 +51,14 @@ async function populateDatabase() {
             await review.save();
         }
 
+        for (const responseData of sampleResponses) {
+            const response = new Response(responseData);
+            await response.save();
+        }
+
+        console.log('Database: Population function completed');
     } catch (error) {
         console.error('Database: Error populating database', error);
-    } finally {
-        console.log('Database: Population function completed');
     }
 }
 
