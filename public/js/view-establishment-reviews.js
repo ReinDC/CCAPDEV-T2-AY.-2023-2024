@@ -69,9 +69,9 @@ document.addEventListener('DOMContentLoaded', (e) => {
             }
 
             if(data.user){
-                createReview(review, data.responses[responseIndex], data.users[usersIndex], data.user.userID);
+                createReview(review, data.responses[responseIndex], data.users[usersIndex], data.user.userID, data.resturant);
             } else{
-                createReview(review, data.responses[responseIndex], data.users[usersIndex], 0);
+                createReview(review, data.responses[responseIndex], data.users[usersIndex], 0, data.resturant);
             }
         }
 
@@ -348,7 +348,7 @@ function createReviewElement(profpic, username, reviewID, reviewTitle, reviewCon
 }
 
 
-function createReview(review, response, user, currentUserID){
+function createReview(review, response, user, currentUserID, resturant){
     const reviewContainer = document.createElement('div');
     reviewContainer.className = 'estab-reviews-container';
     const reviewProfile = document.createElement('div');
@@ -431,9 +431,23 @@ function createReview(review, response, user, currentUserID){
         sendData(review.reviewID);
     }
 
+
+    const respondBtn = document.createElement('button');
+    respondBtn.className = "button-btn";
+    respondBtn.innerText = "Respond";
+    if(resturant.ownerID != currentUserID){
+        respondBtn.style.display = "none";
+    }
+    respondBtn.onclick = function(){
+        respondToReview(review.reviewID, resturant.resturantID);
+    }
+
+
     buttonContainer.appendChild(helpfulButton);
     buttonContainer.appendChild(notHelpfulButton);
     buttonContainer.appendChild(editButton);
+    buttonContainer.appendChild(respondBtn);
+
 
     reviewContainer.appendChild(reviewProfile);
     reviewContainer.appendChild(textContainerReview);
