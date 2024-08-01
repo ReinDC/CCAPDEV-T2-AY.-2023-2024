@@ -485,9 +485,8 @@ function createReview(review, response, user, currentUserID, resturant, owner, i
 
         respondContainer.appendChild(ownerImage);
         respondContainer.appendChild(titleAndNameBoxResponse);
+        respondContainer.appendChild(textContainerResponse);
     }
-    
-
 
     buttonContainer.appendChild(helpfulButton);
     buttonContainer.appendChild(notHelpfulButton);
@@ -500,7 +499,6 @@ function createReview(review, response, user, currentUserID, resturant, owner, i
     reviewContainer.appendChild(buttonContainer);
     if(index != -1){
         reviewContainer.appendChild(respondContainer);
-        reviewContainer.appendChild(textContainerResponse);
     }
 
     const realContainer = document.querySelector(".review-container");
