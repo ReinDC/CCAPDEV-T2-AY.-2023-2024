@@ -456,3 +456,7 @@ textarea{
 .custom-alert-content button:hover {
     background-color: #7d9cbd;
 }
+
+.respond{
+    margin-left: 100px;
+}

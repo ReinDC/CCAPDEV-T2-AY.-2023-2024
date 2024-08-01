@@ -38,6 +38,8 @@ document.addEventListener('DOMContentLoaded', (e) => {
     .then(data =>{
         reviewContainerDiv.innerHTML = "";
 
+        
+
         for(let i = 0; i < data.reviews.length; i++){
             const review = data.reviews[i]
             const responses = data.responses;
@@ -46,16 +48,15 @@ document.addEventListener('DOMContentLoaded', (e) => {
             let responseIndex = -1, j, usersIndex = -1;
 
 
-            // console.log(responses);
+            // console.log(responses[0]);
             // console.log(review);
             // console.log(data.user);
 
-            if(responseLength > i){
-                for(j = 0; j < responseLength; j++){
-                    if(review.reviewID == responses[j].reviewID){
-                        responseIndex = j;
-                        break;
-                    }
+            for(j = 0; j < responseLength; j++){
+                if(review.reviewID == responses[j].reviewID){
+                    // console.log(responses[j].responseTitle);
+                    responseIndex = j;
+                    break;
                 }
             }
             
@@ -68,10 +69,12 @@ document.addEventListener('DOMContentLoaded', (e) => {
 
             }
 
+
+
             if(data.user){
-                createReview(review, data.responses[responseIndex], data.users[usersIndex], data.user.userID, data.resturant);
+                createReview(review, responses[responseIndex], data.users[usersIndex], data.user.userID, data.resturant, data.owner, responseIndex);
             } else{
-                createReview(review, data.responses[responseIndex], data.users[usersIndex], 0, data.resturant);
+                createReview(review, responses[responseIndex], data.users[usersIndex], 0, data.resturant, data.owner, responseIndex);
             }
         }
 
@@ -348,7 +351,7 @@ function createReviewElement(profpic, username, reviewID, reviewTitle, reviewCon
 }
 
 
-function createReview(review, response, user, currentUserID, resturant){
+function createReview(review, response, user, currentUserID, resturant, owner, index){
     const reviewContainer = document.createElement('div');
     reviewContainer.className = 'estab-reviews-container';
     const reviewProfile = document.createElement('div');
@@ -442,6 +445,49 @@ function createReview(review, response, user, currentUserID, resturant){
         respondToReview(review.reviewID, resturant.resturantID);
     }
 
+    const respondContainer = document.createElement('div');
+    const textContainerResponse = document.createElement('div');
+
+    if(index != -1){
+        respondContainer.className = "estab-reviews-container respond";
+
+        const respondProf = document.createElement('div');
+        respondProf.className = "review-profile";
+
+        const ownerImage = document.createElement('div');
+        ownerImage.classList = "img-box"
+        const ownerImg = document.createElement('img');
+        ownerImg.src = owner.profpic;
+        ownerImage.appendChild(ownerImg);
+
+        const titleAndNameBoxResponse = document.createElement('div');
+        titleAndNameBoxResponse.className = 'title-and-name-box';
+
+        const titleTextResponse = document.createElement('div');
+        titleTextResponse.className = 'title-text';
+        titleTextResponse.textContent = response.responseTitle;
+
+        const nameTextresponse = document.createElement('div');
+        nameTextresponse.className = 'name-text';
+        nameTextresponse.textContent = 'By: The Owner';
+
+        textContainerResponse.className = 'text-container-review';
+        const textarearesponse = document.createElement('textarea');
+        textarearesponse.readOnly = true;
+        textarearesponse.name = 'review';
+        textarearesponse.rows = 10;
+        textarearesponse.cols = 10;
+        textarearesponse.textContent = response.responseContent;
+        textContainerResponse.appendChild(textarearesponse);
+
+        titleAndNameBoxResponse.appendChild(titleTextResponse);
+        titleAndNameBoxResponse.appendChild(nameTextresponse);
+
+        respondContainer.appendChild(ownerImage);
+        respondContainer.appendChild(titleAndNameBoxResponse);
+    }
+    
+
 
     buttonContainer.appendChild(helpfulButton);
     buttonContainer.appendChild(notHelpfulButton);
@@ -452,6 +498,10 @@ function createReview(review, response, user, currentUserID, resturant){
     reviewContainer.appendChild(reviewProfile);
     reviewContainer.appendChild(textContainerReview);
     reviewContainer.appendChild(buttonContainer);
+    if(index != -1){
+        reviewContainer.appendChild(respondContainer);
+        reviewContainer.appendChild(textContainerResponse);
+    }
 
     const realContainer = document.querySelector(".review-container");
     realContainer.appendChild(reviewContainer);

@@ -267,8 +267,9 @@ router.post("/get-reviews", async (req, res) => {
         const reponses = await Response.find({ resturantID: resturant.resturantID}).lean();
         const users = await User.find({deleted: false}).lean();
         const user = await User.findOne({username: req.session.username});
+        const owner = await User.findOne({userID: resturant.ownerID})
 
-        res.status(200).send({reviews: reviews, responses: reponses, users: users, user: user, resturant: resturant});
+        res.status(200).send({reviews: reviews, responses: reponses, users: users, user: user, resturant: resturant, owner: owner});
     } catch (error) {
         res.sendStatus(404);
     }   
