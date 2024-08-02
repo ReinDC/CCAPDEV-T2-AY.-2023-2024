@@ -15,17 +15,6 @@
           </div>
           <p class="details-address"><p class="details-address">{{chosenResturant.address}}</p>
           <div class = "button-reco-container">
-            <script>
-                function reco(){
-                    document.getElementById("notRecoBtn").style.backgroundColor = "#a5a5a5";
-                    document.getElementById("recoBtn").style.backgroundColor = "#96A677";
-                }
-
-                function notreco(){
-                    document.getElementById("recoBtn").style.backgroundColor = "#a5a5a5";
-                    document.getElementById("notRecoBtn").style.backgroundColor = "#CE6A85";
-                }
-            </script>
                       <button class = "button-btn-reco" id = "recoBtn" onclick="reco()">⭐ Recommended</button>
                       <button class = "button-btn-notreco" id = "notRecoBtn" onclick="notreco()">👎 Not recommended</button> 
           </div>
