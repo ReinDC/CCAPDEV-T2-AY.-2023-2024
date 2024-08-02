@@ -148,6 +148,7 @@ body{
     padding: 10px;
     display: flex;
     flex-wrap: wrap;
+    flex-direction: column;
 }
 .comment > .review-title{
     padding: -10px;

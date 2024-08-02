@@ -1,48 +1,48 @@
-{{> navbar}}
-<link rel="stylesheet" href="/css/user-profile.css">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    {{> navbar}}
+    <link rel="stylesheet" href="/css/user-profile.css">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 
-<body>
-    <div class="profile-body">
-        <div class="profile-info">
-            <h2>{{user.username}}</h2>
-            <textarea readonly name="User Description" class="profile-description"> {{user.description}} </textarea>
+    <body>
+        <div class="profile-body">
+            <div class="profile-info">
+                <h2>{{user.username}}</h2>
+                <textarea readonly name="User Description" class="profile-description"> {{user.description}} </textarea>
+            </div>
+
+            <div class="profile-pic">
+                <img src="{{user.profpic}}" alt="">
+            </div>
         </div>
 
-        <div class="profile-pic">
-            <img src="{{user.profpic}}" alt="">
-        </div>
-    </div>
+            <div class="profile-footer">
+                <button class="profile-button" onclick="editBtn()">Edit profile</button>
+            </div>
 
-        <div class="profile-footer">
-            <button class="profile-button" onclick="editBtn()">Edit profile</button>
-        </div>
+        {{#if reviews}}
+            <div class="comments-reviews">
+                {{#each reviews}}
+                    <div class="comment">
+                        <div class = "review-title">
+                            {{reviewTitle}}
+                        </div>
+                        <br>
+                        {{reviewContent}}
+                        <br>
+                        {{#if isRecommended}}
+                            <div class="comment-footer"> ⭐ Recommended</div>
+                        {{else}}
+                            <div class="comment-footer"> 👎 Not recommended </div>
+                        {{/if}}
+                    
+                    </div>
+                {{/each}}
+            </div>
+        {{else}}
+            <div class="no-reviews">
+                You have no reviews. <button onclick="goToViewEstablishment()">Create a review for a resturant!</button>
+            </div>
 
-    {{#if reviews}}
-        <div class="comments-reviews">
-            {{#each reviews}}
-                <div class="comment">
-                    <div class = "review-title">
-                        {{reviewTitle}}
-                    </div>   
-                    <br>
-                    {{reviewContent}}
-                    <br>
-                    {{#if isRecommended}}
-                        <div class="comment-footer"> ⭐ Recommended</div>
-                    {{else}}
-                        <div class="comment-footer"> 👎 Not recommended </div>
-                    {{/if}}
-                
-                </div>
-            {{/each}}
-        </div>
-    {{else}}
-        <div class="no-reviews">
-            You have no reviews. <button onclick="goToViewEstablishment()">Create a review for a resturant!</button>
-        </div>
+        {{/if}}
 
-    {{/if}}
-
-    <script src="/js/user-profile.js"></script>
-</body>
+        <script src="/js/user-profile.js"></script>
+    </body>
