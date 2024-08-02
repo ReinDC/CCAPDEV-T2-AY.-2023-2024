@@ -362,3 +362,9 @@ body{
     background-color: #7d9cbd;
 }
 
+.radio-btns{
+    margin: 0 30px;
+    vertical-align: middle;
+    line-height: 40px;
+}
+
