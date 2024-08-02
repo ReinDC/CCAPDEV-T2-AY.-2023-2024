@@ -449,7 +449,7 @@ function createReview(review, response, user, currentUserID, resturant, owner, i
     const textContainerResponse = document.createElement('div');
 
     if(index != -1){
-        respondContainer.className = "estab-reviews-container respond";
+        respondContainer.className = "estab-reviews-container-respond";
 
         const respondProf = document.createElement('div');
         respondProf.className = "review-profile";
