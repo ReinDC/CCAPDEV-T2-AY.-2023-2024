@@ -65,7 +65,7 @@ body{
     color: #17191f;
     display: flex;
     margin: auto;
-    height: 300px;
+    /* height: 400px; */
     margin-top: 10px;
     border-radius: 20px;
 }
@@ -131,12 +131,14 @@ body{
     padding-bottom: 10px;
     display: flex;
     flex-direction: column; 
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 .comment{
     background-color: #f5f5f5;
     width: 70%;
-    height: 100px;
+    /* height: 100px; */
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 20px;
@@ -144,8 +146,14 @@ body{
     border: 2px solid #b2b2b2;
     border-radius: 10px;
     padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
 }
-
+.comment > .review-title{
+    padding: -10px;
+    font-size: 20px;
+    font-weight: bold;
+}
 .comment-footer{
     color: rgba(0, 0, 0, 0.5)
 }

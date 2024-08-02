@@ -22,15 +22,18 @@
         <div class="comments-reviews">
             {{#each reviews}}
                 <div class="comment">
-                    {{reviewTitle}}
-                    <hr>
+                    <div class = "review-title">
+                        {{reviewTitle}}
+                    </div>   
+                    <br>
                     {{reviewContent}}
-                    <hr>
+                    <br>
                     {{#if isRecommended}}
                         <div class="comment-footer"> ⭐ Recommended</div>
                     {{else}}
                         <div class="comment-footer"> 👎 Not recommended </div>
                     {{/if}}
+                
                 </div>
             {{/each}}
         </div>
