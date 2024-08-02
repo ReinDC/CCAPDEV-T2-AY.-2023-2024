@@ -387,6 +387,7 @@ router.post('/submit-form-register', async (req, res) => {
                 await User.create(userObj);
 
                 // Respond with a sendStatus code and message
+                req.session.username = username;
                 res.sendStatus(201);
             } catch (creationError) {
                 console.error('Error creating user:', creationError);
