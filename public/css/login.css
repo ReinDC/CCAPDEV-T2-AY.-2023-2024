@@ -19,6 +19,36 @@ a:hover {
     text-decoration: dotted;
 }
 
+.resto-header{
+    color: #17191f;
+    display: flex;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex-direction: row;
+    padding: 30px;
+    margin-bottom: 50px;
+    align-items: center;
+}
+
+.resto-header > h1 {
+    margin: 0%;
+    margin-right: 25px;
+    color:  #17191f;
+}
+
+.resto-header > .text{
+    font-weight: bold;
+    font-size: 18px;
+    margin-left: 25px;
+    color:  #17191f;
+}
+
+.resto-header a:visited {
+    color: #17191f;
+    text-decoration: underline; 
+    font-weight: bold; 
+}
+
 input {
     width: 100%;
     height: 15%;
