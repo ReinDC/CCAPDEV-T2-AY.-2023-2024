@@ -67,3 +67,12 @@
             window.location.href = "/view-establishment"
         }
         
+        function reco(){
+            document.getElementById("notRecoBtn").style.backgroundColor = "#a5a5a5";
+            document.getElementById("recoBtn").style.backgroundColor = "#96A677";
+        }
+
+        function notreco(){
+            document.getElementById("recoBtn").style.backgroundColor = "#a5a5a5";
+            document.getElementById("notRecoBtn").style.backgroundColor = "#CE6A85";
+        }

@@ -83,3 +83,13 @@ async function deleteReview(){
         alert("Error, there was a problem changing your profile picture.");
     }
 }
+
+function reco(){
+    document.getElementById("notRecoBtn").style.backgroundColor = "#a5a5a5";
+    document.getElementById("recoBtn").style.backgroundColor = "#96A677";
+}
+
+function notreco(){
+    document.getElementById("recoBtn").style.backgroundColor = "#a5a5a5";
+    document.getElementById("notRecoBtn").style.backgroundColor = "#CE6A85";
+}
