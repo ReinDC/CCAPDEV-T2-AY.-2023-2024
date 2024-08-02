@@ -27,23 +27,35 @@ function isValidURL(url) { // For registrarion
 
 // Route for rendering the login page
 router.get("/", (req, res) => {
-    res.render("login", {
-        title: "Login",
-    });
+    if(!req.session.username){
+        res.render("login", {
+            title: "Login",
+        });
+    } else {
+        res.redirect('/user-profile'); 
+    }
 });
 
 // Route for rendering the login page (same as above, but with explicit /login path)
 router.get("/login", (req, res) => {
-    res.render("login", {
-        title: "Login",
-    });
+    if(!req.session.username){
+        res.render("login", {
+            title: "Login",
+        });
+    } else {
+        res.redirect('/user-profile'); 
+    }
 });
 
 // Route for rendering the registration page
-router.get("/register", (req, res) => {
-    res.render("register", {
-        title: "Register",
-    });
+router.get("/register", async (req, res) => {
+    if(!req.session.username){
+        res.render("register", {
+            title: "Register",
+        });
+    } else {
+        res.redirect('/user-profile'); 
+    }
 });
 
 // Route for rendering the logout page
@@ -83,7 +95,7 @@ router.get('/view-establishment', async (req, res) => {
 router.get("/user-profile", async (req, res) => {
     if (req.session.username){
         const user = await User.findOne({ username: req.session.username });   
-        const reviews = await Review.find({ reviewerID: user.userID});
+        const reviews = await Review.find({ reviewerID: user.userID, deleted: false});
         let resturantNames = [];
         for(let i = 0; i < reviews.length; i++){
             let resto = await Resturant.findOne({resturantID: reviews[i].resturantID});
@@ -669,16 +681,21 @@ router.post("/delete", async (req, res) => {
 
 //from here on, still not sure about this, will revise. 
 router.get("/owner-response", async (req,res) =>{
-    const{reviewID, resturantID} = req.query;
-    const review = await Review.findOne({reviewID});
-    const chosenResturant = await Resturant.findOne({resturantID}).exec();
-    res.render("owner-response", {
-        reviewID, 
-        resturantID, 
-        chosenResturant,
-        reviewTitle: review.reviewTitle,
-        reviewContent: review.reviewContent
-    });
+    if(req.session.username){
+        const{reviewID, resturantID} = req.query;
+        const review = await Review.findOne({reviewID});
+        const chosenResturant = await Resturant.findOne({resturantID}).exec();
+        res.render("owner-response", {
+            reviewID, 
+            resturantID, 
+            chosenResturant,
+            reviewTitle: review.reviewTitle,
+            reviewContent: review.reviewContent
+        });
+    } else {
+        res.redirect('/login?unauthenticated=true'); 
+    }
+    
 });
 
 router.post("/submit-response", async (req, res) => {

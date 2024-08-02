@@ -469,7 +469,7 @@ function createReview(review, response, user, currentUserID, resturant, owner, i
 
         const nameTextresponse = document.createElement('div');
         nameTextresponse.className = 'name-text';
-        nameTextresponse.textContent = 'By: The Owner';
+        nameTextresponse.textContent = 'By: '+ owner.username + " (Owner)";
 
         textContainerResponse.className = 'text-container-review';
         const textarearesponse = document.createElement('textarea');

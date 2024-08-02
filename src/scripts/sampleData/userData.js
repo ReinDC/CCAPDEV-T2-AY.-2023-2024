@@ -28,7 +28,8 @@ const sampleUsers = [
         username: 'bob_builder',
         type: 'Owner', // Maayos na Restaurant
         password: 'hashedpassword321',
-        profpic: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png',
+        profpic: 'https://avatars.githubusercontent.com/u/12929265?v=4',
+        description: "I can't fix it no more"
     },
     {
         userID: 5,
@@ -51,7 +52,7 @@ const sampleUsers = [
         username: 'edward_snow',
         type: 'Owner', // Owner of City Works
         password: 'hashedpassword234',
-        profpic: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png',
+        profpic: 'https://upload.wikimedia.org/wikipedia/commons/6/60/Edward_Snowden-2.jpg',
         description: 'Cafe owner and barista trainer.'
     },
     {
@@ -75,7 +76,7 @@ const sampleUsers = [
         username: 'harry_potter',
         type: 'Owner', // Owner of CHROMA
         password: 'hashedpassword567',
-        profpic: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/2048px-Default_pfp.svg.png',
+        profpic: 'https://i.pinimg.com/564x/d2/60/c0/d260c038858a49ff52bd84bf72d46a52.jpg',
         description: 'Owner of a magical bookstore.'
     },
     {

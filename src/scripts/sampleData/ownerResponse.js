@@ -10,7 +10,7 @@ const sampleResponses = [
     {
       responseID: 2,
       ownerID: 4,
-      reviewID: 6,
+      reviewID: 7,
       resturantID: 2,
       responseTitle: "Apologies for the inconvenience",
       responseContent: "We are looking into this issue and hope to resolve it promptly and accurately."
