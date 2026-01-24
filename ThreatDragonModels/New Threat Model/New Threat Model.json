@@ -19,23 +19,22 @@
         "cells": [
           {
             "position": {
-              "x": 500,
-              "y": 220
+              "x": 460,
+              "y": 100
             },
             "size": {
-              "width": 112.5,
+              "width": 60,
               "height": 60
             },
             "attrs": {
               "body": {
-                "stroke": "red",
-                "strokeWidth": 2.5,
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
                 "strokeDasharray": null
               }
             },
             "visible": true,
-            "shape": "actor",
-            "zIndex": 1,
+            "shape": "process",
             "ports": {
               "groups": {
                 "top": {
@@ -102,51 +101,37 @@
               "items": [
                 {
                   "group": "top",
-                  "id": "67e09f85-f835-4696-8839-2fa0acab663b"
+                  "id": "cb7a8f92-f321-4699-84cd-57a8e30ce7b4"
                 },
                 {
                   "group": "right",
-                  "id": "967bed69-d44e-4120-a208-c665c46dbf83"
+                  "id": "08137f2b-0cc6-430d-9593-aeff200feaa9"
                 },
                 {
                   "group": "bottom",
-                  "id": "2505be02-fa1e-4ac4-8771-57345623e0f8"
+                  "id": "6fb416a5-ba8f-4acf-badf-35bb6e407f6b"
                 },
                 {
                   "group": "left",
-                  "id": "4bcbed09-861c-4e74-99aa-51297f157ea7"
+                  "id": "cb5f0f29-cb7f-4d06-a84e-2e66d9f3fb45"
                 }
               ]
             },
-            "id": "9b66c8a0-4d23-4f69-8bf7-aed860535f0e",
+            "id": "218d149d-e37b-4c26-b0d5-76df65f71e86",
+            "zIndex": 1,
             "data": {
-              "type": "tm.Actor",
-              "name": "Actor",
+              "type": "tm.Process",
+              "name": "Process",
               "description": "",
-              "isTrustBoundary": false,
               "outOfScope": false,
+              "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": true,
-              "providesAuthentication": false,
-              "threats": [
-                {
-                  "id": "c8e61406-b455-4809-8948-d604669ff852",
-                  "title": "New STRIDE threat",
-                  "status": "Open",
-                  "severity": "Medium",
-                  "type": "Spoofing",
-                  "description": "Provide a description for this thresat",
-                  "mitigation": "Provide remediation for this threat or a reason if status is N/Aa",
-                  "modelType": "STRIDE",
-                  "new": false,
-                  "number": 1,
-                  "score": ""
-                }
-              ],
-              "threatFrequency": {
-                "spoofing": 1,
-                "repudiation": 0
-              }
+              "hasOpenThreats": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": []
             }
           }
         ]
