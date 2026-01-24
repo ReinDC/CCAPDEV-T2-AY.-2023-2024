@@ -35,6 +35,7 @@
             },
             "visible": true,
             "shape": "actor",
+            "zIndex": 1,
             "ports": {
               "groups": {
                 "top": {
@@ -118,7 +119,6 @@
               ]
             },
             "id": "9b66c8a0-4d23-4f69-8bf7-aed860535f0e",
-            "zIndex": 1,
             "data": {
               "type": "tm.Actor",
               "name": "Actor",
