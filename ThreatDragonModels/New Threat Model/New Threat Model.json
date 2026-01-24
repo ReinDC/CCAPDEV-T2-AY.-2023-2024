@@ -16,11 +16,144 @@
         "placeholder": "New STRIDE diagram description",
         "thumbnail": "./public/content/images/thumbnail.stride.jpg",
         "version": "2.5.0",
-        "cells": []
+        "cells": [
+          {
+            "position": {
+              "x": 500,
+              "y": 220
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "67e09f85-f835-4696-8839-2fa0acab663b"
+                },
+                {
+                  "group": "right",
+                  "id": "967bed69-d44e-4120-a208-c665c46dbf83"
+                },
+                {
+                  "group": "bottom",
+                  "id": "2505be02-fa1e-4ac4-8771-57345623e0f8"
+                },
+                {
+                  "group": "left",
+                  "id": "4bcbed09-861c-4e74-99aa-51297f157ea7"
+                }
+              ]
+            },
+            "id": "9b66c8a0-4d23-4f69-8bf7-aed860535f0e",
+            "zIndex": 1,
+            "data": {
+              "type": "tm.Actor",
+              "name": "Actor",
+              "description": "",
+              "isTrustBoundary": false,
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "providesAuthentication": false,
+              "threats": [
+                {
+                  "id": "c8e61406-b455-4809-8948-d604669ff852",
+                  "title": "New STRIDE threat",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Spoofing",
+                  "description": "Provide a description for this thresat",
+                  "mitigation": "Provide remediation for this threat or a reason if status is N/Aa",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 1,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 1,
+                "repudiation": 0
+              }
+            }
+          }
+        ]
       }
     ],
     "diagramTop": 1,
     "reviewer": "",
-    "threatTop": 0
+    "threatTop": 1
   }
 }
